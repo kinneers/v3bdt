@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Admin extends Component {
+class Student extends Component {
 
 //   // Set component's initial state
 //   state = {
@@ -16,4 +16,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default Student;
