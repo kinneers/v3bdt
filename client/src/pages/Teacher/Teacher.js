@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import RatingForm from './../../components/RatingForm';
 
 class Teacher extends Component {
 
@@ -9,9 +10,7 @@ class Teacher extends Component {
 
   render() {
     return (
-        <div>
-            This is an empty div!
-        </div>
+        <RatingForm />
     );
   }
 }
