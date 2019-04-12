@@ -1,9 +1,14 @@
-img.logo {
-    width: 284px;
-    margin-top: 100px;
-    z-index: 5;
+.card-image.background {
+    height: 225px;
 }
 
-img.background {
-    z-index: 0;
+.card-image.logo {
+    width: 110px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }

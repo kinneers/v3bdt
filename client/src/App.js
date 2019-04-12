@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import Login from './pages/Login';
@@ -11,12 +11,13 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div>
+                <Switch>
                     <Route exact path="/" component={Login} />
                     <Route exact path="/teacher" component={Teacher} />
                     <Route exact path="/student" component={Student} />
                     <Route exact path="/admin" component={Admin} />
-                </div>
+                    <Route component={Login} />
+                </Switch>
             </Router>
         );
     }

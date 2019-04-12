@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import LoginComponent from "./../../components/LoginComponent";
+import React, { Component } from 'react';
+import LoginComponent from './../../components/LoginComponent';
+import Footer from './../../components/Footer';
 
 class Login extends Component {
 
@@ -10,7 +11,10 @@ class Login extends Component {
 
   render() {
     return (
-        <LoginComponent />
+        <div>
+            <LoginComponent />
+            <Footer />
+        </div>
     );
   }
 }
