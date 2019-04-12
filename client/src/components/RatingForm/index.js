@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import StudentRow from './../StudentRow';
 
 //import Materialize from "materialize";
 
@@ -19,13 +20,15 @@ function RatingForm(props) {
                 <table id="table-custom-elements" className="row-border" cellspacing="0" width="100%">
                   <thead>
                     <tr>
-                      <th></th>
                       <th>Student</th>
+                      <th>Behavior</th>
                       <th>Goal</th>
-                      <th>Current Progress</th>
+                      {/* <th>Current Progress</th> */}
                     </tr>
                   </thead>
                   <tbody>
+                      {/* This needs to map all the student Rows */}
+                      <StudentRow />
                   </tbody>
                 </table>
                 {/* <!--Button to clear radio button selections once values have been saved--> */}
