@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import RatingForm from './../../components/RatingForm';
+import TopNav from './../../components/TopNav';
+
 
 class Teacher extends Component {
 
@@ -10,7 +12,11 @@ class Teacher extends Component {
 
   render() {
     return (
+      <div>
+        <TopNav />
         <RatingForm />
+       
+        </div>
     );
   }
 }
