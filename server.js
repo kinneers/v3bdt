@@ -16,6 +16,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/behavior_db";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err) {
   if (err)
   console.log(err);
