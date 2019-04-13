@@ -8,7 +8,8 @@ const BehaviorSchema = new Schema({
   status: {type: Boolean, required: true, default: true},
   createdAt: { type: Date, default: Date.now() },
   updatedAt: { type: Date, default: Date.now() },
-  student: { type: Schema.Types.ObjectId, ref: "Student", required: false}
+  student: { type: Schema.Types.ObjectId, ref: "Student", required: false},
+  teachers: [{ type: Schema.Types.ObjectId, ref: "Teacher", required: true}]
 });
 
 const Behavior = mongoose.model("Behavior", BehaviorSchema);

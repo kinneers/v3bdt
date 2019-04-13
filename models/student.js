@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const StudentSchema = new Schema({
-  userName: { type: String, required: true },
+  userName: { type: String, required: true, unique: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   authLevel: { type: Number, enum: [1, 2, 3, 4, 5], required: true },
