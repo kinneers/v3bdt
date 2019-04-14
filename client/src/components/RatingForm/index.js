@@ -36,15 +36,23 @@ class RatingForm extends Component {
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
-        //Gets the name and value of the target that changed
-        const { name, value } = event.target;
-        //Sets the state of the selected object in the newData object, which also updates correctly if the same behavior row's value is changed again before the save data button is clicked
-        this.setState({
-            newData: {
-              ...this.state.newData,
-              [name]: value
-            },
-        });
+        
+        
+        //Save the value to check if it is an empty string (or, for our purposes, null)- in which case we will not update the state
+        let isItNull = event.target.value;
+        if (isItNull === '') {
+            console.log('This value is null');
+        } else {
+            //Gets the name and value of the target that changed
+            const { name, value } = event.target;
+            //Sets the state of the selected (and not-null) object in the newData object, which also updates correctly if the same behavior row's value is changed again before the save data button is clicked
+            this.setState({
+                newData: {
+                    ...this.state.newData,
+                    [name]: value
+                }
+            });
+        }
     };
 
 //   // When the form is submitted, use the API.saveData method to save the bx data
@@ -52,11 +60,11 @@ class RatingForm extends Component {
     saveData = event => {
         event.preventDefault();
         console.log('Button Clicked!');
-        console.log(this.state);
-
+        console.log('The current state as of the button click is: ', this.state);
+        //let dataUpdate = 
         //If the value is '', do nothing
 
-//     if (this.state.value) {
+        // if (this.state.value) {
 //       API.saveData({
 //         behaviorID: this.state.behaviorID,
 //         value: this.state.value,
@@ -64,7 +72,8 @@ class RatingForm extends Component {
 //         .then(res => this.loadBehaviors())
 //         .catch(err => console.log(err));
 //     }
-        this.setState({ newData: [] })
+        this.setState({ newData: {} })
+        
     };
 
     render() {
@@ -96,18 +105,18 @@ class RatingForm extends Component {
                                             <td>{behaviorInfo.studentID}</td>
                                             <td>{behaviorInfo.name}</td><td>{behaviorInfo.behavior}</td>
                                             <td>
-                                                <form id={behaviorInfo.behaviorID} onChange={this.handleInputChange} name='rating'>
+                                                <form id={behaviorInfo.behaviorID} name='rating' onChange={this.handleInputChange}>
                                                 {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}
                                                     <label>
-                                                        <input className="with-gap" id='Met' value={1} name={behaviorInfo.behaviorID} type="radio"/>
+                                                        <input className="with-gap" id='Met' value={1} name={behaviorInfo.behaviorID} type="radio" />
                                                         <span>Met</span>
                                                     </label>    
                                                     <label>
-                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviorInfo.behaviorID} type="radio"/>
+                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviorInfo.behaviorID} type="radio" />
                                                         <span>Not Met</span>
                                                     </label>
                                                     <label>
-                                                        <input className="with-gap" id="N/A" value={''} name={behaviorInfo.behaviorID} type="radio" defaultChecked/>
+                                                        <input className="with-gap" id="N/A" value={''} name={behaviorInfo.behaviorID} type="radio" />
                                                         <span>N/A</span>
                                                     </label>
                                                 </form>
