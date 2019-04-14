@@ -23,6 +23,7 @@ render() {
         </div>
         )
 }
+
 }
 
 export default SideNav;
