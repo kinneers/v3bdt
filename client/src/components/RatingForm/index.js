@@ -36,57 +36,15 @@ class RatingForm extends Component {
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
-
-        //Gathers the current state of the new Data
-        //const prevData = this.state.newData;
         //Gets the name and value of the target that changed
         const { name, value } = event.target;
-
+        //Sets the state of the selected object in the newData object, which also updates correctly if the same behavior row's value is changed again before the save data button is clicked
         this.setState({
             newData: {
               ...this.state.newData,
               [name]: value
             },
         });
-        // //Sets newestData to an object with a key of the name (behaviorID) and value of the value (rating) of the current target
-        // const newestData = {[name]: value}
-        // //Gets the key of the newest data value
-        // const arrayDataKey = Object.keys(newestData);
-        // const newestDataKey = arrayDataKey[0];
-        // //Gets the value of the newest data value
-        // const newestKeyValue = newestData[Object.keys(newestData)];
-
-
-        // console.log('Newest Data: ', newestData);
-        // console.log('The key of Newest Data: ', newestDataKey);
-        // console.log('The value of Newest Data: ', newestKeyValue);
-        // console.log('Previous Data: ', prevData);
-
-        // ()
-        //Initializes an array to store keys
-        // let prevKeysArray =[];
-        // for (let i = 0; i < prevData.length; i++) {
-        //     //Gathers the value of the object's key at each iteration
-        //     let keyInArray = Object.keys(prevData[i]);
-        //     //Pushes the value of the object's key to the previous keys array
-        //     prevKeysArray.push(...keyInArray);
-        //     //Checks if the newest data's key is already in the prevKeysArray
-        //     if (prevKeysArray.includes(newestDataKey)) {
-        //         console.log('This key is already in the array')
-        //         //Get the index of this in the array
-        //         //Create logic to update the existing key in the state
-        //     } else {
-                
-        //     }
-            //console.log(keyInArray)
-            // if (Object.key[obj] === Object.key[newestData]) {
-            //     return (console.log('This key is already a key in the array'))
-            // } else {
-            //     return (console.log('This key is not in the array'))
-            // }
-        // this.setState({
-        //     newData: [...prevData, newestData]
-        // });
     };
 
 //   // When the form is submitted, use the API.saveData method to save the bx data
