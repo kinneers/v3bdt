@@ -1,22 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './style.css';
+import M from "materialize-css";
 
 //import Materialize from "materialize";
 
-function SideNav(props) {
+class SideNav extends Component {
 
-    return (
-    
-        <ul id="sidenav-left" className="sidenav sidenav-fixed">
-      {/* User's name */}
-      <li><a id='username-container' href="/dashboard" className="logo-container">Welcome<i className="material-icons left">spa</i></a></li>
-      <li className="no-padding">
-          <ul className="collapsible collapsible-accordion">
-          </ul>
-        </li>
-      </ul>
-    
-    );
+componentDidMount() {
+    // Auto initialize all the things!
+    M.AutoInit();
+}
+
+render() {
+    return(
+        <div>
+        <ul id="slide-out" className="sidenav sidenav-fixed">
+        <li className="top">Logo</li>
+        <li><a href="#!">Second Sidebar Link</a></li>
+        <li><a href="#!">Second Sidebar Link</a></li>
+        </ul>
+        <a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+        </div>
+        )
+}
+
 }
 
 export default SideNav;

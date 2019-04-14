@@ -1,34 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './style.css';
+import M from "materialize-css";
 
 //import Materialize from "materialize";
 
-function TopNav() {
-    return (
-        <nav>
-        <div className="nav-wrapper">
-          <a href="#!" className="brand-logo"><i className="material-icons">cloud</i>Logo</a>
-          <ul className="right hide-on-med-and-down">
-            <li><a href="#!" data-target="chat-dropdown" className="dropdown-trigger waves-effect"><i
-                  className="material-icons">settings</i></a></li>      
-          </ul><a href="#!" data-target="sidenav-left" className="sidenav-trigger left"><i
-              className="material-icons black-text">menu</i></a>
-        </div>
-        <div id="chat-dropdown" className="dropdown-content dropdown-tabbed">
-        <div id="settings" className="col s12">
-          <div className="settings-group">
-            <div className="switch right">
-              <label>
-                <a href="/logout" className="waves-effect waves-light btn-small" id="logout">Log Out</a>
-            </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      </nav>
+
+class TopNav extends Component {
+
+  componentDidMount() {
+      // Auto initialize all the things!
+      M.AutoInit();
+  }
+  
+  render() {
+      return(
+
     
+      <div>
+            <ul id="dropdown1" className="dropdown-content">
+              <li><a href="#!">Log Out</a></li>
+            </ul>
+            <nav>
+              <div className="nav-wrapper">
+                <a href="#!" className="brand-logo">Logo</a>
+                <ul className="right hide-on-med-and-down">
+                  <li><a className="dropdown-trigger" href="#!" data-target="dropdown1"><i className="material-icons right">settings</i></a></li>
+                </ul>
+              </div>
+            </nav>
+      </div>
+              
 
 );
+}
 }
 
 export default TopNav;

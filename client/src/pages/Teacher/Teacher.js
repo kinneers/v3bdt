@@ -11,18 +11,20 @@ class Teacher extends Component {
         teacher: ''
     };
 
-    render() {
-        return (
-            <div>
-                <TopNav />
-                <SideNav />
-                <Switch>
+  render() {
+    return (
+      <div>
+        <TopNav />
+        <SideNav />
+          <div className="container">
+               <Switch>
                     <Route exact path={`${this.props.match.path}`} component={RatingForm} />
                     <Route exact path={`${this.props.match.path}/chart`} component={BxChart} />
-                </Switch>
+               </Switch>  
             </div>
-        );
-    };
-};
+        </div>
+    );
+  }
+}
 
 export default Teacher;
