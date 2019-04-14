@@ -19,7 +19,7 @@ render() {
         <li><a href="#!">Second Sidebar Link</a></li>
         <li><a href="#!">Second Sidebar Link</a></li>
         </ul>
-        <a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+        <a href="#!" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
         </div>
         )
 }
