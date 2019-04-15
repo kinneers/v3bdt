@@ -36,57 +36,23 @@ class RatingForm extends Component {
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
-
-        //Gathers the current state of the new Data
-        //const prevData = this.state.newData;
-        //Gets the name and value of the target that changed
-        const { name, value } = event.target;
-
-        this.setState({
-            newData: {
-              ...this.state.newData,
-              [name]: value
-            },
-        });
-        // //Sets newestData to an object with a key of the name (behaviorID) and value of the value (rating) of the current target
-        // const newestData = {[name]: value}
-        // //Gets the key of the newest data value
-        // const arrayDataKey = Object.keys(newestData);
-        // const newestDataKey = arrayDataKey[0];
-        // //Gets the value of the newest data value
-        // const newestKeyValue = newestData[Object.keys(newestData)];
-
-
-        // console.log('Newest Data: ', newestData);
-        // console.log('The key of Newest Data: ', newestDataKey);
-        // console.log('The value of Newest Data: ', newestKeyValue);
-        // console.log('Previous Data: ', prevData);
-
-        // ()
-        //Initializes an array to store keys
-        // let prevKeysArray =[];
-        // for (let i = 0; i < prevData.length; i++) {
-        //     //Gathers the value of the object's key at each iteration
-        //     let keyInArray = Object.keys(prevData[i]);
-        //     //Pushes the value of the object's key to the previous keys array
-        //     prevKeysArray.push(...keyInArray);
-        //     //Checks if the newest data's key is already in the prevKeysArray
-        //     if (prevKeysArray.includes(newestDataKey)) {
-        //         console.log('This key is already in the array')
-        //         //Get the index of this in the array
-        //         //Create logic to update the existing key in the state
-        //     } else {
-                
-        //     }
-            //console.log(keyInArray)
-            // if (Object.key[obj] === Object.key[newestData]) {
-            //     return (console.log('This key is already a key in the array'))
-            // } else {
-            //     return (console.log('This key is not in the array'))
-            // }
-        // this.setState({
-        //     newData: [...prevData, newestData]
-        // });
+        
+        
+        //Save the value to check if it is an empty string (or, for our purposes, null)- in which case we will not update the state
+        let isItNull = event.target.value;
+        if (isItNull === '') {
+            console.log('This value is null');
+        } else {
+            //Gets the name and value of the target that changed
+            const { name, value } = event.target;
+            //Sets the state of the selected (and not-null) object in the newData object, which also updates correctly if the same behavior row's value is changed again before the save data button is clicked
+            this.setState({
+                newData: {
+                    ...this.state.newData,
+                    [name]: value
+                }
+            });
+        }
     };
 
 //   // When the form is submitted, use the API.saveData method to save the bx data
@@ -94,11 +60,11 @@ class RatingForm extends Component {
     saveData = event => {
         event.preventDefault();
         console.log('Button Clicked!');
-        console.log(this.state);
-
+        console.log('The current state as of the button click is: ', this.state);
+        //let dataUpdate = 
         //If the value is '', do nothing
 
-//     if (this.state.value) {
+        // if (this.state.value) {
 //       API.saveData({
 //         behaviorID: this.state.behaviorID,
 //         value: this.state.value,
@@ -106,7 +72,8 @@ class RatingForm extends Component {
 //         .then(res => this.loadBehaviors())
 //         .catch(err => console.log(err));
 //     }
-        this.setState({ newData: [] })
+        this.setState({ newData: {} })
+        
     };
 
     render() {
@@ -138,18 +105,18 @@ class RatingForm extends Component {
                                             <td>{behaviorInfo.studentID}</td>
                                             <td>{behaviorInfo.name}</td><td>{behaviorInfo.behavior}</td>
                                             <td>
-                                                <form id={behaviorInfo.behaviorID} onChange={this.handleInputChange} name='rating'>
+                                                <form id={behaviorInfo.behaviorID} name='rating' onChange={this.handleInputChange}>
                                                 {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}
                                                     <label>
-                                                        <input className="with-gap" id='Met' value={1} name={behaviorInfo.behaviorID} type="radio"/>
+                                                        <input className="with-gap" id='Met' value={1} name={behaviorInfo.behaviorID} type="radio" />
                                                         <span>Met</span>
                                                     </label>    
                                                     <label>
-                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviorInfo.behaviorID} type="radio"/>
+                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviorInfo.behaviorID} type="radio" />
                                                         <span>Not Met</span>
                                                     </label>
                                                     <label>
-                                                        <input className="with-gap" id="N/A" value={''} name={behaviorInfo.behaviorID} type="radio" defaultChecked/>
+                                                        <input className="with-gap" id="N/A" value={''} name={behaviorInfo.behaviorID} type="radio" />
                                                         <span>N/A</span>
                                                     </label>
                                                 </form>
