@@ -13,9 +13,10 @@ class RatingForm extends Component {
     };
 
     componentDidMount() {
-        console.log(this.state.behaviorInfo);
+        console.log(this.state.behaviorInfo);   
     }
 
+    
     //Create get request for this teacher's behaviors' IDs, names, behaviors
     //Set state for behaviorInfo to this teacher's student data
     //Create onClick to gather each student's data
@@ -36,8 +37,6 @@ class RatingForm extends Component {
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
-        
-        
         //Save the value to check if it is an empty string (or, for our purposes, null)- in which case we will not update the state
         let isItNull = event.target.value;
         if (isItNull === '') {
@@ -72,7 +71,7 @@ class RatingForm extends Component {
 //         .then(res => this.loadBehaviors())
 //         .catch(err => console.log(err));
 //     }
-        this.setState({ newData: {} })
+        this.setState({ newData: {} });
         
     };
 
