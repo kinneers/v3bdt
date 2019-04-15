@@ -20,6 +20,38 @@ const teacherSeed = [
     }
 ]
 
+const studentSeed = [
+    {
+        userName: "timmyt@gmail.com",
+        firstName: "Timmy",
+        lastName: "Thomas",
+        authLevel: 1,
+        behaviors: [
+            {
+                behaviorName: "sit still in class",
+                behaviorTracked: [
+                    {
+                        behaviorValue: 1,
+                        behaviorDate: "2019-04-10T12:00:00Z"
+                    },
+                    {
+                        behaviorValue: 0,
+                        behaviorDate: "2019-04-10T12:15:00Z"
+                    },
+                    {
+                        behaviorValue: 1,
+                        behaviorDate: "2019-04-10T12:30:00Z"
+                    },
+                    {
+                        behaviorValue: 1,
+                        behaviorDate: "2019-04-10T12:45:00Z"
+                    }
+                ]
+            }
+        ]
+    }
+]
+
 db.Teacher
     .deleteMany({})
     .then(() => db.Teacher.insertMany(teacherSeed))
