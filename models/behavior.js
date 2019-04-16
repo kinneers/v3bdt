@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const BehaviorSchema = new Schema({
   behaviorName: { type: String, required: true, },
   behaviorTracked: [{
-    behaviorValue: { type: Number, enum: [0, 1], allowNull: true, required: true },
+    behaviorValue: { type: Number, enum: [0, 1], allowNull: true, required: false },
     behaviorDate: { type: Date, default: Date.now(), required: true }
   }],
   status: {type: Boolean, required: true, default: true},
