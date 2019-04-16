@@ -63,6 +63,134 @@ const behaviorSeeds = [
             {
                 behaviorValue: 1,
                 behaviorDate: "2019-04-10T12:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:00:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T13:15:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T13:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:15:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T15:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:15:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T16:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:15:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T17:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:45:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T19:00:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T19:15:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T19:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:00:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T20:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:45:00Z"
             }
         ]
     },
@@ -70,7 +198,7 @@ const behaviorSeeds = [
         behaviorName: "raise hand befire speaking",
         behaviorTracked: [
             {
-                behaviorValue: 1,
+                behaviorValue: 0,
                 behaviorDate: "2019-04-10T12:00:00Z"
             },
             {
@@ -78,12 +206,140 @@ const behaviorSeeds = [
                 behaviorDate: "2019-04-10T12:15:00Z"
             },
             {
-                behaviorValue: 1,
+                behaviorValue: 0,
                 behaviorDate: "2019-04-10T12:30:00Z"
             },
             {
                 behaviorValue: 1,
                 behaviorDate: "2019-04-10T12:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:00:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T13:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:30:00Z"
+            },
+            {
+                // behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:45:00Z"
+            },
+            {
+                // behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:00:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T16:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:00:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T19:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:00:00Z"
+            },
+            {
+                behaviorValue: 0,
+                behaviorDate: "2019-04-10T20:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:45:00Z"
             }
         ]
     },
@@ -95,7 +351,7 @@ const behaviorSeeds = [
                 behaviorDate: "2019-04-10T12:00:00Z"
             },
             {
-                behaviorValue: 0,
+                behaviorValue: 1,
                 behaviorDate: "2019-04-10T12:15:00Z"
             },
             {
@@ -105,8 +361,135 @@ const behaviorSeeds = [
             {
                 behaviorValue: 1,
                 behaviorDate: "2019-04-10T12:45:00Z"
-            }
-        ]
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T13:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T14:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T15:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T16:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T17:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T18:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T19:45:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:00:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:15:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:30:00Z"
+            },
+            {
+                behaviorValue: 1,
+                behaviorDate: "2019-04-10T20:45:00Z"
+            }        ]
     }
 ]
 
