@@ -16,8 +16,20 @@ render() {
         <div>
         <ul id="slide-out" className="sidenav sidenav-fixed">
         <li className="top">Logo</li>
-        <li><a href="#!">Second Sidebar Link</a></li>
-        <li><a href="#!">Second Sidebar Link</a></li>
+        <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">assignment</i>Billy</div>
+      <div class="collapsible-body"><span>Use inside voice</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">assignment</i>Sarah</div>
+      <div class="collapsible-body"><span>Sit still in class</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">assignment</i>Jodi</div>
+      <div class="collapsible-body"><span>Raise hand</span></div>
+    </li>
+  </ul>
         </ul>
         <a href="#!" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
         </div>
