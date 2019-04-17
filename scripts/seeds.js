@@ -14,7 +14,7 @@ const teacherArray = [];
 
 const teacherSeed = [
     {
-        userName: "misstanner@gmail.com",
+        userName: "misstanner@fenceworkshop.com",
         firstName: "Becky",
         lastName: "Tanner",
         authLevel: 3,
