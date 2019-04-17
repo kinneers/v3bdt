@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './style.css';
-//import BehaviorRateRow from './../BehaviorRateRow';
-//import API from './../../utils/API';
+import API from './../../utils/API';
 
 class RatingForm extends Component {
     
     state = {
-        behaviorInfo: [{ studentID: 1, name: 'Bad Billy', behavior: 'Do not pick your nose!', behaviorID: 1 },
-                        { studentID: 2, name: 'Silly Sarah', behavior: "Don't be so silly!", behaviorID: 2 }],
-        //behaviorInfo: [],
-        newData: {}
+        //behaviorInfo: [{ studentID: 1, name: 'Bad Billy', behavior: 'Do not pick your nose!', behaviorID: 1 },
+        //                { studentID: 2, name: 'Silly Sarah', behavior: "Don't be so silly!", behaviorID: 2 }],
+        behaviorInfo: [],
+        newData: {},
+        teacherID: '5cb682e6fc3b6fbc405b533f'
     };
 
-    componentDidMount() {
-        console.log(this.state.behaviorInfo);   
-    }
+    // componentDidMount() {
+    //     console.log(this.state.behaviorInfo);   
+    // }
 
     
     //Create get request for this teacher's behaviors' IDs, names, behaviors
@@ -23,17 +23,17 @@ class RatingForm extends Component {
     //Post each student's data to the database
     //Show a modal when student data has been saved and reset radio buttons
 
-    // // When the component mounts, load all students and save them to this.state.behaviorInfo
-    // componentDidMount() {
-    //     this.loadBehaviors();
-    // };
+    // When the component mounts, load all students and save them to this.state.behaviorInfo
+    componentDidMount() {
+        this.loadBehaviors();
+    };
 
-    // // Loads all students and sets them to this.state.behaviorInfo
-    // loadBehaviors = () => {
-    //     API.getBehaviors()
-    //         .then(res => this.setState({ behaviorInfo: res.data }))
-    //         .catch(err => console.log(err));
-    // };
+    // Loads all students and sets them to this.state.behaviorInfo
+    loadBehaviors = () => {
+        API.getBehaviors(this.state.teacherID)
+            .then(res => this.setState({ behaviorInfo: res.data }))
+            .catch(err => console.log(err));
+    };
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {

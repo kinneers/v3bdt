@@ -2,8 +2,14 @@ const db = require("../models");
 
 // Defining methods for the TeachersController
 module.exports = {
-    //ADD:
-    //findAllBehaviorsRefTeacher- needs to get each behavior related to that teacher in form of array of objects with AT LEAST: {behaviorID, name, behavior, studentID}
+    //Get each behavior related to the teacher
+    findAllBehaviorsRefTeacher: function(req, res) {
+        db.Teacher
+            .findById(req.params.id)
+            .populate("behaviors")
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
 
   findAll: function(req, res) {
     db.Teacher
