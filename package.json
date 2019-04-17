@@ -11,7 +11,7 @@
     "seed": "node scripts/seeds.js",
     "installDeps": "npm install && cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run seed && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "amazon-cognito-identity-js": "^3.0.11",
     "aws-sdk": "^2.437.0",
     "axios": "^0.18.0",
+    "cognito-express": "^2.0.14",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
