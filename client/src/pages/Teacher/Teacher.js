@@ -16,6 +16,7 @@ class Teacher extends Component {
       <div>
         <TopNav />
         <SideNav />
+        <BxChart />
           <div className="container">
                <Switch>
                     <Route exact path={`${this.props.match.path}`} component={RatingForm} />
