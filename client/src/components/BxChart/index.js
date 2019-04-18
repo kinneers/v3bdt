@@ -1,33 +1,60 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {Line} from 'react-chartjs-2';
 import './style.css';
 
 //import Materialize from "materialize";
 
-function BxChart(props) {
-    return (
-        <main>
-        <div className="container">
-          <div className="row">
-    
-            <div className="col s12 m12">
-              <h5 id="username-container">Behavioral Charts</h5>
-              <div className="card">
-                <div className="card-metrics card-metrics-toggle card-metrics-centered">
-                  <div className="card-metric waves-effect active" data-metric="revenue">
-                    <div className="card-metric-title">Behavior</div>
-                    <div className="card-metric-value">$12,476.00</div>
-                  </div>
-                </div>
-                <div className="card-content">
-                  <canvas className="card-chart" id="main-toggle-line-chart" width="400" height="400"></canvas>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
-      </main>
-    
-    );
+class BxChart extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      chartData:{
+        labels: ['4/12/2019','4/13/2019','4//14/2019','4/15/2019','4/16/2019','4/17/2019'],
+        datasets:[
+          {
+            label:'Progress',
+            data:[
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ],
+         backgroundColor:[
+           'rgba',
+         ]   
+          }
+        ]
+      }
+    }
+  }
+  render(){
+    return(
+      <div className="container">
+      <div className="chart">
+        <Line
+          data={this.state.chartData}
+          width={500}
+          height={150}
+          options={{
+            title:{
+              display:true,
+              text:'Progress',
+              fontSize:25,
+            }
+        }}
+      />
+
+      </div>
+    </div>
+    )
+  }
+
+
 }
+
+
 
 export default BxChart;
