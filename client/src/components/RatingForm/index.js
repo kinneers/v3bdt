@@ -5,20 +5,12 @@ import API from './../../utils/API';
 class RatingForm extends Component {
     
     state = {
-        //behaviorInfo: [{ studentID: 1, name: 'Bad Billy', behavior: 'Do not pick your nose!', behaviorID: 1 },
-        //                { studentID: 2, name: 'Silly Sarah', behavior: "Don't be so silly!", behaviorID: 2 }],
         behaviorInfo: [],
         newData: {},
-        teacherID: '5cb682e6fc3b6fbc405b533f'
+        //Until this route works (it must get teacher from Cognito), hardcode the teacher's id
+        teacherID: '5cb7ca933da1c78dd849ee6c'
     };
 
-    // componentDidMount() {
-    //     console.log(this.state.behaviorInfo);   
-    // }
-
-    
-    //Create get request for this teacher's behaviors' IDs, names, behaviors
-    //Set state for behaviorInfo to this teacher's student data
     //Create onClick to gather each student's data
     //Post each student's data to the database
     //Show a modal when student data has been saved and reset radio buttons
@@ -104,7 +96,8 @@ class RatingForm extends Component {
                                         {this.state.behaviorInfo.behaviors.map(behaviors => (
                                         <tr key={behaviors._id}>
                                             <td>{behaviors.student}</td>
-                                            <td>{behaviors.student}</td><td>{behaviors.behaviorName}</td>
+                                            <td>{behaviors.studentName}</td>
+                                            <td>{behaviors.behaviorName}</td>
                                             <td>
                                                 <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
                                                 {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}

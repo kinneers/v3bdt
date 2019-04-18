@@ -11,6 +11,15 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    //Gets all behaviors
+    findAllBehaviorsRefTeachers: function(req, res) {
+        db.Teacher
+            .find(req.query)
+            .populate("behaviors")
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
   findAll: function(req, res) {
     db.Teacher
       .find(req.query)

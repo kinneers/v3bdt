@@ -7,40 +7,43 @@ const jwt = require('jsonwebtoken');
 global.fetch = require('node-fetch');
 
 const poolData = {
-    UserPoolId: "us-east-1_gQY2mlqLv", // Your user pool id here. Should be added to keys.   
-    ClientId: "3muv12bp5ge20puvmm637oskan" // Your client id here. Should be added to keys.
+    UserPoolId: "us-east-1_RX3L5Cy35", // Your user pool id here. Should be added to keys.   
+    ClientId: "v13f23lpjv5143ko1rcoifj57" // Your client id here. Should be added to keys.
 };
 const pool_region = 'us-east-1';
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 //Register User
-function RegisterUser() {
-    var attributeList = [];
-    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: "misstanner@gmail.com" }));
-    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "given_name", Value: "Becky" }));
-    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "family_name", Value: "Tanner" }));
-    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "auth_level", Value: 3 }));
-
-    userPool.signUp('sampleEmail@gmail.com', 'SamplePassword123', attributeList, null, function (err, result) {
+function RegisterUser(req, res) {
+    const {email, password, authLevel} = req.body;
+    const level = parseInt(authLevel);
+    if (level < 1 && level > 5) {
+        res.status(403).send("authLevel must be 1,2,3,4,5")
+    }
+    const attributeList = [];
+    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name: "custom:authLevel", Value: level.toString()}));
+    userPool.signUp(email, password, attributeList, null, function (err, result) {
         if (err) {
             console.log(err);
             return;
         }
         cognitoUser = result.user;
         console.log('user name is ' + cognitoUser.getUsername());
+        res.status(200).json(cognitoUser);
     });
 }
 
 //Login
-function Login() {
+function Login(req, res) {
+    const {email, password} = req.body;
     var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-        Username: 'sampleEmail@gmail.com',
-        Password: 'SamplePassword123',
+        Username: email,
+        Password: password,
     });
 
     var userData = {
-        Username: 'sampleEmail@gmail.com',
+        Username: email,
         Pool: userPool
     };
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
@@ -49,11 +52,31 @@ function Login() {
             console.log('access token + ' + result.getAccessToken().getJwtToken());
             console.log('id token + ' + result.getIdToken().getJwtToken());
             console.log('refresh token + ' + result.getRefreshToken().getToken());
+            res.status(200).json(result);
         },
         onFailure: function (err) {
             console.log(err);
+            res.status(400).json(err);
         },
 
+    });
+}
+
+function confirmUser (req, res) {
+    const {email, code} = req.body;
+    var userData = {
+        Username: email,
+        Pool: userPool
+    };
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    cognitoUser.confirmRegistration(code, true, function(err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        if (result === "SUCCESS") {
+            Login(req, res);
+        }
     });
 }
 
@@ -96,6 +119,7 @@ function ValidateToken(token) {
                 } else {
                     console.log("Valid Token.");
                     console.log(payload);
+                    return true;
                 }
             });
         } else {
@@ -130,3 +154,5 @@ function renew() {
         }
     })
 }
+
+module.exports = {Login, confirmUser, RegisterUser, ValidateToken}

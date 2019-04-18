@@ -14,7 +14,7 @@ const teacherArray = [];
 
 const teacherSeed = [
     {
-        userName: "misstanner@gmail.com",
+        userName: "misstanner@fenceworkshop.com",
         firstName: "Becky",
         lastName: "Tanner",
         authLevel: 3,
@@ -47,6 +47,7 @@ const studentSeed = [
 const behaviorSeeds = [
     {
         behaviorName: "sit still in class",
+        studentName: "Timmy Thomas",
         behaviorTracked: [
             {
                 behaviorValue: 1,
@@ -771,7 +772,8 @@ const behaviorSeeds = [
         ]
     },
     {
-        behaviorName: "raise hand befire speaking",
+        behaviorName: "raise hand before speaking",
+        studentName: "Mary Martin",
         behaviorTracked: [
             {
                 behaviorValue: 1,
@@ -1497,6 +1499,7 @@ const behaviorSeeds = [
     },
     {
         behaviorName: "use your inside voice",
+        studentName: "Suzy Smith",
         behaviorTracked: [
             {
                 behaviorValue: 1,
@@ -2235,66 +2238,63 @@ db.Teacher
             .then(() => db.Student.insertMany(studentSeed))
             .then(studentData => {
                 const teacher = teacherArray.filter(object => {
-                    return object.userName === "misstanner@gmail.com"
+                    return object.userName === "misstanner@fenceworkshop.com"
                 });
                 // db.Teacher.findOneAndUpdate({ _id: teacher[0]._id }, { $push: { students: studentData[0]._id } }, { new: true }).then(updatedTeacher => {
                 db.Teacher.findOneAndUpdate({ _id: teacher[0]._id }, { $push: { students: [studentData[0]._id, studentData[1]._id, studentData[2]._id] } }, { new: true }).then(updatedTeacher => {
-                        console.log(updatedTeacher);
+                    console.log(updatedTeacher);
                     db.Student.findOneAndUpdate({ _id: studentData[0]._id }, { $push: { teachers: updatedTeacher._id } }/* , { new: true } */).then(updatedStudent1 => {
                         db.Student.findOneAndUpdate({ _id: studentData[1]._id }, { $push: { teachers: updatedTeacher._id } }/* , { new: true } */).then(updatedStudent2 => {
                             db.Student.findOneAndUpdate({ _id: studentData[2]._id }, { $push: { teachers: updatedTeacher._id } }/* , { new: true } */).then(updatedStudent3 => {
 
-                        db.Behavior.deleteMany({})
-                        .then(() => {
-                            db.Behavior.insertMany(behaviorSeeds).then(behaviorData => {
-                                db.Student.findOneAndUpdate({ _id: updatedStudent1._id }, { $push: { behaviors: behaviorData[0]._id } }, { new: true })
-                                    .then(studentWithBehavior1 => {
-                                        db.Behavior.findOneAndUpdate({ _id: behaviorData[0]._id }, {
-                                            $push: { teachers: updatedTeacher._id }, student: studentWithBehavior1._id
-                                        }/* , { new: true } */).then(completeBehavior1 => {
-                                            db.Teacher.findOneAndUpdate({ _id: updatedTeacher._id }, { $push: { behaviors: completeBehavior1._id } }, { new: true }).then(completeTeacher => {
-                                                console.log("#1 complete teacher", completeTeacher);
-                                                console.log("#1 studentWithBehavior", studentWithBehavior1);
-                                                console.log("#1 complete behavior", completeBehavior1);
-                                                // process.exit(0);
+                                db.Behavior.deleteMany({})
+                                .then(() => {
+                                    db.Behavior.insertMany(behaviorSeeds).then(behaviorData => {
+                                        db.Student.findOneAndUpdate({ _id: updatedStudent1._id }, { $push: { behaviors: behaviorData[0]._id } }, { new: true })
+                                            .then(studentWithBehavior1 => {
+                                                db.Behavior.findOneAndUpdate({ _id: behaviorData[0]._id }, {
+                                                    $push: { teachers: updatedTeacher._id }, student: studentWithBehavior1._id
+                                                }/* , { new: true } */).then(completeBehavior1 => {
+                                                    db.Teacher.findOneAndUpdate({ _id: updatedTeacher._id }, { $push: { behaviors: completeBehavior1._id } }, { new: true }).then(completeTeacher => {
+                                                        console.log("#1 complete teacher", completeTeacher);
+                                                        console.log("#1 studentWithBehavior", studentWithBehavior1);
+                                                        console.log("#1 complete behavior", completeBehavior1);
+                                                    })
+                                                })
+                                            })
+
+                                        db.Student.findOneAndUpdate({ _id: updatedStudent2._id }, { $push: { behaviors: behaviorData[1]._id } }/*, { new: true }*/)
+                                        .then(studentWithBehavior2 => {
+                                            db.Behavior.findOneAndUpdate({ _id: behaviorData[1]._id }, {
+                                                $push: { teachers: updatedTeacher._id }, student: studentWithBehavior2._id
+                                            }/* , { new: true } */).then(completeBehavior2 => {
+                                                db.Teacher.findOneAndUpdate({ _id: updatedTeacher._id }, { $push: { behaviors: completeBehavior2._id } }/*, { new: true }*/).then(completeTeacher => {
+                                                    console.log("#2 complete teacher", completeTeacher);
+                                                    console.log("#2 studentWithBehavior", studentWithBehavior2);
+                                                    console.log("#2 complete behavior", completeBehavior2);
+                                                })
                                             })
                                         })
-                                    })
 
-                                db.Student.findOneAndUpdate({ _id: updatedStudent2._id }, { $push: { behaviors: behaviorData[1]._id } }/*, { new: true }*/)
-                                .then(studentWithBehavior2 => {
-                                    db.Behavior.findOneAndUpdate({ _id: behaviorData[1]._id }, {
-                                        $push: { teachers: updatedTeacher._id }, student: studentWithBehavior2._id
-                                    }/* , { new: true } */).then(completeBehavior2 => {
-                                        db.Teacher.findOneAndUpdate({ _id: updatedTeacher._id }, { $push: { behaviors: completeBehavior2._id } }/*, { new: true }*/).then(completeTeacher => {
-                                            console.log("#2 complete teacher", completeTeacher);
-                                            console.log("#2 studentWithBehavior", studentWithBehavior2);
-                                            console.log("#2 complete behavior", completeBehavior2);
-                                            // process.exit(0);
+                                        db.Student.findOneAndUpdate({ _id: updatedStudent3._id }, { $push: { behaviors: behaviorData[2]._id } }/*, { new: true }*/)
+                                        .then(studentWithBehavior3 => {
+                                            db.Behavior.findOneAndUpdate({ _id: behaviorData[2]._id }, {
+                                                $push: { teachers: updatedTeacher._id }, student: studentWithBehavior3._id
+                                            }/* , { new: true } */).then(completeBehavior3 => {
+                                                db.Teacher.findOneAndUpdate({ _id: updatedTeacher._id }, { $push: { behaviors: completeBehavior3._id } }/*, { new: true }*/).then(completeTeacher => {
+                                                    console.log("#3 complete teacher", completeTeacher);
+                                                    console.log("#3 studentWithBehavior", studentWithBehavior3);
+                                                    console.log("#3 complete behavior", completeBehavior3);
+                                                    process.exit(0);
+                                                })
+                                            })
                                         })
-                                    })
-                                })
 
-                                db.Student.findOneAndUpdate({ _id: updatedStudent3._id }, { $push: { behaviors: behaviorData[2]._id } }/*, { new: true }*/)
-                                .then(studentWithBehavior3 => {
-                                    db.Behavior.findOneAndUpdate({ _id: behaviorData[2]._id }, {
-                                        $push: { teachers: updatedTeacher._id }, student: studentWithBehavior3._id
-                                    }/* , { new: true } */).then(completeBehavior3 => {
-                                        db.Teacher.findOneAndUpdate({ _id: updatedTeacher._id }, { $push: { behaviors: completeBehavior3._id } }/*, { new: true }*/).then(completeTeacher => {
-                                            console.log("#3 complete teacher", completeTeacher);
-                                            console.log("#3 studentWithBehavior", studentWithBehavior3);
-                                            console.log("#3 complete behavior", completeBehavior3);
-                                            process.exit(0);
-                                        })
-                                    })
+                                    })   
                                 })
-
-                            })   
-                             
+                            })
                         })
                     })
-                        })
-                            })
                 })
             })
             .catch(err => {
