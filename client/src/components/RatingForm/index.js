@@ -10,7 +10,6 @@ class RatingForm extends Component {
         teacherID: '5cb7c4a675a0a16a0e3c57ed'
     };
 
-    //Create onClick to gather each student's data
     //Post each student's data to the database
     //Show a modal when student data has been saved and reset radio buttons
 
@@ -22,7 +21,6 @@ class RatingForm extends Component {
 
     // Loads all students and sets them to this.state.behaviorInfo
     loadBehaviors = (id) => {
-        console.log('The load behavior function loaded');
         API.getBehaviors(id)
             .then(res => this.setState({ behaviorInfo: res.data }))
             .catch(err => console.log(err));
@@ -48,34 +46,36 @@ class RatingForm extends Component {
     };
 
 //   // When the form is submitted, use the API.saveData method to save the bx data
-//   // Then reset form
+
+//     behaviorName: { type: String, required: true, },
+//     behaviorTracked: [{
+//       behaviorValue: { type: Number, enum: [0, 1], allowNull: true, required: false },
+//       behaviorDate: { type: Date, default: Date.now(), required: true }
+//     }],
+//     status: {type: Boolean, required: true, default: true},
+//     createdAt: { type: Date, default: Date.now() },
+//     updatedAt: { type: Date, default: Date.now() },
+//     studentName: { type: String, required: false, },
+//     student: { type: Schema.Types.ObjectId, ref: "Student", required: false},
+//     teachers: [{ type: Schema.Types.ObjectId, ref: "Teacher", required: true}]
+
     saveData = event => {
         event.preventDefault();
-        console.log('Button Clicked!');
         console.log('The current state as of the button click is: ', this.state);
-        //let dataUpdate = 
-        //If the value is '', do nothing
+    //     const dataToSave = {
+    //         //Figure out how to save the newData from the state- will likely need a for each or map
+    //     }
+    //     API.saveData({ dataToSave })
+    //     // Then reset form
+    //     .then(res => this.loadBehaviors())
+    //     .catch(err => console.log(err));
 
-        // if (this.state.value) {
-//       API.saveData({
-//         behaviorID: this.state.behaviorID,
-//         value: this.state.value,
-//       })
-//         .then(res => this.loadBehaviors())
-//         .catch(err => console.log(err));
-//     }
         this.setState({ newData: {} });
-        
     };
 
     render() {
         return (
-            <main>
-                <div className="card-content">
-                    <h6 id="title">Content</h6>
-                    <canvas className="card-chart" id="ourAmazingChart" width="400" height="100"></canvas>
-                </div>
-                    
+            <main>      
                 {/* <!-- Tables --> */}
                 <div className="container">
                     <div className="row">

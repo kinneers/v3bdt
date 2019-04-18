@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {Line} from 'react-chartjs-2';
 import './style.css';
 
-//import Materialize from "materialize";
-
 class BxChart extends Component{
   constructor(props){
     super(props);
@@ -30,31 +28,27 @@ class BxChart extends Component{
       }
     }
   }
+  
   render(){
     return(
       <div className="container">
-      <div className="chart">
-        <Line
-          data={this.state.chartData}
-          width={500}
-          height={150}
-          options={{
-            title:{
-              display:true,
-              text:'Progress',
-              fontSize:25,
-            }
-        }}
-      />
-
-      </div>
+        <div className="chart">
+            <Line
+            data={this.state.chartData}
+            width={500}
+            height={150}
+            options={{
+                title:{
+                display:true,
+                text:'Progress',
+                fontSize:25,
+                }
+            }}
+        />
+        </div>
     </div>
     )
   }
-
-
 }
-
-
 
 export default BxChart;
