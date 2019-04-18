@@ -7,8 +7,7 @@ class RatingForm extends Component {
     state = {
         behaviorInfo: [],
         newData: {},
-        //Until this route works (it must get teacher from Cognito), hardcode the teacher's id
-        teacherID: '5cb7ca933da1c78dd849ee6c'
+        teacherID: '5cb7c4a675a0a16a0e3c57ed'
     };
 
     //Create onClick to gather each student's data
