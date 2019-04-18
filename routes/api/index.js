@@ -9,8 +9,6 @@ const cognitoExpress = new CognitoExpress({
     tokenExpiration: 3600000 //Up to default expiration of 1 hour (3600000 ms)
 });
 // api routes
-router.use("/teacher", teacherRoutes);
-
 router.use(function(req, res, next) {
     
     //I'm passing in the access token in header under key accessToken
@@ -30,5 +28,7 @@ router.use(function(req, res, next) {
         next();
     });
 });
+
+router.use("/teacher", teacherRoutes);
 
 module.exports = router;

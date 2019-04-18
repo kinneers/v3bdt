@@ -16,13 +16,13 @@ const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 //Register User
 function RegisterUser(req, res) {
-    const {email, password, authLevel} = req.body;
+    const { email, password, authLevel } = req.body;
     const level = parseInt(authLevel);
     if (level < 1 && level > 5) {
         res.status(403).send("authLevel must be 1,2,3,4,5")
     }
     const attributeList = [];
-    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name: "custom:authLevel", Value: level.toString()}));
+    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:authLevel", Value: level.toString() }));
     userPool.signUp(email, password, attributeList, null, function (err, result) {
         if (err) {
             console.log(err);
@@ -36,7 +36,7 @@ function RegisterUser(req, res) {
 
 //Login
 function Login(req, res) {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
         Username: email,
         Password: password,
@@ -62,71 +62,71 @@ function Login(req, res) {
     });
 }
 
-function confirmUser (req, res) {
-    const {email, code} = req.body;
+function confirmUser(req, res) {
+    const { email, code } = req.body;
     var userData = {
         Username: email,
         Pool: userPool
     };
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.confirmRegistration(code, true, function(err, result) {
+    cognitoUser.confirmRegistration(code, true, function (err, result) {
         if (err) {
             console.log(err);
             return;
         }
-        if (result === "SUCCESS") {
-            Login(req, res);
-        }
+        if (result === "SUCCESS" || (err && err.code === "NotAuthorizedException" && err.message === "User cannot be confirm. Current status is CONFIRMED")) {
+        Login(req, res);
+    }
     });
 }
 
-//Validate/verify JWT token
-function ValidateToken(token) {
-    request({
-        url: `https://cognito-idp.${pool_region}.amazonaws.com/${poolData.UserPoolId}/.well-known/jwks.json`,
-        json: true
-    }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            pems = {};
-            var keys = body['keys'];
-            for (var i = 0; i < keys.length; i++) {
-                //Convert each key to PEM
-                var key_id = keys[i].kid;
-                var modulus = keys[i].n;
-                var exponent = keys[i].e;
-                var key_type = keys[i].kty;
-                var jwk = { kty: key_type, n: modulus, e: exponent };
-                var pem = jwkToPem(jwk);
-                pems[key_id] = pem;
-            }
-            //validate the token
-            var decodedJwt = jwt.decode(token, { complete: true });
-            if (!decodedJwt) {
-                console.log("Not a valid JWT token");
-                return;
-            }
+// //Validate/verify JWT token
+// function ValidateToken(token) {
+//     request({
+//         url: `https://cognito-idp.${pool_region}.amazonaws.com/${poolData.UserPoolId}/.well-known/jwks.json`,
+//         json: true
+//     }, function (error, response, body) {
+//         if (!error && response.statusCode === 200) {
+//             pems = {};
+//             var keys = body['keys'];
+//             for (var i = 0; i < keys.length; i++) {
+//                 //Convert each key to PEM
+//                 var key_id = keys[i].kid;
+//                 var modulus = keys[i].n;
+//                 var exponent = keys[i].e;
+//                 var key_type = keys[i].kty;
+//                 var jwk = { kty: key_type, n: modulus, e: exponent };
+//                 var pem = jwkToPem(jwk);
+//                 pems[key_id] = pem;
+//             }
+//             //validate the token
+//             var decodedJwt = jwt.decode(token, { complete: true });
+//             if (!decodedJwt) {
+//                 console.log("Not a valid JWT token");
+//                 return;
+//             }
 
-            var kid = decodedJwt.header.kid;
-            var pem = pems[kid];
-            if (!pem) {
-                console.log('Invalid token');
-                return;
-            }
+//             var kid = decodedJwt.header.kid;
+//             var pem = pems[kid];
+//             if (!pem) {
+//                 console.log('Invalid token');
+//                 return;
+//             }
 
-            jwt.verify(token, pem, function (err, payload) {
-                if (err) {
-                    console.log("Invalid Token.");
-                } else {
-                    console.log("Valid Token.");
-                    console.log(payload);
-                    return true;
-                }
-            });
-        } else {
-            console.log("Error! Unable to download JWKs");
-        }
-    });
-}
+//             jwt.verify(token, pem, function (err, payload) {
+//                 if (err) {
+//                     console.log("Invalid Token.");
+//                 } else {
+//                     console.log("Valid Token.");
+//                     console.log(payload);
+//                     return true;
+//                 }
+//             });
+//         } else {
+//             console.log("Error! Unable to download JWKs");
+//         }
+//     });
+// }
 
 //Renew JWT tokens via refresh token. Usually id tokens retire after 1 hour of time, which is a hard limit for cognito. Using the refresh you obtained earlier you can get a new id_token, access_token with this rather than logging in again.
 function renew() {
@@ -155,4 +155,4 @@ function renew() {
     })
 }
 
-module.exports = {Login, confirmUser, RegisterUser, ValidateToken}
+module.exports = { Login, confirmUser, RegisterUser }
