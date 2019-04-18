@@ -47,6 +47,7 @@ const studentSeed = [
 const behaviorSeeds = [
     {
         behaviorName: "sit still in class",
+        studentName: "Timmy Thomas",
         behaviorTracked: [
             {
                 behaviorValue: 1,
@@ -771,7 +772,8 @@ const behaviorSeeds = [
         ]
     },
     {
-        behaviorName: "raise hand befire speaking",
+        behaviorName: "raise hand before speaking",
+        studentName: "Mary Martin",
         behaviorTracked: [
             {
                 behaviorValue: 1,
@@ -1497,6 +1499,7 @@ const behaviorSeeds = [
     },
     {
         behaviorName: "use your inside voice",
+        studentName: "Suzy Smith",
         behaviorTracked: [
             {
                 behaviorValue: 1,
@@ -2235,7 +2238,7 @@ db.Teacher
             .then(() => db.Student.insertMany(studentSeed))
             .then(studentData => {
                 const teacher = teacherArray.filter(object => {
-                    return object.userName === "misstanner@gmail.com"
+                    return object.userName === "misstanner@fenceworkshop.com"
                 });
                 // db.Teacher.findOneAndUpdate({ _id: teacher[0]._id }, { $push: { students: studentData[0]._id } }, { new: true }).then(updatedTeacher => {
                 db.Teacher.findOneAndUpdate({ _id: teacher[0]._id }, { $push: { students: [studentData[0]._id, studentData[1]._id, studentData[2]._id] } }, { new: true }).then(updatedTeacher => {
