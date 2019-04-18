@@ -1,38 +1,30 @@
 import React, { Component } from 'react';
 import './style.css';
-//import BehaviorRateRow from './../BehaviorRateRow';
 import API from './../../utils/API';
 
 class RatingForm extends Component {
     
     state = {
-        // behaviorInfo: [{ studentID: 1, name: 'Bad Billy', behavior: 'Do not pick your nose!', behaviorID: 1 },
-        //                 { studentID: 2, name: 'Silly Sarah', behavior: "Don't be so silly!", behaviorID: 2 }],
         behaviorInfo: [],
         newData: {},
-        // teacherID: '5cb682e6fc3b6fbc405b533f'
-        teacherID: '5cb6778ba8352747a0259a00'
+        //Until this route works (it must get teacher from Cognito), hardcode the teacher's id
+        teacherID: '5cb7ca933da1c78dd849ee6c'
     };
 
-    // componentDidMount() {
-    //     console.log(this.state.behaviorInfo);
-    // }
-
-    //Create get request for this teacher's behaviors' IDs, names, behaviors
-    //Set state for behaviorInfo to this teacher's student data
     //Create onClick to gather each student's data
     //Post each student's data to the database
     //Show a modal when student data has been saved and reset radio buttons
 
-    // // When the component mounts, load all students and save them to this.state.behaviorInfo
     // When the component mounts, load all students and save them to this.state.behaviorInfo
     componentDidMount() {
-        this.loadBehaviors();
+        let id = this.state.teacherID;
+        this.loadBehaviors(id);
     };
 
     // Loads all students and sets them to this.state.behaviorInfo
-    loadBehaviors = () => {
-        API.getBehaviors()
+    loadBehaviors = (id) => {
+        console.log('The load behavior function loaded');
+        API.getBehaviors(id)
             .then(res => this.setState({ behaviorInfo: res.data }))
             .catch(err => console.log(err));
     };
@@ -73,7 +65,7 @@ class RatingForm extends Component {
 //         .then(res => this.loadBehaviors())
 //         .catch(err => console.log(err));
 //     }
-        this.setState({ newData: {} })
+        this.setState({ newData: {} });
         
     };
 
@@ -99,25 +91,26 @@ class RatingForm extends Component {
                                             <th>Rating</th>
                                         </tr>
                                     </thead>
-                                    {(this.state.behaviorInfo.length > 0) ? (
+                                    {(this.state.behaviorInfo.behaviors) ? (
                                     <tbody>
-                                        {this.state.behaviorInfo.map(behaviorInfo => (
-                                        <tr key={behaviorInfo.behaviorID}>
-                                            <td>{behaviorInfo.studentID}</td>
-                                            <td>{behaviorInfo.name}</td><td>{behaviorInfo.behavior}</td>
+                                        {this.state.behaviorInfo.behaviors.map(behaviors => (
+                                        <tr key={behaviors._id}>
+                                            <td>{behaviors.student}</td>
+                                            <td>{behaviors.studentName}</td>
+                                            <td>{behaviors.behaviorName}</td>
                                             <td>
-                                                <form id={behaviorInfo.behaviorID} name='rating' onChange={this.handleInputChange}>
+                                                <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
                                                 {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}
                                                     <label>
-                                                        <input className="with-gap" id='Met' value={1} name={behaviorInfo.behaviorID} type="radio" />
+                                                        <input className="with-gap" id='Met' value={1} name={behaviors._id} type="radio" />
                                                         <span>Met</span>
                                                     </label>    
                                                     <label>
-                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviorInfo.behaviorID} type="radio" />
+                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviors._id} type="radio" />
                                                         <span>Not Met</span>
                                                     </label>
                                                     <label>
-                                                        <input className="with-gap" id="N/A" value={''} name={behaviorInfo.behaviorID} type="radio" />
+                                                        <input className="with-gap" id="N/A" value={''} name={behaviors._id} type="radio" />
                                                         <span>N/A</span>
                                                     </label>
                                                 </form>

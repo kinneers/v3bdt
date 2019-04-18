@@ -16,24 +16,24 @@ render() {
         <div>
         <ul id="slide-out" className="sidenav sidenav-fixed">
         <li className="top">Logo</li>
-        <ul class="collapsible">
+        <ul className="collapsible">
     <li>
-      <div class="collapsible-header"><i class="material-icons">assignment</i>Billy<div> 
-      <i class="material-icons">expand_more</i></div>
+      <div className="collapsible-header"><i className="material-icons">assignment</i>Billy<div> 
+      <i className="material-icons">expand_more</i></div>
       </div>
-      <div class="collapsible-body"><span>Use inside voice</span></div>
+      <div className="collapsible-body"><span>Use inside voice</span></div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="material-icons">assignment</i>Sarah<div>
-      <i class="material-icons">expand_more</i></div>
+      <div className="collapsible-header"><i className="material-icons">assignment</i>Sarah<div>
+      <i className="material-icons">expand_more</i></div>
       </div>
-      <div class="collapsible-body"><span>Sit still in class</span></div>
+      <div className="collapsible-body"><span>Sit still in class</span></div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="material-icons">assignment</i>Jodi<div>
-      <i class="material-icons">expand_more</i></div>
+      <div className="collapsible-header"><i className="material-icons">assignment</i>Jodi<div>
+      <i className="material-icons">expand_more</i></div>
       </div>
-      <div class="collapsible-body" align-items= "center"><span>Raise hand</span></div>
+      <div className="collapsible-body" align-items= "center"><span>Raise hand</span></div>
     </li>
   </ul>
         </ul>
