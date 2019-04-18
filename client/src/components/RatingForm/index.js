@@ -25,12 +25,14 @@ class RatingForm extends Component {
 
     // When the component mounts, load all students and save them to this.state.behaviorInfo
     componentDidMount() {
-        this.loadBehaviors();
+        let id = this.state.teacherID;
+        this.loadBehaviors(id);
     };
 
     // Loads all students and sets them to this.state.behaviorInfo
-    loadBehaviors = () => {
-        API.getBehaviors(this.state.teacherID)
+    loadBehaviors = (id) => {
+        console.log('The load behavior function loaded');
+        API.getBehaviors(id)
             .then(res => this.setState({ behaviorInfo: res.data }))
             .catch(err => console.log(err));
     };
@@ -97,25 +99,25 @@ class RatingForm extends Component {
                                             <th>Rating</th>
                                         </tr>
                                     </thead>
-                                    {(this.state.behaviorInfo.length > 0) ? (
+                                    {(this.state.behaviorInfo.behaviors) ? (
                                     <tbody>
-                                        {this.state.behaviorInfo.map(behaviorInfo => (
-                                        <tr key={behaviorInfo.behaviorID}>
-                                            <td>{behaviorInfo.studentID}</td>
-                                            <td>{behaviorInfo.name}</td><td>{behaviorInfo.behavior}</td>
+                                        {this.state.behaviorInfo.behaviors.map(behaviors => (
+                                        <tr key={behaviors._id}>
+                                            <td>{behaviors.student}</td>
+                                            <td>{behaviors.student}</td><td>{behaviors.behaviorName}</td>
                                             <td>
-                                                <form id={behaviorInfo.behaviorID} name='rating' onChange={this.handleInputChange}>
+                                                <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
                                                 {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}
                                                     <label>
-                                                        <input className="with-gap" id='Met' value={1} name={behaviorInfo.behaviorID} type="radio" />
+                                                        <input className="with-gap" id='Met' value={1} name={behaviors._id} type="radio" />
                                                         <span>Met</span>
                                                     </label>    
                                                     <label>
-                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviorInfo.behaviorID} type="radio" />
+                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviors._id} type="radio" />
                                                         <span>Not Met</span>
                                                     </label>
                                                     <label>
-                                                        <input className="with-gap" id="N/A" value={''} name={behaviorInfo.behaviorID} type="radio" />
+                                                        <input className="with-gap" id="N/A" value={''} name={behaviors._id} type="radio" />
                                                         <span>N/A</span>
                                                     </label>
                                                 </form>
