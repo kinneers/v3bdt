@@ -11,6 +11,15 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    //Get each student related to the teacher
+    findAllStudentsRefTeacher: function(req, res) {
+        db.Teacher
+            .findById(req.params.id)
+            .populate("students")
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
     //Gets all behaviors
     findAllBehaviorsRefTeachers: function(req, res) {
         db.Teacher

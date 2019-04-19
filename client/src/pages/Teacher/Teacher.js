@@ -6,11 +6,13 @@ import SideNav from './../../components/SideNav';
 import BxChart from './../../components/BxChart';
 import './style.css';
 
+
 class Teacher extends Component {
     //Initial State- we definitely need to set the current user, but not sure how to do it with Cognito
     state = {
-        teacher: ''
+        teacher: '',
     };
+
 
   render() {
     return (

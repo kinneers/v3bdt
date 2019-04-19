@@ -7,7 +7,6 @@ class SideNav extends Component {
     state = {
         behaviorInfo: {},
         teacherID: '5cb8e2bd4c3e69054020ac33',
-        students: []
     }
 
     componentDidMount() {
@@ -17,13 +16,11 @@ class SideNav extends Component {
         this.loadBehaviors(id);
     }
 
-    // Loads all students and sets them to this.state.behaviorInfo
+    // Loads all behaviors and sets them to this.state.behaviorInfo
     loadBehaviors = (id) => {
         API.getBehaviors(id)
             .then(res => 
-                {
-                    let students = [];
-                    
+                {                    
                     this.setState({ behaviorInfo: res.data });
                 })
             .catch(err => console.log(err));
@@ -36,17 +33,19 @@ class SideNav extends Component {
                     <li className="top">Logo</li>
                     {(this.state.behaviorInfo.behaviors) ? (
                         <div>
-                            {this.state.behaviorInfo.behaviors.map(behaviors => (
                             <ul className="collapsible" >
+                            {this.state.behaviorInfo.behaviors.map(behaviors => (
+                            
                                 <li key={behaviors._id}>
                                     <div className="collapsible-header"><i className="material-icons">assignment</i>{behaviors.studentName}
                                         <div><i className="material-icons">expand_more</i></div>
                                     </div>
                                     <div className="collapsible-body" value={behaviors._id}><span>{behaviors.behaviorName}</span></div>
                                 </li>
-                                <a href="#!" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                            </ul>       
+                                      
                             ))}
+                            </ul>
+                            <a href="#!" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         </div>
                     ) : 
                     (<ul>
