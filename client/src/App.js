@@ -6,8 +6,14 @@ import Login from './pages/Login';
 import Teacher from './pages/Teacher';
 import Student from './pages/Student';
 import Admin from './pages/Admin';
+//import Authenticator from './components'
 
 class App extends Component {
+
+    state = {
+        chartBx: ''
+    };
+
     render() {
         return (
             <Router>
