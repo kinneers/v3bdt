@@ -23,8 +23,7 @@ class TopNav extends Component {
             </ul>
             <nav>
               <div className="nav-wrapper">
-                <a href="#!" className="brand-logo">Logo</a>
-                <img src={logo} alt="Logo" />;
+                <img id="brand-logo" src={logo} alt="Logo" />;
 }
                 <ul className="right hide-on-med-and-down">
                   <li><a className="dropdown-trigger" href="#!" data-target="dropdown1"><i className="material-icons right">settings</i></a></li>

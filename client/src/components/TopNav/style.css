@@ -7,8 +7,9 @@ nav {
     
 }
 
-.brand-logo {
+#brand-logo {
     background-image: url(./logo.png);
+    height: 200;
+    width:400;
   }
 
-  img {height: 25px; margin-top: 20px};
