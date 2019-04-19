@@ -58,7 +58,6 @@ function Login(req, res) {
             console.log(err);
             res.status(400).json(err);
         },
-
     });
 }
 

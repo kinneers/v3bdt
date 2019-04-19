@@ -7,7 +7,7 @@ class RatingForm extends Component {
     state = {
         behaviorInfo: [],
         newData: {},
-        teacherID: '5cb7c4a675a0a16a0e3c57ed'
+        teacherID: '5cb8e2bd4c3e69054020ac33'
     };
 
     //Post each student's data to the database
