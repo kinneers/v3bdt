@@ -1,6 +1,14 @@
-#logout {float: right; color: white;}
-
+.dropdown-trigger
+{float: right; color: black;}
+    
 
 nav {
-    background-color: #135764
+    background-color: white
+    
 }
+
+.brand-logo {
+    background-image: url(./logo.png);
+  }
+
+  img {height: 25px; margin-top: 20px};

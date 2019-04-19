@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './style.css';
 import M from "materialize-css";
+import logo from './logo.png';
 
 //import Materialize from "materialize";
 
@@ -23,6 +24,8 @@ class TopNav extends Component {
             <nav>
               <div className="nav-wrapper">
                 <a href="#!" className="brand-logo">Logo</a>
+                <img src={logo} alt="Logo" />;
+}
                 <ul className="right hide-on-med-and-down">
                   <li><a className="dropdown-trigger" href="#!" data-target="dropdown1"><i className="material-icons right">settings</i></a></li>
                 </ul>
