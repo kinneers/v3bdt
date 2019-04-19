@@ -6,6 +6,11 @@ router.route('/behaviors/:id')
     .get(teacherController.findAllBehaviorsRefTeacher);
     //.post(teacherController.create);
 
+//Matches with '/api/students/'
+router.route('/students/:id')
+    .get(teacherController.findAllStudentsRefTeacher);
+    //.post(teacherController.create);
+
 router.route('/behaviors/')
     .get(teacherController.findAllBehaviorsRefTeachers);
     //.post(teacherController.create);
