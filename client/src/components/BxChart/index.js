@@ -10,19 +10,15 @@ class BxChart extends Component{
         labels: ['4/12/2019','4/13/2019','4//14/2019','4/15/2019','4/16/2019','4/17/2019'],
         datasets:[
           {
-            label:'Progress',
-            data:[
-              10,
-              20,
-              30,
-              40,
-              50,
-              60,
-              70
-            ],
-         backgroundColor:[
-           'rgba',
-         ]   
+          label: 'Behavior 1',
+          backgroundColor: "#48344f",
+          data: [12, 19, 3, 5, 2, 3],
+          borderColor: '"#48344f"',
+          pointBackgroundColor: '#48344f"',
+          pointBorderColor: ("#48344f"),
+          lineTension: 0,
+          pointStyle: 'circle',
+          fill: false
           }
         ]
       }
@@ -42,6 +38,13 @@ class BxChart extends Component{
                 display:true,
                 text:'Progress',
                 fontSize:25,
+                legend: {
+                  labels: {
+                    fontColor: "#135764",
+                    fontSize: 18
+                
+                  }
+                }
                 }
             }}
         />
