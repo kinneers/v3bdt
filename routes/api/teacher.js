@@ -5,8 +5,8 @@ const behaviorController = require("../../controllers/studentController");
 
 //Matches with '/api/teacher/behaviors/:id'
 router.route('/behaviors/:id')
-    .get(teacherController.findAllBehaviorsRefTeacher);
-    //.post(teacherController.create);
+  .get(teacherController.findAllBehaviorsRefTeacher);
+//.post(teacherController.create);
 
 //Matches with '/api/teacher/student/:id'
 router.route('/student/:id')
@@ -28,4 +28,7 @@ router
   .put(teacherController.update)
   .delete(teacherController.remove);
 
+router
+  .route("/a/:email")
+  .get(teacherController.findByEmail)
 module.exports = router;
