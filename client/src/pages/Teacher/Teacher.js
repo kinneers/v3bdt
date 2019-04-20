@@ -13,7 +13,8 @@ class Teacher extends Component {
         behaviorInfo: {},
         teacherID: '5cb8e2bd4c3e69054020ac33',
         chosenBxId: '5cb8e2bf4c3e69054020ae5a',
-        bxInfoToMakeChart: {}
+        bxInfoToMakeChart: {},
+        newData: {}
     }
 
     componentDidMount() {
@@ -77,6 +78,8 @@ class Teacher extends Component {
         //Get the behavior tracking data
         let behaviorData = this.state.bxInfoToMakeChart.behaviorTracked;
         console.log(behaviorData);
+
+        //Current format of incoming data:
 
 
         const chartData = {
