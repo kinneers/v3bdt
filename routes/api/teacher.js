@@ -1,18 +1,21 @@
 const router = require("express").Router();
 const teacherController = require("../../controllers/teacherController");
+const studentController = require("../../controllers/studentController");
+const behaviorController = require("../../controllers/studentController");
 
-//Matches with '/api/behaviors/'
+//Matches with '/api/teacher/behaviors/:id'
 router.route('/behaviors/:id')
     .get(teacherController.findAllBehaviorsRefTeacher);
     //.post(teacherController.create);
 
-//Matches with '/api/students/'
-router.route('/students/:id')
-    .get(teacherController.findAllStudentsRefTeacher);
+//Matches with '/api/teacher/student/:id'
+router.route('/student/:id')
+    .get(studentController.findStudentById);
     //.post(teacherController.create);
 
-router.route('/behaviors/')
-    .get(teacherController.findAllBehaviorsRefTeachers);
+//Matches with '/api/teacher/behaviorchart/:id'
+router.route('/behaviorchart/:id')
+    .get(teacherController.findBehaviorById);
     //.post(teacherController.create);
 
 router.route("/")
