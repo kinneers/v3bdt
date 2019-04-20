@@ -23,31 +23,43 @@ export default {
             url: "/api/teacher/behaviors/" + id,
             headers: {
                 'Content-Type': 'application/json',
-                accesstoken: "eyJraWQiOiJBNUFGK2RvRWgyd2E3SHllZ3doSzBvaTBqQXFJNnk5Qk4rR1VHRjZLNHhNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YiLCJldmVudF9pZCI6ImI3MmRjYjdiLTYyZjItMTFlOS1hYjliLWE5ZjlmNjAzMjE1YSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTU3MTMwMjAsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JYM0w1Q3kzNSIsImV4cCI6MTU1NTcxNjYyMCwiaWF0IjoxNTU1NzEzMDIwLCJqdGkiOiIwYjUyZDdmNy01ZjAyLTRjN2EtODFjNC1jZGI2ZDQyZDM4OTgiLCJjbGllbnRfaWQiOiJ2MTNmMjNscGp2NTE0M2tvMXJjb2lmajU3IiwidXNlcm5hbWUiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YifQ.CpMBcoCwWB2j5gNh2yuQwk3RXMKdIa9Ln_s9iWbaNB_S00zesFlf-rttGApch2fZaLEGEnsjWAerc9eVglqsGPO9AJB1Tuo0VCS4urLknn1MlnkNzXRSJ_SDCD1s8FeI7r8ugZNoRKUe0r_xooYq2BjPbH229tcQw-eVR6vpz1Ec16KjOESKfwWn5SfEkx4QH0RbbHROcltGZx87YyY0a3hGS0-dlxRjAMqNxAazPEUk_m5Cqab6ien4b86gBqUrF3ty34DtdN7zpBVQRVyanUQFAUrmYiAVYSXXJjHZ3kFwGft8Rcpje1MAuLbBEFlLRcseBXb5zpu1AY55v7BJGQ"
+                accesstoken: "eyJraWQiOiJBNUFGK2RvRWgyd2E3SHllZ3doSzBvaTBqQXFJNnk5Qk4rR1VHRjZLNHhNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YiLCJldmVudF9pZCI6IjkzODIwODU1LTYzNjUtMTFlOS1iMmIwLTJkNWZhNTQ0NzMzMyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTU3NjIzNTMsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JYM0w1Q3kzNSIsImV4cCI6MTU1NTc2NTk1MywiaWF0IjoxNTU1NzYyMzUzLCJqdGkiOiIyYzI4NmNmYi05NmU2LTQ1YjUtOWZiMS0xNjNhNjlkZGM5ODYiLCJjbGllbnRfaWQiOiJ2MTNmMjNscGp2NTE0M2tvMXJjb2lmajU3IiwidXNlcm5hbWUiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YifQ.U7Rmv7Jkn9jmL0SuIjjiB644zHe11ztTuGk-W-am1DhblThypVTTElhVQx1X9cy0GVIeblc6tlk974nepGCEsd7_SvsE-jChTexM1QgCBX9oZXtn06CSqsYgsf3O3YwWG5gqiqOEL8HuMSYnTyEGxshVS05G7FmQziHQDUcxTyNUXh2J4fgf4_nw0KKLXh9kRacOciy6cLrEDe6xmaeD0QvjJNyzUB6Bv7YwI7U_4xOver6vciU83-5ogq1FKu9ze50nSSKTbVrWdUdY6vFQbTkMnqGL0HW2xEMWc9f4Bbm4kPx3mMrtKFq4SabC32t7gznVsrK-pdhReqkwtjYlEQ"
             },
             method: 'get'
         });
     },
 
     // Gets all behaviors
-    getAllBehaviors: function(id) {
+    getAllBehaviors: function() {
         return axios({
             url: "/api/teacher/behaviors/",
             headers: {
                 'Content-Type': 'application/json',
-                accesstoken: "eyJraWQiOiJBNUFGK2RvRWgyd2E3SHllZ3doSzBvaTBqQXFJNnk5Qk4rR1VHRjZLNHhNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YiLCJldmVudF9pZCI6ImI3MmRjYjdiLTYyZjItMTFlOS1hYjliLWE5ZjlmNjAzMjE1YSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTU3MTMwMjAsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JYM0w1Q3kzNSIsImV4cCI6MTU1NTcxNjYyMCwiaWF0IjoxNTU1NzEzMDIwLCJqdGkiOiIwYjUyZDdmNy01ZjAyLTRjN2EtODFjNC1jZGI2ZDQyZDM4OTgiLCJjbGllbnRfaWQiOiJ2MTNmMjNscGp2NTE0M2tvMXJjb2lmajU3IiwidXNlcm5hbWUiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YifQ.CpMBcoCwWB2j5gNh2yuQwk3RXMKdIa9Ln_s9iWbaNB_S00zesFlf-rttGApch2fZaLEGEnsjWAerc9eVglqsGPO9AJB1Tuo0VCS4urLknn1MlnkNzXRSJ_SDCD1s8FeI7r8ugZNoRKUe0r_xooYq2BjPbH229tcQw-eVR6vpz1Ec16KjOESKfwWn5SfEkx4QH0RbbHROcltGZx87YyY0a3hGS0-dlxRjAMqNxAazPEUk_m5Cqab6ien4b86gBqUrF3ty34DtdN7zpBVQRVyanUQFAUrmYiAVYSXXJjHZ3kFwGft8Rcpje1MAuLbBEFlLRcseBXb5zpu1AY55v7BJGQ"
+                accesstoken: "eyJraWQiOiJBNUFGK2RvRWgyd2E3SHllZ3doSzBvaTBqQXFJNnk5Qk4rR1VHRjZLNHhNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YiLCJldmVudF9pZCI6IjkzODIwODU1LTYzNjUtMTFlOS1iMmIwLTJkNWZhNTQ0NzMzMyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTU3NjIzNTMsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JYM0w1Q3kzNSIsImV4cCI6MTU1NTc2NTk1MywiaWF0IjoxNTU1NzYyMzUzLCJqdGkiOiIyYzI4NmNmYi05NmU2LTQ1YjUtOWZiMS0xNjNhNjlkZGM5ODYiLCJjbGllbnRfaWQiOiJ2MTNmMjNscGp2NTE0M2tvMXJjb2lmajU3IiwidXNlcm5hbWUiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YifQ.U7Rmv7Jkn9jmL0SuIjjiB644zHe11ztTuGk-W-am1DhblThypVTTElhVQx1X9cy0GVIeblc6tlk974nepGCEsd7_SvsE-jChTexM1QgCBX9oZXtn06CSqsYgsf3O3YwWG5gqiqOEL8HuMSYnTyEGxshVS05G7FmQziHQDUcxTyNUXh2J4fgf4_nw0KKLXh9kRacOciy6cLrEDe6xmaeD0QvjJNyzUB6Bv7YwI7U_4xOver6vciU83-5ogq1FKu9ze50nSSKTbVrWdUdY6vFQbTkMnqGL0HW2xEMWc9f4Bbm4kPx3mMrtKFq4SabC32t7gznVsrK-pdhReqkwtjYlEQ"
             },
             method: 'get'
         });
     },
 
-    // Gets all students' basic info ref'd to a teacher
-    getStudents: function(id) {
+    // Gets an individual student's data
+    findStudentById: function(id) {
         return axios({
-            url: "/api/teacher/students/" + id,
+            url: "/api/teacher/student/" + id,
             headers: {
                 'Content-Type': 'application/json',
-                accesstoken: "eyJraWQiOiJBNUFGK2RvRWgyd2E3SHllZ3doSzBvaTBqQXFJNnk5Qk4rR1VHRjZLNHhNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YiLCJldmVudF9pZCI6ImI3MmRjYjdiLTYyZjItMTFlOS1hYjliLWE5ZjlmNjAzMjE1YSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTU3MTMwMjAsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JYM0w1Q3kzNSIsImV4cCI6MTU1NTcxNjYyMCwiaWF0IjoxNTU1NzEzMDIwLCJqdGkiOiIwYjUyZDdmNy01ZjAyLTRjN2EtODFjNC1jZGI2ZDQyZDM4OTgiLCJjbGllbnRfaWQiOiJ2MTNmMjNscGp2NTE0M2tvMXJjb2lmajU3IiwidXNlcm5hbWUiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YifQ.CpMBcoCwWB2j5gNh2yuQwk3RXMKdIa9Ln_s9iWbaNB_S00zesFlf-rttGApch2fZaLEGEnsjWAerc9eVglqsGPO9AJB1Tuo0VCS4urLknn1MlnkNzXRSJ_SDCD1s8FeI7r8ugZNoRKUe0r_xooYq2BjPbH229tcQw-eVR6vpz1Ec16KjOESKfwWn5SfEkx4QH0RbbHROcltGZx87YyY0a3hGS0-dlxRjAMqNxAazPEUk_m5Cqab6ien4b86gBqUrF3ty34DtdN7zpBVQRVyanUQFAUrmYiAVYSXXJjHZ3kFwGft8Rcpje1MAuLbBEFlLRcseBXb5zpu1AY55v7BJGQ"
+                accesstoken: "eyJraWQiOiJBNUFGK2RvRWgyd2E3SHllZ3doSzBvaTBqQXFJNnk5Qk4rR1VHRjZLNHhNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YiLCJldmVudF9pZCI6IjkzODIwODU1LTYzNjUtMTFlOS1iMmIwLTJkNWZhNTQ0NzMzMyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTU3NjIzNTMsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JYM0w1Q3kzNSIsImV4cCI6MTU1NTc2NTk1MywiaWF0IjoxNTU1NzYyMzUzLCJqdGkiOiIyYzI4NmNmYi05NmU2LTQ1YjUtOWZiMS0xNjNhNjlkZGM5ODYiLCJjbGllbnRfaWQiOiJ2MTNmMjNscGp2NTE0M2tvMXJjb2lmajU3IiwidXNlcm5hbWUiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YifQ.U7Rmv7Jkn9jmL0SuIjjiB644zHe11ztTuGk-W-am1DhblThypVTTElhVQx1X9cy0GVIeblc6tlk974nepGCEsd7_SvsE-jChTexM1QgCBX9oZXtn06CSqsYgsf3O3YwWG5gqiqOEL8HuMSYnTyEGxshVS05G7FmQziHQDUcxTyNUXh2J4fgf4_nw0KKLXh9kRacOciy6cLrEDe6xmaeD0QvjJNyzUB6Bv7YwI7U_4xOver6vciU83-5ogq1FKu9ze50nSSKTbVrWdUdY6vFQbTkMnqGL0HW2xEMWc9f4Bbm4kPx3mMrtKFq4SabC32t7gznVsrK-pdhReqkwtjYlEQ"
+            },
+            method: 'get'
+        });
+    },
+
+    //Gets the data associated with a given behaviorID
+    getBehaviorData: function(id) {
+        return axios({
+            url: "/api/teacher/behaviorchart/" + id,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken: "eyJraWQiOiJBNUFGK2RvRWgyd2E3SHllZ3doSzBvaTBqQXFJNnk5Qk4rR1VHRjZLNHhNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YiLCJldmVudF9pZCI6IjkzODIwODU1LTYzNjUtMTFlOS1iMmIwLTJkNWZhNTQ0NzMzMyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTU3NjIzNTMsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JYM0w1Q3kzNSIsImV4cCI6MTU1NTc2NTk1MywiaWF0IjoxNTU1NzYyMzUzLCJqdGkiOiIyYzI4NmNmYi05NmU2LTQ1YjUtOWZiMS0xNjNhNjlkZGM5ODYiLCJjbGllbnRfaWQiOiJ2MTNmMjNscGp2NTE0M2tvMXJjb2lmajU3IiwidXNlcm5hbWUiOiIxY2RjYThiNy1kMjlkLTQ0MWMtYWU5My1hYjA2NDM5YjU4M2YifQ.U7Rmv7Jkn9jmL0SuIjjiB644zHe11ztTuGk-W-am1DhblThypVTTElhVQx1X9cy0GVIeblc6tlk974nepGCEsd7_SvsE-jChTexM1QgCBX9oZXtn06CSqsYgsf3O3YwWG5gqiqOEL8HuMSYnTyEGxshVS05G7FmQziHQDUcxTyNUXh2J4fgf4_nw0KKLXh9kRacOciy6cLrEDe6xmaeD0QvjJNyzUB6Bv7YwI7U_4xOver6vciU83-5ogq1FKu9ze50nSSKTbVrWdUdY6vFQbTkMnqGL0HW2xEMWc9f4Bbm4kPx3mMrtKFq4SabC32t7gznVsrK-pdhReqkwtjYlEQ"
             },
             method: 'get'
         });

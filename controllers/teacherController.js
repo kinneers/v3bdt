@@ -7,6 +7,15 @@ module.exports = {
         db.Teacher
             .findById(req.params.id)
             .populate("behaviors")
+            .populate("students")
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    //Gets the data associated with a specific behavior
+    findBehaviorById: function(req, res) {
+        db.Behavior
+            .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

@@ -2,8 +2,13 @@ const db = require("../models");
 
 // Defining methods for the StudentsController
 module.exports = {
-    //ADD:
-    //findAllBehaviorsRefStudent- needs to get each behavior related to that Student in form of array of objects with AT LEAST: {behaviorID, name, behavior, studentID}
+
+    findStudentById: function(req, res) {
+        db.Student
+          .findById(req.params.id)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+    },
 
   findAll: function(req, res) {
     db.Student
