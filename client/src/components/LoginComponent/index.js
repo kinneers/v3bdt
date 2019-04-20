@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 
 function LoginComponent(props) {
+    console.log(props);
     return (
         <main>
             <div className="container">
@@ -16,12 +17,16 @@ function LoginComponent(props) {
                         <div className="card-stacked">
                             <div className="card-content">
                                 <span className="card-title">Log In</span>
-                                <form id="signin" name="signin" method="post" action="signin">
+                                <form id="signin" name="signin" >
                                     <label htmlFor="username">Username</label>
-                                    <input name="username" type="text" />
+                                    <input name="username" value={props.email} onChange={(e) => {
+                                        props.setValue("email", e.target.value)
+                                    }} type="text" />
                                     <label htmlFor="password">Password</label>
-                                    <input name="password" type="password" />
-                                    <input className="btn" type="submit" value="Sign In" />
+                                    <input name="password" type="password" value={props.password} onChange={(e) => {
+                                        props.setValue("password", e.target.value)
+                                    }}/>
+                                    <button className="btn" onClick={props.handleSubmit}>Sign In</button>
                                 </form>
                             </div>
                         </div>

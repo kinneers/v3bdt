@@ -17,8 +17,19 @@ export default {
         return axios.post('/auth/login', body);
     },
 
+    associateUser: function(email, accesstoken) {
+        return axios({
+            url: "/api/teacher/a/" + email,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'get'
+        });
+    },
+
     // Gets all behaviors' basic info (behaviorID, behavior, studentID, name) ref'd to a teacher
-    getBehaviors: function(id) {
+    getBehaviors: function(id, accesstoken) {
         return axios({
             url: "/api/teacher/behaviors/" + id,
             headers: {

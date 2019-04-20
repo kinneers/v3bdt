@@ -6,12 +6,16 @@ import './style.css';
 import Amplify, { Auth } from 'aws-amplify';
 import { Authenticator } from 'aws-amplify-react';
 
-import { getConfig } from './../../utils/API';
-import { Loader } from '../common';
+//import { getConfig } from './../../utils/API';
+//import { Loader } from '../common';
 
 class CustomAuthenticator extends Component {
     state = {
-        config: {},
+        config: 
+        {
+            userPoolId: "us-east-1_RX3L5Cy35", // Your user pool id here. Should be added to keys.   
+            userPoolWebClientId: "v13f23lpjv5143ko1rcoifj57" // Your client id here. Should be added to keys.
+        },  
         isLoading: true,
         userIsAuthenticated: false,
         user: null,
@@ -143,9 +147,9 @@ class CustomAuthenticator extends Component {
     componentDidMount() {
         const { config } = this.state;
         if (config && !(config.userPoolId || config.userPoolWebClientId)) {
-            getConfig().then(({ data }) =>
-                this.setState({ config: data, isLoading: false })
-            );
+            // getConfig().then(({ data }) =>
+            //     this.setState({ config: data, isLoading: false })
+            // );
         }
     }
 
@@ -221,7 +225,7 @@ class CustomAuthenticator extends Component {
         const { children } = this.props;
 
         return (
-            <Loader isLoading={isLoading}>
+            // <Loader isLoading={isLoading}>
             <Authenticator
             // Optionally hard-code an initial state
             // authState="signIn"
@@ -277,7 +281,7 @@ class CustomAuthenticator extends Component {
                 })
             )}
         </Authenticator>
-        </Loader>
+        //</Loader>
         );
     }
 }
