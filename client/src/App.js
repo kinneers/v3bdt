@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Teacher from './pages/Teacher';
 import Student from './pages/Student';
 import Admin from './pages/Admin';
-//import Authenticator from './components'
+import Authenticator from './components/Auth';
 
 class App extends Component {
 
@@ -18,11 +18,14 @@ class App extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" component={Login} />
+                    <Authenticator>
+                    <Route exact path="/login" component={Login} />
+                    {/* <Route exact path="/" render={() => <Login {...this.props}/>} /> */}
                     <Route exact path="/teacher" component={Teacher} />
                     <Route exact path="/student" component={Student} />
                     <Route exact path="/admin" component={Admin} />
-                    <Route component={Login} />
+                    {/* <Route component={Login} /> */}
+                    </Authenticator>
                 </Switch>
             </Router>
         );

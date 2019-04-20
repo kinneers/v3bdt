@@ -3,12 +3,12 @@ const teacherController = require("../../controllers/teacherController");
 
 //Matches with '/api/behaviors/'
 router.route('/behaviors/:id')
-    .get(teacherController.findAllBehaviorsRefTeacher);
-    //.post(teacherController.create);
+  .get(teacherController.findAllBehaviorsRefTeacher);
+//.post(teacherController.create);
 
 router.route('/behaviors/')
-    .get(teacherController.findAllBehaviorsRefTeachers);
-    //.post(teacherController.create);
+  .get(teacherController.findAllBehaviorsRefTeachers);
+//.post(teacherController.create);
 
 router.route("/")
   .get(teacherController.findAll)
@@ -20,4 +20,7 @@ router
   .put(teacherController.update)
   .delete(teacherController.remove);
 
+router
+  .route("/a/:email")
+  .get(teacherController.findByEmail)
 module.exports = router;
