@@ -78,14 +78,14 @@ class RatingForm extends Component {
                 const rating = this.state.newData[bxId];
                 console.log(`Rating: ${rating}`);
                 let dataToSend = {};
-                if (rating === 0) {
+                if (rating === '0') {
                     console.log('Now you need to create the data to send with the API call WITHOUT incrementing the rating');
                     dataToSend = {
                         behaviorDate: now, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
                         behaviorTracking: {behaviorValue: rating},//There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
                         behaviorCount: 1 //CHANGE THIS TO INCREMENT BY ONE
                     };
-                } else if (rating === 1) {
+                } else if (rating === '1') {
                     console.log('Now you need to create the data to send with the API call WITH incrementing the rating');
                     dataToSend = {
                         behaviorDate: now, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
