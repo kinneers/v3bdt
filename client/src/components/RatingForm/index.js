@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
 import API from './../../utils/API';
+//import Moment from 'react-moment';
+const moment = require('moment');
 
 class RatingForm extends Component {
     
@@ -32,7 +34,13 @@ class RatingForm extends Component {
         //Save the value to check if it is an empty string (or, for our purposes, null)- in which case we will not update the state
         let isItNull = event.target.value;
         if (isItNull === '') {
-            console.log('This value is null');
+            const { name } = event.target;
+            this.setState({
+                newData: {
+                    ...this.state.newData,
+                    [name]: null
+                }
+            });
         } else {
             //Gets the name and value of the target that changed
             const { name, value } = event.target;
@@ -46,31 +54,63 @@ class RatingForm extends Component {
         }
     };
 
-//   // When the form is submitted, use the API.saveData method to save the bx data
-
-//     behaviorName: { type: String, required: true, },
-//     behaviorTracked: [{
-//       behaviorValue: { type: Number, enum: [0, 1], allowNull: true, required: false },
-//       behaviorDate: { type: Date, default: Date.now(), required: true }
-//     }],
-//     status: {type: Boolean, required: true, default: true},
-//     createdAt: { type: Date, default: Date.now() },
-//     updatedAt: { type: Date, default: Date.now() },
-//     studentName: { type: String, required: false, },
-//     student: { type: Schema.Types.ObjectId, ref: "Student", required: false},
-//     teachers: [{ type: Schema.Types.ObjectId, ref: "Teacher", required: true}]
-
     saveData = event => {
         event.preventDefault();
         console.log('The current state as of the button click is: ', this.state);
-    //     const dataToSave = {
-    //         //Figure out how to save the newData from the state- will likely need a for each or map
-    //     }
-    //     API.saveData({ dataToSave })
-    //     // Then reset form
-    //     .then(res => this.loadBehaviors())
-    //     .catch(err => console.log(err));
+        //The newData object looks like this:
+        //newData: { 'behaviorID1: rating'}
+        const now = moment().format('MM/DD/YYYY');
+        console.log(now);
+        const dataToSave = this.state.newData;
+        console.log(dataToSave);
+        
+        //Loop through each rating to update each behavior
+        for (let i = 0; i < this.state.behaviorInfo.behaviors.length; i++) {
+            //Get the behaviorID
+            const bxId = this.state.behaviorInfo.behaviors[i]._id;
+            console.log(bxId);
 
+            console.log(this.state.newData[bxId]); //Returns the value associated with the key bxId
+
+            //If the behavior was rated, proceed (if it was not or was rated N/A, this.state.newData[bxId] would return the falsy values 'undefined' or 'null')
+            if (this.state.newData[bxId]) {
+                console.log('This behavior was rated');
+                const rating = this.state.newData[bxId];
+                console.log(`Rating: ${rating}`);
+                let dataToSend = {};
+                if (rating === 0) {
+                    console.log('Now you need to create the data to send with the API call WITHOUT incrementing the rating');
+                    dataToSend = {
+                        behaviorDate: now, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
+                        behaviorTracking: {behaviorValue: rating},//There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
+                        behaviorCount: 1 //CHANGE THIS TO INCREMENT BY ONE
+                    };
+                } else if (rating === 1) {
+                    console.log('Now you need to create the data to send with the API call WITH incrementing the rating');
+                    dataToSend = {
+                        behaviorDate: now, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
+                        behaviorTracking: {behaviorValue: rating},//There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
+                        behaviorCount: 1, //CHANGE THIS TO INCREMENT BY ONE 
+                        behaviorTotal: 1 //CHANGE THIS TO INCREMENT BY ONE
+                    };
+                } else {
+                    console.log('Something went wrong with that logic!');
+                };
+                console.log(dataToSend);
+                
+                //FINALLY, make the API call to saveData
+                //     API.saveData({ send the query for findOneAndUpdate, send the updates, etc. })
+                //     .then(res => console.log('Ratings Saved!'))
+                //     .catch(err => console.log(err));
+
+            } else {
+                console.log('A behavior was not rated or had a value of null.');
+            };
+        };
+        
+    //Move what is below to be a callback function after the API calls are done
+        //Resets the state to an empty object for newData
+        //Setting mount to false will render a message that the data has been saved and a button to rate students again
         this.setState({ newData: {}, mount: false });
     };
 

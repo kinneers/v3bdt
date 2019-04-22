@@ -18,17 +18,22 @@ router.route('/behaviorchart/:id')
     .get(teacherController.findBehaviorById);
     //.post(teacherController.create);
 
-router.route("/")
-  .get(teacherController.findAll)
-  .post(teacherController.create);
+//Matches with '/api/teacher/ratingform/:id'
+router.route('/ratingform/:id')
+    .put(teacherController.saveRating);
 
-router
-  .route("/:id")
-  .get(teacherController.findById)
-  .put(teacherController.update)
-  .delete(teacherController.remove);
+// router.route("/")
+//   .get(teacherController.findAll)
+//   .post(teacherController.create);
 
-router
-  .route("/a/:email")
-  .get(teacherController.findByEmail)
+// router
+//   .route("/:id")
+//   .get(teacherController.findById)
+//   .put(teacherController.update)
+//   .delete(teacherController.remove);
+
+// router
+//   .route("/a/:email")
+//   .get(teacherController.findByEmail)
+
 module.exports = router;
