@@ -13,9 +13,6 @@ class RatingForm extends Component {
         teacherID: '5cb8e2bd4c3e69054020ac33'
     };
 
-    //Post each student's data to the database
-    //Show a modal when student data has been saved and reset radio buttons
-
     // When the component mounts, load all students and save them to this.state.behaviorInfo
     componentDidMount() {
         let id = this.state.teacherID;
