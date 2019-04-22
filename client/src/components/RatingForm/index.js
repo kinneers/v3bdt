@@ -6,6 +6,7 @@ class RatingForm extends Component {
     
     state = {
         behaviorInfo: [],
+        mount: true,
         newData: {},
         teacherID: '5cb8e2bd4c3e69054020ac33'
     };
@@ -70,11 +71,18 @@ class RatingForm extends Component {
     //     .then(res => this.loadBehaviors())
     //     .catch(err => console.log(err));
 
-        this.setState({ newData: {} });
+        this.setState({ newData: {}, mount: false });
     };
+
+    remount = (event) => {
+        event.preventDefault();
+        this.setState({ mount: true })
+    }
 
     render() {
         return (
+            <>
+            {(this.state.mount) ? (
             <main>      
                 {/* <!-- Tables --> */}
                 <div className="container">
@@ -130,7 +138,13 @@ class RatingForm extends Component {
                         </div>
                     </div>
                 </div>
-            </main>
+            </main>) : (
+                <>
+                <h1>Ratings Saved!</h1>
+                <button onClick={this.remount}>Click to Rate Again!</button>
+                </>
+            )};
+        </>
         );
     };
 };
