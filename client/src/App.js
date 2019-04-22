@@ -11,7 +11,7 @@ import Authenticator from './components/Auth';
 class App extends Component {
 
     state = {
-        chartBx: ''
+        user: ''
     };
 
     render() {
