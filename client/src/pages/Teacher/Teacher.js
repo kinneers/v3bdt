@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+//import { Route, Switch } from 'react-router-dom';
 import RatingForm from './../../components/RatingForm';
 import TopNav from './../../components/TopNav';
 import SideNav from './../../components/SideNav';
 import BxChart from './../../components/BxChart';
 import './style.css';
+import M from "materialize-css";
 import API from './../../utils/API';
 
 class Teacher extends Component {
@@ -13,11 +14,13 @@ class Teacher extends Component {
         behaviorInfo: {},
         teacherID: '5cb8e2bd4c3e69054020ac33',
         chosenBxId: '5cb8e2bf4c3e69054020ae5a',
-        bxInfoToMakeChart: {}
-    }
+        newData: {},
+        radioButtons: {}
+    };
 
     componentDidMount() {
         // Auto initialize all the things!
+        M.AutoInit();
         let id = this.state.teacherID;
         this.loadBehaviors(id);
     }
@@ -28,92 +31,92 @@ class Teacher extends Component {
             .then(res => 
                 {                    
                     this.setState({ behaviorInfo: res.data });
+                    M.AutoInit();
+                    this.statefulRadioButtons();
                     //This needs to happen in a click event later
                     this.getChartData();
                 })
             .catch(err => console.log(err));
     };
 
-    getChartData = () => {
-        //Check if there is a behavior Id in state
-        //If not, console.log('No behavior chosen');
-        //If get the behaviorId we are interested in from state
-        //Get the data associated with the chosen behaviorId
-        API.getBehaviorData(this.state.chosenBxId)
-            .then(res => 
-                {                    
-                    this.setState({ bxInfoToMakeChart: res.data });
-                    this.formatChart();
-                })
-            .catch(err => console.log(err));
-        
-
-
-//HOW THE CHART DATA NEEDS TO BE SAVED IN STATE:
-        // chartData:{
-        //     labels: ['4/12/2019','4/13/2019','4//14/2019','4/15/2019','4/16/2019','4/17/2019'],
-        //     datasets:[
-        //       {
-        //       label: 'Behavior 1',
-        //       backgroundColor: "#48344f",
-        //       data: [12, 19, 3, 5, 2, 3],
-        //       borderColor: '"#48344f"',
-        //       pointBackgroundColor: '#48344f"',
-        //       pointBorderColor: ("#48344f"),
-        //       lineTension: 0,
-        //       pointStyle: 'circle',
-        //       fill: false
-        //       }
-        //     ]
-        //   }
+    componentDidUpdate() {
+        M.AutoInit();
     }
 
-    formatChart = () => {
-        console.log(this.state.bxInfoToMakeChart);
-        //These two arrays must match up!
-        let labels = []; //Each rating date needs to be pushed to this array
-        let data = []; //The average of each rating date needs to be pushed to this array
-        const bxDescription = this.state.bxInfoToMakeChart.behaviorName;
-        //Get the behavior tracking data
-        let behaviorData = this.state.bxInfoToMakeChart.behaviorTracked;
-        console.log(behaviorData);
+        //Post each student's data to the database
+    //Show a modal when student data has been saved and reset radio buttons
 
+    statefulRadioButtons() {
+        console.log(this.saveData.radioButtons);
+    };
 
-        const chartData = {
-            labels: labels,
-            datasets: [
-                {
-                    label: bxDescription,
-                    backgroundColor: "#48344f",
-                    data: data,
-                    borderColor: '"#48344f"',
-                    pointBackgroundColor: '#48344f"',
-                    pointBorderColor: ("#48344f"),
-                    lineTension: 0,
-                    pointStyle: 'circle',
-                    fill: false
+    // Handles updating component state when the user types into the input field
+    handleInputChange = event => {
+        //Save the value to check if it is an empty string (or, for our purposes, null)- in which case we will not update the state
+        let isItNull = event.target.value;
+        if (isItNull === '') {
+            console.log('This value is null');
+        } else {
+            //Gets the name and value of the target that changed
+            const { name, value } = event.target;
+            //Sets the state of the selected (and not-null) object in the newData object, which also updates correctly if the same behavior row's value is changed again before the save data button is clicked
+            this.setState({
+                newData: {
+                    ...this.state.newData,
+                    [name]: value
                 }
-            ]
-        };
-        console.log(`You currently have the following chartData: Labels: ${chartData.labels}, label for description: ${chartData.datasets[0].label}, data: ${chartData.datasets[0].data}`);
-    }
+            });
+        }
+    };
 
+//   // When the form is submitted, use the API.saveData method to save the bx data
+
+//     behaviorName: { type: String, required: true, },
+//     behaviorTracked: [{
+//       behaviorValue: { type: Number, enum: [0, 1], allowNull: true, required: false },
+//       behaviorDate: { type: Date, default: Date.now(), required: true }
+//     }],
+//     status: {type: Boolean, required: true, default: true},
+//     createdAt: { type: Date, default: Date.now() },
+//     updatedAt: { type: Date, default: Date.now() },
+//     studentName: { type: String, required: false, },
+//     student: { type: Schema.Types.ObjectId, ref: "Student", required: false},
+//     teachers: [{ type: Schema.Types.ObjectId, ref: "Teacher", required: true}]
+
+    saveData = event => {
+        event.preventDefault();
+        console.log('The current state as of the button click is: ', this.state);
+    //     const dataToSave = {
+    //         //Figure out how to save the newData from the state- will likely need a for each or map
+    //     }
+    //     API.saveData({ dataToSave })
+    //     // Then reset form
+    //     .then(res => this.loadBehaviors())
+    //     .catch(err => console.log(err));
+
+        this.setState({ newData: {}, radioButtons: {} });
+    };
 
     render() {
         return (
             <div>
                 <div className="side-nav">
-                    <SideNav />
+                    <SideNav behaviorInfo={this.state.behaviorInfo}/>
                 </div>
                 <div className="main-right">
                     <TopNav />
                     <BxChart />
-                    <div className="container">
+                    <RatingForm 
+                        behaviorInfo={this.state.behaviorInfo}
+                        handleInputChange={this.handleInputChange.bind()}
+                        saveData={this.saveData.bind()}
+                        />
+                    {/* <div className="container">
                         <Switch>
                             <Route exact path={`${this.props.match.path}`} component={RatingForm} />
                             <Route exact path={`${this.props.match.path}/chart`} component={BxChart} />
                         </Switch>  
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
