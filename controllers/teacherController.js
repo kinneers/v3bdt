@@ -38,6 +38,15 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    //Finds the behaviorData collection for the current day and updates or, if no collection for the day yet exists, creates it
+    saveRating: function(req, res) {
+        db.BehaviorData
+            .findOneAndUpdate(req.query, req.newData, {upsert: true}, function(err, doc) {
+                if (err) return res.send(500, {error: err});
+                return res.send('Successfully saved');
+            });
+    },
+
   findAll: function(req, res) {
     db.Teacher
       .find(req.query)
