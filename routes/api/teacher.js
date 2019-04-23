@@ -32,8 +32,8 @@ router.route('/ratingform')
 //   .put(teacherController.update)
 //   .delete(teacherController.remove);
 
-// router
-//   .route("/a/:email")
-//   .get(teacherController.findByEmail)
+router
+  .route("/a/:email")
+  .get(teacherController.findByEmail)
 
 module.exports = router;
