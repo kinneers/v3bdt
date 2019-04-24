@@ -11,21 +11,8 @@ class RatingForm extends Component {
         this.state = {
             mount: true,
             newData: {},
-            // behaviorInfo: this.props.behaviorInfo
         };
     };
-
-    // When the component mounts, load all students and save them to this.state.behaviorInfo
-    componentDidMount() {
-        // this.setState({behaviorInfo: this.props.behaviorInfo})
-    };
-
-    // // Loads all students and sets them to this.state.behaviorInfo
-    // loadBehaviors = (id) => {
-    //     API.getBehaviors(id)
-    //         .then(res => this.setState({ behaviorInfo: res.data }))
-    //         .catch(err => console.log(err));
-    // };
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
