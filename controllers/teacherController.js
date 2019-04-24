@@ -38,14 +38,20 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    //Finds the behaviorData collection for the current behavior and day and updates or, if no collection for the day yet exists, creates it
+    // //Finds the behaviorData collection for the current behavior and day and updates or, if no collection for the day yet exists, creates it
+    // saveRating: function(req, res) {
+    //     db.BehaviorData
+    //         .findOneAndUpdate(req.query, req.dataToSend, {upsert: true}, function(err, doc) {
+    //             if (err) return res.send(500, {error: err});
+    //             return res.send('Successfully saved');
+    //         });
+    // },
     saveRating: function(req, res) {
-        db.Behavior
-            .findOneAndUpdate(req.query, req.dataToSend, {upsert: true}, function(err, doc) {
-                if (err) return res.send(500, {error: err});
-                return res.send('Successfully saved');
-            });
-    },
+        db.BehaviorData
+          .findOneAndUpdate( req.body.query, req.body.newData)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
 
   findAll: function(req, res) {
     db.Teacher

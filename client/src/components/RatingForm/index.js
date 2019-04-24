@@ -83,7 +83,8 @@ class RatingForm extends Component {
                 };
                 console.log(dataToSend);
 
-                API.saveData({ query: {behavior: bxId, behaviorDate: today }, newData: dataToSend }, function(err, data){
+                //Try sending all the info the backend needs in one req.body...
+                API.saveData({query: { behavior: bxId, behaviorDate: today }}, {newData: dataToSend}, function(err, data){
                     console.log('Rating Saved!');
                 }).catch(err=>console.log(err));                
 

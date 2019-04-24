@@ -77,7 +77,7 @@ export default {
     },
 
     //Saves the rating data associated with a given behaviorID
-    saveData: function(id, accesstoken) {
+    saveData: function(query, newData, accesstoken) {
         return axios({
             url: "/api/teacher/ratingform",
             headers: {

@@ -41,7 +41,7 @@ class Teacher extends Component {
     render() {
         console.log(this.props);
         return (
-            <div>
+            <div className="fixtop">
                 <div className="side-nav">
                     <SideNav behaviorInfo={this.state.behaviorInfo}/>
                 </div>

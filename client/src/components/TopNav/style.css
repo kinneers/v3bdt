@@ -4,12 +4,14 @@
 
 nav {
     background-color: white;
-    
 }
 
 #brand-logo {
     background-image: url(./logo.png);
     height: 200;
     width:400;
-  }
+}
 
+nav.nav-wrapper {
+    margin: 0px;
+}
