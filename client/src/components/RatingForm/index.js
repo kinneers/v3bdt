@@ -5,26 +5,34 @@ import API from './../../utils/API';
 const moment = require('moment');
 
 class RatingForm extends Component {
-    
+    constructor(props) {
+        super(props)
+         this.state={
+             behaviorInfo: this.props.behaviorInfo,
+             mount: true,
+             newData: {},
+             teacherID: this.props.teacherID
+         }
+    }
     state = {
         behaviorInfo: this.props.behaviorInfo,
         mount: true,
         newData: {},
-        teacherID: '5cb8e2bd4c3e69054020ac33'
+        teacherID: '5cb8e2bd4c3e69054020ac33' //local mongo id
     };
 
     // When the component mounts, load all students and save them to this.state.behaviorInfo
-    // componentDidMount() {
-    //     let id = this.state.teacherID;
-    //     this.loadBehaviors(id);
-    // };
+    componentDidMount() {
+        let id = this.state.teacherID;
+        this.loadBehaviors(id);
+    };
 
-    // // Loads all students and sets them to this.state.behaviorInfo
-    // loadBehaviors = (id) => {
-    //     API.getBehaviors(id)
-    //         .then(res => this.setState({ behaviorInfo: res.data }))
-    //         .catch(err => console.log(err));
-    // };
+    // Loads all students and sets them to this.state.behaviorInfo
+    loadBehaviors = (id) => {
+        API.getBehaviors(id)
+            .then(res => this.setState({ behaviorInfo: res.data }))
+            .catch(err => console.log(err));
+    };
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {

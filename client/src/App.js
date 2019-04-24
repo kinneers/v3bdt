@@ -17,7 +17,7 @@ class App extends Component {
     };
 
     handleUser = (user) => {
-        this.setState({user});
+        this.setState({ user });
     }
 
     render() {
@@ -25,17 +25,20 @@ class App extends Component {
             user: this.state.user,
             handleUser: this.handleUser,
         }
-        
+
         return (
             <Router>
                 <Switch>
                     <Authenticator>
-                    {/* <Route exact path="/login" component={Login} /> */}
-                    {/* <Route exact path="/" render={() => <Login {...this.props}/>} /> */}
-                    <Route exact path="/teacher" render={() => <Teacher {...passedProps}/>} />
-                    <Route exact path="/student" component={Student} />
-                    <Route exact path="/admin" component={Admin} />
-                    <Route render={() => <Login {...passedProps}/>} />
+                        {
+                            this.state.user ? (
+                                <React.Fragment>
+                                    <Route exact path="/teacher" render={() => <Teacher {...passedProps} />} />
+                                    <Route exact path="/student" component={Student} />
+                                    <Route exact path="/admin" component={Admin} />
+                                </React.Fragment>
+                            ) : (<Route render={() => <Login {...passedProps} />} />)
+                        }
                     </Authenticator>
                 </Switch>
             </Router>
