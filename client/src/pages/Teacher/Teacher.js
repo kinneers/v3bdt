@@ -14,8 +14,7 @@ class Teacher extends Component {
         behaviorInfo: {},
         teacherID: '5cb8e2bd4c3e69054020ac33',
         chosenBxId: '5cb8e2bf4c3e69054020ae5a',
-        newData: {},
-        radioButtons: {}
+        //newData: {}
     };
 
     componentDidMount() {
@@ -32,9 +31,9 @@ class Teacher extends Component {
                 {                    
                     this.setState({ behaviorInfo: res.data });
                     M.AutoInit();
-                    this.statefulRadioButtons();
                     //This needs to happen in a click event later
-                    this.getChartData();
+                    //this.getChartData();
+                    console.log(res.data, this.state.behaviorInfo)
                 })
             .catch(err => console.log(err));
     };
@@ -46,28 +45,24 @@ class Teacher extends Component {
         //Post each student's data to the database
     //Show a modal when student data has been saved and reset radio buttons
 
-    statefulRadioButtons() {
-        console.log(this.saveData.radioButtons);
-    };
-
-    // Handles updating component state when the user types into the input field
-    handleInputChange = event => {
-        //Save the value to check if it is an empty string (or, for our purposes, null)- in which case we will not update the state
-        let isItNull = event.target.value;
-        if (isItNull === '') {
-            console.log('This value is null');
-        } else {
-            //Gets the name and value of the target that changed
-            const { name, value } = event.target;
-            //Sets the state of the selected (and not-null) object in the newData object, which also updates correctly if the same behavior row's value is changed again before the save data button is clicked
-            this.setState({
-                newData: {
-                    ...this.state.newData,
-                    [name]: value
-                }
-            });
-        }
-    };
+    // // Handles updating component state when the user types into the input field
+    // handleInputChange = event => {
+    //     //Save the value to check if it is an empty string (or, for our purposes, null)- in which case we will not update the state
+    //     let isItNull = event.target.value;
+    //     if (isItNull === '') {
+    //         console.log('This value is null');
+    //     } else {
+    //         //Gets the name and value of the target that changed
+    //         const { name, value } = event.target;
+    //         //Sets the state of the selected (and not-null) object in the newData object, which also updates correctly if the same behavior row's value is changed again before the save data button is clicked
+    //         this.setState({
+    //             newData: {
+    //                 ...this.state.newData,
+    //                 [name]: value
+    //             }
+    //         });
+    //     }
+    // };
 
 //   // When the form is submitted, use the API.saveData method to save the bx data
 
@@ -83,19 +78,19 @@ class Teacher extends Component {
 //     student: { type: Schema.Types.ObjectId, ref: "Student", required: false},
 //     teachers: [{ type: Schema.Types.ObjectId, ref: "Teacher", required: true}]
 
-    saveData = event => {
-        event.preventDefault();
-        console.log('The current state as of the button click is: ', this.state);
-    //     const dataToSave = {
-    //         //Figure out how to save the newData from the state- will likely need a for each or map
-    //     }
-    //     API.saveData({ dataToSave })
-    //     // Then reset form
-    //     .then(res => this.loadBehaviors())
-    //     .catch(err => console.log(err));
+    // saveData = event => {
+    //     event.preventDefault();
+    //     console.log('The current state as of the button click is: ', this.state);
+    // //     const dataToSave = {
+    // //         //Figure out how to save the newData from the state- will likely need a for each or map
+    // //     }
+    // //     API.saveData({ dataToSave })
+    // //     // Then reset form
+    // //     .then(res => this.loadBehaviors())
+    // //     .catch(err => console.log(err));
 
-        this.setState({ newData: {}, radioButtons: {} });
-    };
+    //     this.setState({ newData: {}, radioButtons: {} });
+    // };
 
     render() {
         return (
@@ -108,8 +103,9 @@ class Teacher extends Component {
                     <BxChart />
                     <RatingForm 
                         behaviorInfo={this.state.behaviorInfo}
-                        handleInputChange={this.handleInputChange.bind()}
-                        saveData={this.saveData.bind()}
+                        teacherID={this.state.teacherID}
+                        //handleInputChange={this.handleInputChange.bind()}
+                        //saveData={this.saveData.bind()}
                         />
                     {/* <div className="container">
                         <Switch>

@@ -7,7 +7,7 @@ const BehaviorDataSchema = new Schema({
     behaviorValue: { type: Number, enum: [0, 1], allowNull: true, required: false },
     behaviorTime: { type: Date, default: Date.now(), required: true }
   }],
-  behavior: [{ type: Schema.Types.ObjectId, ref: "Behavior", required: false}],
+  behavior: { type: Schema.Types.ObjectId, ref: "Behavior", required: false},
   behaviorCount: { type: Number, default:0, allowNull: true, required: true },  // total number of times this behavior is tracked
   behaviorTotal: { type: Number, default:0, allowNull: true, required: true }  // number of times behavior goal is met
 });

@@ -41,7 +41,7 @@ module.exports = {
     //Finds the behaviorData collection for the current behavior and day and updates or, if no collection for the day yet exists, creates it
     saveRating: function(req, res) {
         db.Behavior
-            .findOneAndUpdate(req.query, req.newData, {upsert: true}, function(err, doc) {
+            .findOneAndUpdate(req.query, req.dataToSend, {upsert: true}, function(err, doc) {
                 if (err) return res.send(500, {error: err});
                 return res.send('Successfully saved');
             });
