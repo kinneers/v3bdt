@@ -7,31 +7,11 @@ const moment = require('moment');
 class RatingForm extends Component {
     constructor(props) {
         super(props)
-         this.state={
-             behaviorInfo: this.props.behaviorInfo,
-             mount: true,
-             newData: {},
-             teacherID: this.props.teacherID
-         }
-    }
-    state = {
-        behaviorInfo: this.props.behaviorInfo,
-        mount: true,
-        newData: {},
-        teacherID: '5cb8e2bd4c3e69054020ac33' //local mongo id
-    };
 
-    // When the component mounts, load all students and save them to this.state.behaviorInfo
-    componentDidMount() {
-        let id = this.state.teacherID;
-        this.loadBehaviors(id);
-    };
-
-    // Loads all students and sets them to this.state.behaviorInfo
-    loadBehaviors = (id) => {
-        API.getBehaviors(id)
-            .then(res => this.setState({ behaviorInfo: res.data }))
-            .catch(err => console.log(err));
+        this.state = {
+            mount: true,
+            newData: {},
+        };
     };
 
     // Handles updating component state when the user types into the input field
@@ -70,9 +50,9 @@ class RatingForm extends Component {
         console.log(dataToSave);
         
         //Loop through each rating to update each behavior
-        for (let i = 0; i < this.state.behaviorInfo.behaviors.length; i++) {
+        for (let i = 0; i < this.props.behaviorInfo.behaviors.length; i++) {
             //Get the behaviorID
-            const bxId = this.state.behaviorInfo.behaviors[i]._id;
+            const bxId = this.props.behaviorInfo.behaviors[i]._id;
             console.log(bxId);
 
             console.log(this.state.newData[bxId]); //Returns the value associated with the key bxId
@@ -103,7 +83,7 @@ class RatingForm extends Component {
                 };
                 console.log(dataToSend);
 
-                API.saveData({ query: {behavior: bxId, 'where': {behaviorTracked: {$elemMatch: { behaviorDate: today }}}}, newData: dataToSend }, function(err, data){
+                API.saveData({ query: {behavior: bxId, behaviorDate: today }, newData: dataToSend }, function(err, data){
                     console.log('Rating Saved!');
                 }).catch(err=>console.log(err));                
 
@@ -141,16 +121,16 @@ class RatingForm extends Component {
                                             <th>Rating</th>
                                         </tr>
                                     </thead>
-                                    {(this.state.behaviorInfo.behaviors) ? (
+                                    {(this.props.behaviorInfo.behaviors) ? (
                                     <tbody>
-                                        {this.state.behaviorInfo.behaviors.map(behaviors => (
+                                        {this.props.behaviorInfo.behaviors.map(behaviors => (
                                         <tr key={behaviors._id}>
                                             <td>{behaviors.studentName}</td>
                                             <td>{behaviors.behaviorName}</td>
                                             <td>
                                                 <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
                                                 {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}
-                                                    <label>
+                                                     <label>
                                                         <input className="with-gap" id='Met' value={1} name={behaviors._id} type="radio" />
                                                         <span>Met</span>
                                                     </label>    
@@ -173,10 +153,10 @@ class RatingForm extends Component {
                                             <td>You do not have any student behaviors to rate.</td>
                                         </tr>
                                     </tbody>)
-                                    }                    
+                                    }                     
                                 </table>
                                 <button className="waves-effect waves-light btn-small" id="saveData" onClick={this.saveData}>Save Data</button>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
