@@ -20,6 +20,7 @@ class Teacher extends Component {
         M.AutoInit();
         let id = this.state.teacherID;
         this.loadBehaviors(id);
+        console.log(this.props.user);
     }
 
     // Loads all behaviors and sets them to this.state.behaviorInfo

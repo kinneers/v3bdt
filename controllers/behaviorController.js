@@ -6,6 +6,7 @@ module.exports = {
     findBehaviorById: function(req, res) {
         db.Behavior
           .findById(req.params.id)
+          .populate("student")
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
     }
