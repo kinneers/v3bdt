@@ -11,20 +11,29 @@ import Authenticator from './components/Auth';
 class App extends Component {
 
     state = {
-        user: ''
+        user: null
     };
 
+    handleUser = (user) => {
+        this.setState({user});
+    }
+
     render() {
+        const passedProps = {
+            user: this.state.user,
+            handleUser: this.handleUser,
+        }
+        
         return (
             <Router>
                 <Switch>
                     <Authenticator>
-                    <Route exact path="/login" component={Login} />
+                    {/* <Route exact path="/login" component={Login} /> */}
                     {/* <Route exact path="/" render={() => <Login {...this.props}/>} /> */}
-                    <Route exact path="/teacher" component={Teacher} />
+                    <Route exact path="/teacher" render={() => <Teacher {...passedProps}/>} />
                     <Route exact path="/student" component={Student} />
                     <Route exact path="/admin" component={Admin} />
-                    {/* <Route component={Login} /> */}
+                    <Route render={() => <Login {...passedProps}/>} />
                     </Authenticator>
                 </Switch>
             </Router>

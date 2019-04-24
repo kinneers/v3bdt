@@ -32,7 +32,7 @@ module.exports = {
     //Gets all behaviors
     findAllBehaviorsRefTeachers: function(req, res) {
         db.Teacher
-            .find(req.query)
+            .find(req.query) //we're not passing req.query
             .populate("behaviors")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -62,7 +62,9 @@ module.exports = {
   },
   findByEmail: function(req, res) {
     db.Teacher
-      .findById(req.params.email)
+      .findOne({
+        userName: req.params.email,
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

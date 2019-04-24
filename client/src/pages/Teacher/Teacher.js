@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { Route, Switch } from 'react-router-dom';
 import RatingForm from './../../components/RatingForm';
 import TopNav from './../../components/TopNav';
 import SideNav from './../../components/SideNav';
@@ -12,8 +11,8 @@ class Teacher extends Component {
     //Initial State- we definitely need to set the current user, but not sure how to do it with Cognito
     state = {
         behaviorInfo: {},
-        teacherID: this.state.user._id,
-        chosenBxId: '5cb8e2bf4c3e69054020ae5a',
+        teacherID: this.props.user._id,
+        chosenBxId: '5cb8e2bf4c3e69054020ae5a', //mongo ID
     };
 
     componentDidMount() {
@@ -25,7 +24,7 @@ class Teacher extends Component {
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
     loadBehaviors = (id) => {
-        API.getBehaviors(id)
+        API.getBehaviors(id, this.props.user.accessToken.jwtToken)
             .then(res => 
                 {                    
                     this.setState({ behaviorInfo: res.data });
@@ -40,6 +39,7 @@ class Teacher extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div>
                 <div className="side-nav">
@@ -49,8 +49,8 @@ class Teacher extends Component {
                     <TopNav />
                     <BxChart />
                     <RatingForm 
-                        behaviorInfo={this.state.behaviorInfo}
                         teacherID={this.state.teacherID}
+                        behaviorInfo={this.state.behaviorInfo}
                     />
                 </div>
             </div>

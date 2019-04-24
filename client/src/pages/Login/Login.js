@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import LoginComponent from './../../components/LoginComponent';
 import Footer from './../../components/Footer';
 import API from '../../utils/API';
@@ -16,7 +17,25 @@ class Login extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    API.loginUser(this.state).then(user => console.log(user))
+    API.loginUser(this.state).then(({data}) => {
+      API.associateUser(this.state.email, data.accessToken && data.accessToken.jwtToken).then(({data: userData}) => {
+        const user = {
+          email: this.state.email,
+          ...data, ...userData
+        }
+        this.props.handleUser(user);
+        //we can write if statement here to push to teacher for authLevel 3...
+        if (user.authLevel === 3) {
+          this.props.history.push("/teacher");
+        }
+        if (user.authLevel === 1) {
+          this.props.history.push("/student");
+        }
+        if (user.authLevel === 5) {
+          this.props.history.push("/admin");
+        }
+      }) 
+    })
   };
 
   render() {
@@ -27,6 +46,7 @@ class Login extends Component {
       password: this.state.password,
       ...this.props
     }
+    console.log(this.props);
 
     return (
         <div>
@@ -37,4 +57,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
