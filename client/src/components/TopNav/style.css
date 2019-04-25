@@ -4,10 +4,12 @@
 
 nav {
     background-color: white;
+    
 }
 
 #brand-logo {
     width:300px;
-    margin-bottom: 100px;
-    border-bottom: 100px;
-}
+    margin-top: 22px;
+  
+  }
+
