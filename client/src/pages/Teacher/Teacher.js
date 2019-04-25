@@ -52,6 +52,7 @@ class Teacher extends Component {
                     <RatingForm 
                         teacherID={this.state.teacherID}
                         behaviorInfo={this.state.behaviorInfo}
+                        user={this.props.user}
                     />
                 </div>
             </div>
