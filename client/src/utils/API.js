@@ -80,7 +80,7 @@ export default {
     saveData: function(data, accesstoken) {
         console.log("This data got to the API.js file: ", data);
         return axios({
-            req: data,
+            body: data,
             url: "/api/teacher/saveratings",
             headers: {
                 'Content-Type': 'application/json',
