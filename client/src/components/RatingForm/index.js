@@ -95,7 +95,8 @@ class RatingForm extends Component {
                 };
 
                 //Try sending all the info the backend needs in one req.bod
-                API.saveData(dataToSend)
+                API.saveData(dataToSend, this.props.user.accessToken.jwtToken)
+                    console.log(`This is the one I want to see: ${this.props.user.accessToken.jwtToken}`)
                     //Resets the state to an empty object for newData
                     //Setting mount to false will render a message that the data has been saved and a button to rate students again
                     .then(this.setState({ newData: {}, mount: false }))
