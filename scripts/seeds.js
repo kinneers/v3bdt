@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 // This file empties the collection and inserts the teachers and students below
 
 var MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/behavior_db_new";
+  process.env.MONGODB_URI || "mongodb://localhost/behavior_db";
     mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err) {
     mongoose.connection.db.dropDatabase();
     console.log("$$$$$$$$$ DATABASE DROPPED $$$$$$$$$");
