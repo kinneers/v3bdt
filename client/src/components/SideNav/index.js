@@ -4,8 +4,6 @@ import './style.css';
 function SideNav(props) {
     return(
         <div className="burger">
-
-
             <ul id="slide-out" className="sidenav sidenav-fixed">
                 <li className="top">Welcome!</li>
                     {(props.behaviorInfo.behaviors) ? (
