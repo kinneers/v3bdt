@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BehaviorDataSchema = new Schema({
-  behaviorDate: { type: Date, required: true },
+  behaviorDate: { type: Date, default: Date.now("<MM/DD/YYYY>"), required: true },     
   behaviorTracking: [{
     behaviorValue: { type: Number, enum: [0, 1], allowNull: true, required: false },
     behaviorTime: { type: Date, default: Date.now(), required: true }

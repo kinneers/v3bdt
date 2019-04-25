@@ -6,6 +6,7 @@ mongoose.Promise = global.Promise;
 
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/behavior_db";
+  // process.env.MONGODB_URI || "mongodb://localhost/behavior_db_new";
     mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err) {
     mongoose.connection.db.dropDatabase();
     console.log("$$$$$$$$$ DATABASE DROPPED $$$$$$$$$");
