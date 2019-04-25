@@ -3,7 +3,7 @@ import './style.css';
     
 function SideNav(props) {
     return(
-        <div>
+        <div className="burger">
             <ul id="slide-out" className="sidenav sidenav-fixed">
                 <li className="top">Welcome!</li>
                     {(props.behaviorInfo.behaviors) ? (

@@ -5,3 +5,8 @@
 button {
     float: right;
 }
+
+.bspace {
+    padding-left: 22px !important;
+    padding-right: 15px;
+}
