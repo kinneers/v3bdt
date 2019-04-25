@@ -10,6 +10,7 @@ function SideNav(props) {
                         <ul className="collapsible" >
                             {props.behaviorInfo.behaviors.map(behavior => (
                                 <li key={behavior._id}>
+                                {console.log(behavior)}
                                     <div className="collapsible-header"><i className="material-icons">assignment</i>{behavior.studentName}
                                         <div><i className="material-icons">expand_more</i></div>
                                     </div>

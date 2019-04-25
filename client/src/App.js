@@ -7,6 +7,7 @@ import Teacher from './pages/Teacher';
 import Student from './pages/Student';
 import Admin from './pages/Admin';
 import Authenticator from './components/Auth';
+import API from './utils/API';
 
 class App extends Component {
 
@@ -14,8 +15,35 @@ class App extends Component {
         user: null
     };
 
+    componentWillMount() {
+        const email = window.localStorage.getItem("email");
+        const accessToken = window.localStorage.getItem("accessToken");
+        const idToken = window.localStorage.getItem("idToken");
+        const refreshToken = window.localStorage.getItem("refreshToken");
+        console.log(accessToken);
+        if (email && accessToken !== "undefined" && !this.state.user) {
+            API.associateUser(email, accessToken).then(({data}) => {
+                this.setState({user: {
+                    accessToken: {jwtToken: accessToken}, idToken: {jwtToken: idToken}, refreshToken: {token: refreshToken}, ...data
+                }})
+            })
+            
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!prevState.user) {
+            if (this.state.user && this.state.user.userName) {
+                window.localStorage.setItem("email", this.state.user.userName)
+                window.localStorage.setItem("accessToken", this.state.user.accessToken.jwtToken)
+                window.localStorage.setItem("idToken", this.state.user.idToken.jwtToken)
+                window.localStorage.setItem("refreshToken", this.state.user.refreshToken.token)
+            }
+        }
+    }
+
     handleUser = (user) => {
-        this.setState({user});
+        this.setState({ user });
     }
 
     render() {
@@ -23,17 +51,20 @@ class App extends Component {
             user: this.state.user,
             handleUser: this.handleUser,
         }
-        
+
         return (
             <Router>
                 <Switch>
                     <Authenticator>
-                    {/* <Route exact path="/login" component={Login} /> */}
-                    {/* <Route exact path="/" render={() => <Login {...this.props}/>} /> */}
-                    <Route exact path="/teacher" render={() => <Teacher {...passedProps}/>} />
-                    <Route exact path="/student" component={Student} />
-                    <Route exact path="/admin" component={Admin} />
-                    <Route render={() => <Login {...passedProps}/>} />
+                        {
+                            this.state.user ? (
+                                <React.Fragment>
+                                    <Route exact path="/teacher" render={() => <Teacher {...passedProps} />} />
+                                    <Route exact path="/student" component={Student} />
+                                    <Route exact path="/admin" component={Admin} />
+                                </React.Fragment>
+                            ) : (<Route render={() => <Login {...passedProps} />} />)
+                        }
                     </Authenticator>
                 </Switch>
             </Router>
