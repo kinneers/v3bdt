@@ -49,13 +49,13 @@ module.exports = {
     saveRatings: function(req, res) {
         db.BehaviorData
             .findOneAndUpdate(
-                { behavior: "5cb8e2bf4c3e69054020ae5a", behaviorDate: '04/30/2019'},
-                {$set:{ behaviorDate: '04/30/2019', behavior: "5cb8e2bf4c3e69054020ae5a"}, $inc:{behaviorCount: 1, behaviorTotal: 1}}, { upsert: true }            )
+                { behavior: "5cc22d40b2a0e75ab26b1564", behaviorDate: '04/08/2019'},
+                {$set:{ behaviorDate: '04/08/2019', behavior: "5cc22d40b2a0e75ab26b1564"}, $inc:{behaviorCount: 1, behaviorTotal: 1}}, { upsert: true }            )
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
-  findAll: function(req, res) {
+    findAll: function(req, res) {
     db.Teacher
       .find(req.query)
       .sort({ date: -1 })
