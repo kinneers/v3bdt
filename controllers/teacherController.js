@@ -6,7 +6,12 @@ module.exports = {
     findAllBehaviorsRefTeacher: function(req, res) {
         db.Teacher
             .findById(req.params.id)
-            .populate("behaviors")
+            .populate({
+              path: "behaviors",
+              populate: {
+                path: "student"
+              }
+            })
             .populate("students")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));

@@ -134,7 +134,7 @@ class RatingForm extends Component {
                                     <tbody>
                                         {this.props.behaviorInfo.behaviors.map(behaviors => (
                                         <tr key={behaviors._id}>
-                                            <td>{behaviors.studentName}</td>
+                                            <td>{`${behaviors.student.firstName} ${behaviors.student.lastName}`}</td>
                                             <td>{behaviors.behaviorName}</td>
                                             <td>
                                                 <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>

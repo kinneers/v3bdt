@@ -62,6 +62,7 @@ class App extends Component {
                                     <Route exact path="/teacher" render={() => <Teacher {...passedProps} />} />
                                     <Route exact path="/student" component={Student} />
                                     <Route exact path="/admin" component={Admin} />
+                                    <Route exact path = "/" render={() => <Login {...passedProps} />} />
                                 </React.Fragment>
                             ) : (<Route render={() => <Login {...passedProps} />} />)
                         }

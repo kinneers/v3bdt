@@ -3,6 +3,7 @@ const teacherController = require("../../controllers/teacherController");
 const studentController = require("../../controllers/studentController");
 const behaviorController = require("../../controllers/studentController");
 
+
 //Matches with '/api/teacher/behaviors/:id'
 router.route('/behaviors/:id')
   .get(teacherController.findAllBehaviorsRefTeacher);
