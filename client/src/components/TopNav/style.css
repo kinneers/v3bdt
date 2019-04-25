@@ -4,7 +4,6 @@
 
 nav {
     background-color: white;
-    
 }
 
 #brand-logo {
@@ -14,3 +13,7 @@ nav {
   
   }
 
+
+nav.nav-wrapper {
+    margin: 0px;
+}
