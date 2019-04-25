@@ -12,7 +12,7 @@ class Teacher extends Component {
     state = {
         behaviorInfo: {},
         teacherID: this.props.user._id,
-        chosenBxId: '5cb8e2bf4c3e69054020ae5a', //mongo ID
+        chosenBxId: '5cbdea1935e66c352c748be6', //mongo ID
     };
 
     componentDidMount() {
