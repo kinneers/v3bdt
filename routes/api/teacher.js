@@ -19,8 +19,8 @@ router.route('/behaviorchart/:id')
     //.post(teacherController.create);
 
 //Matches with '/api/teacher/ratingform'
-router.route('/ratingform')
-    .put(teacherController.saveRating);
+router.route('/saveratings')
+    .put(teacherController.saveRatings);
 
 // router.route("/")
 //   .get(teacherController.findAll)

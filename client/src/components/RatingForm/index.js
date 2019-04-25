@@ -42,12 +42,15 @@ class RatingForm extends Component {
     saveData = event => {
         event.preventDefault();
         console.log('The current state as of the button click is: ', this.state);
+
         //The newData object looks like this:
         //newData: { 'behaviorID1: rating'}
         const today = moment().format('MM/DD/YYYY');
         console.log(today);
         const dataToSave = this.state.newData;
         console.log(dataToSave);
+
+        // let dataArray= [];
         
         //Loop through each rating to update each behavior
         for (let i = 0; i < this.props.behaviorInfo.behaviors.length; i++) {
@@ -66,42 +69,48 @@ class RatingForm extends Component {
                 if (rating === '0') {
                     console.log('Now you need to create the data to send with the API call WITHOUT incrementing the rating');
                     dataToSend = {
+                        behavior: bxId,
                         behaviorDate: today, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
                         behaviorTracking: {behaviorValue: rating}, //There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
-                        behaviorCount: {$inc: {behaviorCount:1}} //CHANGE THIS TO INCREMENT BY ONE
+                        behaviorCount: 1, //THIS NEEDS TO INCREMENT BY ONE
+                        behaviorTotal: 0 //Increment by 0 in this particular case
                     };
+
+                    // dataArray.push(dataToSend);
+                
                 } else if (rating === '1') {
                     console.log('Now you need to create the data to send with the API call WITH incrementing the rating');
                     dataToSend = {
+                        behavior: bxId,
                         behaviorDate: today, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
-                        behaviorTracking: {$push: {behaviorValue: rating}},//There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
-                        behaviorCount: {$inc: {behaviorCount:1}}, //CHANGE THIS TO INCREMENT BY ONE 
-                        behaviorTotal: {$inc: {behaviorTotal:1}} //CHANGE THIS TO INCREMENT BY ONE
+                        behaviorTracking: {behaviorValue: rating},//There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
+                        behaviorCount: 1, //THIS NEEDS TO INCREMENT BY ONE
+                        behaviorTotal: 1 //THIS NEEDS TO INCREMENT BY ONE
                     };
+
+                    // dataArray.push(dataToSend);
+
                 } else {
                     console.log('Something went wrong with that logic!');
                 };
-                console.log(dataToSend);
 
-                API.saveData({ query: {behavior: bxId, behaviorDate: today }, newData: dataToSend }, function(err, data){
-                    console.log('Rating Saved!');
-                }).catch(err=>console.log(err));                
+                //Try sending all the info the backend needs in one req.bod
+                API.saveData(dataToSend)
+                    //Resets the state to an empty object for newData
+                    //Setting mount to false will render a message that the data has been saved and a button to rate students again
+                    .then(this.setState({ newData: {}, mount: false }))
+                    .catch(err => console.log(err));
 
             } else {
                 console.log('A behavior was not rated or had a value of null.');
             };
         };
-        
-    //Move what is below to be a callback function after the API calls are done
-        //Resets the state to an empty object for newData
-        //Setting mount to false will render a message that the data has been saved and a button to rate students again
-        this.setState({ newData: {}, mount: false });
     };
-
+    
     remount = (event) => {
         event.preventDefault();
-        this.setState({ mount: true })
-    }
+        this.setState({ mount: true });
+    };
 
     render() {
         return (
