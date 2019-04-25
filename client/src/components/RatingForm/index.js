@@ -140,16 +140,17 @@ class RatingForm extends Component {
                                                 <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
                                                 {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}
                                                      <label>
-                                                        <input className="with-gap" id='Met' value={1} name={behaviors._id} type="radio" />
-                                                        <span>Met</span>
+                                                        <input id='Met'  value={1} name={behaviors._id} type="radio" />
+                                                        <span className="bspace"  >Met</span>
+                                                        
                                                     </label>    
                                                     <label>
-                                                        <input className="with-gap" id="Not-Met" value={0} name={behaviors._id} type="radio" />
-                                                        <span>Not Met</span>
+                                                        <input id="Not-Met"  value={0} name={behaviors._id} type="radio" />
+                                                        <span className="bspace">Not Met</span>
                                                     </label>
                                                     <label>
-                                                        <input className="with-gap" id="N/A" value={''} name={behaviors._id} type="radio" />
-                                                        <span>N/A</span>
+                                                        <input id="N/A" value={''} name={behaviors._id} type="radio" />
+                                                        <span className="bspace">N/A</span>
                                                     </label>
                                                 </form>
                                             </td>
