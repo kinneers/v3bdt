@@ -46,12 +46,14 @@ module.exports = {
     //             return res.send('Successfully saved');
     //         });
     // },
-    saveRating: function(req, res) {
+    saveRatings: function(req, res) {
         db.BehaviorData
-          .findOneAndUpdate( req.body.query, req.body.newData)
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
+            .findOneAndUpdate(
+                { behavior: "5cb8e2bf4c3e69054020ae5a", behaviorDate: '04/30/2019'},
+                {$set:{ behaviorDate: '04/30/2019', behavior: "5cb8e2bf4c3e69054020ae5a"}, $inc:{behaviorCount: 1, behaviorTotal: 1}}, { upsert: true }            )
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
 
   findAll: function(req, res) {
     db.Teacher
