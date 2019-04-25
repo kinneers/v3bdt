@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 
 const BehaviorSchema = new Schema({
   behaviorName: { type: String, required: true, },
-  behaviorTracked: [{
-    // behaviorDate: { type: Date, default: Date.now('<YYYY-mm-dd>'), required: true },
-	behaviorData: [{ type: Schema.Types.ObjectId, ref: "behaviorData", required: true}]
-  }],
+  behaviorData: [{ type: Schema.Types.ObjectId, ref: "behaviorData", required: true}],
   status: {type: Boolean, required: true, default: true},
   createdAt: { type: Date, default: Date.now() },
   updatedAt: { type: Date, default: Date.now() },

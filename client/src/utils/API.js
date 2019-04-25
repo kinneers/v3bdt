@@ -22,7 +22,7 @@ export default {
             url: "/api/teacher/a/" + email,
             headers: {
                 'Content-Type': 'application/json',
-                accesstoken
+                accesstoken 
             },
             method: 'get'
         });
@@ -86,7 +86,7 @@ export default {
                 'Content-Type': 'application/json',
                 accesstoken
             },
-            method: 'post'
+            method: 'put'
         });
     }
     
