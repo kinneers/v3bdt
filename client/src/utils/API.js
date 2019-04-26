@@ -78,9 +78,8 @@ export default {
 
     //Saves the rating data associated with a given behaviorID
     saveData: function(data, accesstoken) {
-        console.log("This data got to the API.js file: ", data);
         return axios({
-            body: data,
+            data: data,
             url: "/api/teacher/saveratings",
             headers: {
                 'Content-Type': 'application/json',
