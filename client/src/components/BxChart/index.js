@@ -32,12 +32,12 @@ class BxChart extends Component{
 
             for (let i=0; i<retrievedData.length; i++) {
                 console.log('BX DATE: ', retrievedData[i].behaviorDate); 
-                let bxDate = retrievedData[i].behaviorDate; //Fix to 1st 10 characters
+                let bxDate = retrievedData[i].behaviorDate;
                 console.log('BX Count: ', retrievedData[i].behaviorCount);
-                let bxCount = (retrievedData[i].behaviorCount) / 2; //This count is doubling in database, so halve it before use until bug fixed
+                let bxCount = (retrievedData[i].behaviorCount);
                 
                 console.log(retrievedData[i].behaviorTotal)
-                let bxTotal = (retrievedData[i].behaviorTotal) / 2; //This count is doubling in database, so halve it before use until bug fixed
+                let bxTotal = (retrievedData[i].behaviorTotal);
                 console.log('BX Total: ', bxTotal);
 
                 let averagePercentage = ((bxTotal/bxCount)*100).toFixed(2);
