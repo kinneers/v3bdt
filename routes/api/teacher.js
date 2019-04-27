@@ -22,6 +22,10 @@ router.route('/behaviorchart/:id')
 router.route('/saveratings')
     .put(teacherController.saveRatings);
 
+//Matches with '/api/teacher/chartdata/:id'
+router.route('/chartdata/:id')
+    .get(teacherController.getChartData);
+
 // router.route("/")
 //   .get(teacherController.findAll)
 //   .post(teacherController.create);

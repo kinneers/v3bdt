@@ -60,7 +60,6 @@ class RatingForm extends Component {
                     //Push this object to dataArray
                     dataArray.push(dataToSend);            
                 } else if (rating === '1') {
-                    console.log('Now you need to create the data to send with the API call WITH incrementing the rating');
                     dataToSend = {
                         behavior: bxId,
                         behaviorDate: today, 

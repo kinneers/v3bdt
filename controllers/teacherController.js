@@ -55,6 +55,15 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    //Gets the data required to create a given behavior's progress chart
+    getChartData: function(req, res) {
+        db.BehaviorData
+            .find({ behavior: req.params.id })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    
+
   findAll: function(req, res) {
     db.Teacher
       .find(req.query)

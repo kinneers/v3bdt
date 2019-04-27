@@ -65,9 +65,9 @@ export default {
     },
 
     //Gets the data associated with a given behaviorID
-    getBehaviorData: function(id, accesstoken) {
+    getChartData: function(id, accesstoken) {
         return axios({
-            url: "/api/teacher/behaviorchart/" + id,
+            url: "/api/teacher/chartdata/" + id,
             headers: {
                 'Content-Type': 'application/json',
                 accesstoken

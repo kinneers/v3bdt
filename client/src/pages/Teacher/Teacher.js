@@ -8,11 +8,10 @@ import M from "materialize-css";
 import API from './../../utils/API';
 
 class Teacher extends Component {
-    //Initial State- we definitely need to set the current user, but not sure how to do it with Cognito
     state = {
         behaviorInfo: {},
         teacherID: this.props.user._id,
-        chosenBxId: '5cc22d3fb2a0e75ab26b1561', //mongo ID
+        chosenBxId: '' //It would be nice to add a hide chart button that clears this
     };
 
     componentDidMount() {
@@ -20,7 +19,6 @@ class Teacher extends Component {
         M.AutoInit();
         let id = this.state.teacherID;
         this.loadBehaviors(id);
-        console.log(this.props.user);
     }
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
@@ -30,25 +28,40 @@ class Teacher extends Component {
                 {                    
                     this.setState({ behaviorInfo: res.data });
                     M.AutoInit();
-                    console.log(res.data, this.state.behaviorInfo)
                 })
             .catch(err => console.log(err));
     };
 
+    // Just in case
     componentDidUpdate() {
         M.AutoInit();
     }
+
+    handleSideNavClick = event => {
+        event.preventDefault();
+        console.log(event.target.name);
+        this.setState({ chosenBxId: event.target.name })
+    };
 
     render() {
         console.log(this.props);
         return (
             <div className="fixtop">
                 <div className="side-nav">
-                    <SideNav behaviorInfo={this.state.behaviorInfo}/>
+                    <SideNav 
+                        behaviorInfo={this.state.behaviorInfo}
+                        handleClick={this.handleSideNavClick}
+                    />
                 </div>
                 <div className="main-right">
                     <TopNav />
-                    <BxChart />
+                    {(this.state.chosenBxId) ? 
+                        <BxChart 
+                            chosenBxId={this.state.chosenBxId}
+                            user={this.props.user}
+                        /> : 
+                        (<h1>Choose a student's behavior from the left navigation page to view progress.</h1>)
+                    }
                     <RatingForm 
                         teacherID={this.state.teacherID}
                         behaviorInfo={this.state.behaviorInfo}

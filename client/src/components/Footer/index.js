@@ -10,13 +10,13 @@ function Footer(props) {
         <div className="container">
             <div className="row">
                 <div className="col s6 m3">
-                    <img className="materialize-logo" src="img/materialize-logo.png" alt="Materialize" />
+                    {/* <img className="materialize-logo" src='' alt="Materialize" /> */}
                     <p>Made with love by Materialize.</p>
                 </div>
                 <div className="col s6 m3">
                     <h5>Learn</h5>
                     <ul>
-                        <li><a href="https://github.com/kinneers/bdt_v2">Github</a></li>
+                        <li><a href="https://github.com/kinneers/v3dbt">Github</a></li>
                         <li><a href="docs.html">Docs</a></li>
                     </ul>
                 </div>
