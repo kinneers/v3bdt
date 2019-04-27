@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import './style.css';
 import API from './../../utils/API';
-//import Moment from 'react-moment';
 const moment = require('moment');
 
 class RatingForm extends Component {
     constructor(props) {
-        super(props)
-
+        super(props);
         this.state = {
             mount: true,
             newData: {},
@@ -41,73 +39,52 @@ class RatingForm extends Component {
 
     saveData = event => {
         event.preventDefault();
-        console.log('The current state as of the button click is: ', this.state);
-
-        //The newData object looks like this:
-        //newData: { 'behaviorID1: rating'}
-        const today = moment().format('MM/DD/YYYY');
-        console.log(today);
-        const dataToSave = this.state.newData;
-        console.log(dataToSave);
-
-        // let dataArray= [];
-        
-        //Loop through each rating to update each behavior
+        const today = moment().format('MM/DD/YYYY'); //Gets the current date
+        let dataArray= []; //
+        //Loop through each behavior rating to update each behavior
         for (let i = 0; i < this.props.behaviorInfo.behaviors.length; i++) {
             //Get the behaviorID
             const bxId = this.props.behaviorInfo.behaviors[i]._id;
-            console.log(bxId);
-
-            console.log(this.state.newData[bxId]); //Returns the value associated with the key bxId
-
             //If the behavior was rated, proceed (if it was not or was rated N/A, this.state.newData[bxId] would return the falsy values 'undefined' or 'null')
             if (this.state.newData[bxId]) {
-                console.log('This behavior was rated');
-                const rating = this.state.newData[bxId];
-                console.log(`Rating: ${rating}`);
-                let dataToSend = {};
+                const rating = this.state.newData[bxId]; //The rating associated with a given bxId
+                let dataToSend = {}; //initializes object to store data to send to API
                 if (rating === '0') {
-                    console.log('Now you need to create the data to send with the API call WITHOUT incrementing the rating');
                     dataToSend = {
                         behavior: bxId,
-                        behaviorDate: today, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
-                        behaviorTracking: {behaviorValue: rating}, //There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
-                        behaviorCount: 1, //THIS NEEDS TO INCREMENT BY ONE
-                        behaviorTotal: 0 //Increment by 0 in this particular case
+                        behaviorDate: today,
+                        behaviorTracking: {behaviorValue: rating}, //Here to send later
+                        behaviorCount: 1, 
+                        behaviorTotal: 0 //Increment is set to 0 in this case
                     };
-
-                    // dataArray.push(dataToSend);
-                
+                    //Push this object to dataArray
+                    dataArray.push(dataToSend);            
                 } else if (rating === '1') {
-                    console.log('Now you need to create the data to send with the API call WITH incrementing the rating');
                     dataToSend = {
                         behavior: bxId,
-                        behaviorDate: today, //Needs to be here in case this is the first behavior rated a particular day- but this is the findOne part of the update otherwise...
-                        behaviorTracking: {behaviorValue: rating},//There is a default for behaviorTime... so I don't think it has to be included... but could be wrong...
-                        behaviorCount: 1, //THIS NEEDS TO INCREMENT BY ONE
-                        behaviorTotal: 1 //THIS NEEDS TO INCREMENT BY ONE
+                        behaviorDate: today, 
+                        behaviorTracking: {behaviorValue: rating}, //Here to send later
+                        behaviorCount: 1, 
+                        behaviorTotal: 1 //Increment is set to 1 in this case
                     };
-
-                    // dataArray.push(dataToSend);
-
+                    //Push this object to dataArray
+                    dataArray.push(dataToSend);
                 } else {
-                    console.log('Something went wrong with that logic!');
+                    console.log('Something went wrong with that logic!'); //This should never occur
                 };
-
-                //Try sending all the info the backend needs in one req.bod
-                API.saveData(dataToSend, this.props.user.accessToken.jwtToken)
-                    console.log(`This is the one I want to see: ${this.props.user.accessToken.jwtToken}`)
-                    //Resets the state to an empty object for newData
-                    //Setting mount to false will render a message that the data has been saved and a button to rate students again
-                    .then(this.setState({ newData: {}, mount: false }))
-                    .catch(err => console.log(err));
-
             } else {
                 console.log('A behavior was not rated or had a value of null.');
             };
         };
+
+        //Maps each object in dataArray to the API.saveData function and waits for all responses before setting state
+        Promise.all(dataArray.map(obj => API.saveData(obj, this.props.user.accessToken.jwtToken)))
+            //clears the newData object and sets mount to false in state (which conditionally renders message that data has saved and button to rate again)
+            .then(res => this.setState({ newData: {}, mount: false }))
+            .catch(err => console.log(err));
     };
     
+    //Called upon 'rate again' button click- sets mount to true in state in order to conditionally render rating form
     remount = (event) => {
         event.preventDefault();
         this.setState({ mount: true });
@@ -139,7 +116,6 @@ class RatingForm extends Component {
                                             <td>{behaviors.behaviorName}</td>
                                             <td>
                                                 <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
-                                                {/* handle input change will get passed here- use the behaviorID and the value to the handle change */}
                                                      <label>
                                                         <input id='Met'  value={1} name={behaviors._id} type="radio" />
                                                         <span className="bspace"  >Met</span>
