@@ -9,13 +9,17 @@ class BxChart extends Component{
 
         this.state = {
             retrievedData: {},
-            chartData:{}
+            chartData:{},
         };
     };
 
     componentDidMount() {
         this.populateChart();
     };
+
+    componentDidUpdate() {
+        this.populateChart();
+    }
 
     populateChart() {
         const id = this.props.chosenBxId;
@@ -31,30 +35,22 @@ class BxChart extends Component{
             let behaviorAverages = []; //initialize an array to hold all averages
 
             for (let i=0; i<retrievedData.length; i++) {
-                console.log('BX DATE: ', retrievedData[i].behaviorDate); 
                 let bxDate = retrievedData[i].behaviorDate;
-                console.log('BX Count: ', retrievedData[i].behaviorCount);
                 let bxCount = (retrievedData[i].behaviorCount);
                 
-                console.log(retrievedData[i].behaviorTotal)
                 let bxTotal = (retrievedData[i].behaviorTotal);
-                console.log('BX Total: ', bxTotal);
 
                 let averagePercentage = ((bxTotal/bxCount)*100).toFixed(2);
-                console.log("AVERAGE: ", averagePercentage);
 
                 behaviorDates.push(bxDate);
                 behaviorAverages.push(averagePercentage);
             }
 
-            console.log('BEHAVIOR DATES: ', behaviorDates);
-            console.log('BEHAVIOR AVERAGES: ', behaviorAverages);
-
             this.setState({
                 chartData: {
                     labels: behaviorDates,
                     datasets:[{
-                        label: 'Behavior 1',
+                        label: this.props.bxDescription,
                         backgroundColor: "#48344f",
                         data: behaviorAverages,
                         borderColor: '"#48344f"',
@@ -81,7 +77,7 @@ class BxChart extends Component{
                         options={{
                             title:{
                                 display:true,
-                                text:'Progress',
+                                text: `${this.props.chosenStudent}`,
                                 fontSize:25,
                                 legend: {
                                     labels: {
