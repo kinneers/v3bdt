@@ -331,14 +331,16 @@ db.Teacher.deleteMany({})
                           ).then(completeTeacher => {
                             // console.log("#6 complete teacher", completeTeacher);
                             // console.log("#6 studentWithBehavior", studentWithBehavior6);
+                            process.exit(0);
                           });
                         });
                       });
-                      process.exit(0);
+                      // process.exit(0);
                     });
                 });
               });
             });
+
           })
           .catch(err => {
             console.error(err);
