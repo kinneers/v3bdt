@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 //
 // *************************************************************************
 // *************************************************************************
-// This seeds file DOES NOT populate behaviorData
+// This seeds file DOES NOT populate behaviorData- trying to reseed
 // *************************************************************************
 // *************************************************************************
 
@@ -331,14 +331,16 @@ db.Teacher.deleteMany({})
                           ).then(completeTeacher => {
                             // console.log("#6 complete teacher", completeTeacher);
                             // console.log("#6 studentWithBehavior", studentWithBehavior6);
+                            process.exit(0);
                           });
                         });
                       });
-                      process.exit(0);
+                      // process.exit(0);
                     });
                 });
               });
             });
+
           })
           .catch(err => {
             console.error(err);
