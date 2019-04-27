@@ -10,7 +10,7 @@ function Footer(props) {
         <div className="container">
             <div className="row">
                 <div className="col s6 m3">
-                    {/* <img className="materialize-logo" src='' alt="Materialize" /> */}
+                    <img className="materialize-logo" src='./../../public/images/' alt="Materialize" />
                     <p>Made with love by Materialize.</p>
                 </div>
                 <div className="col s6 m3">

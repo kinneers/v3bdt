@@ -41,16 +41,14 @@ module.exports = {
     //Saves the ratings to the database... not sure why, but the inc is doubling everything (will just factor that into the math until a fix is found)
     saveRatings: function(req, res) {
         let newData = req.body;
+        console.log(newData);
+        console.log(req.body);
         db.BehaviorData
             .findOneAndUpdate(
                 { behavior: newData.behavior, behaviorDate: newData.behaviorDate },
-                {$set:{ behaviorDate: newData.behaviorDate, behavior: newData.behavior}, 
-                $inc:{behaviorCount: newData.behaviorCount, behaviorTotal: newData.behaviorTotal}}, 
-                { upsert: true },
-                function(err, res) {
-                    if (err) console.log(err);
-                    res => console.log('Woot!');
-                })
+                {$inc:{behaviorCount: newData.behaviorCount, behaviorTotal: newData.behaviorTotal},
+                $set:{ behaviorDate: newData.behaviorDate, behavior: newData.behavior}}, 
+                { upsert: true })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
