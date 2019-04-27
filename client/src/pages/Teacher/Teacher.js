@@ -11,7 +11,8 @@ class Teacher extends Component {
     state = {
         behaviorInfo: {},
         teacherID: this.props.user._id,
-        chosenBxId: '' //It would be nice to add a hide chart button that clears this
+        chosenBxId: '', //It would be nice to add a hide chart button that clears this
+        chosenStudent: ''
     };
 
     componentDidMount() {
@@ -39,8 +40,7 @@ class Teacher extends Component {
 
     handleSideNavClick = event => {
         event.preventDefault();
-        console.log(event.target.name);
-        this.setState({ chosenBxId: event.target.name })
+        this.setState({ chosenStudent: event.target.getAttribute('data-studentname'), chosenBxId: event.target.name });
     };
 
     render() {
@@ -58,6 +58,7 @@ class Teacher extends Component {
                     {(this.state.chosenBxId) ? 
                         <BxChart 
                             chosenBxId={this.state.chosenBxId}
+                            chosenStudent={this.state.chosenStudent}
                             user={this.props.user}
                         /> : 
                         (<h1>Choose a student's behavior from the left navigation page to view progress.</h1>)
