@@ -63,7 +63,18 @@ class Teacher extends Component {
                             bxDescription={this.state.chosenBx}
                             user={this.props.user}
                         /> : 
-                        (<h1>Choose a student's behavior from the left navigation page to view progress.</h1>)
+                        (<div className="row chartCard">
+                            <div className="col s12 m6">
+                                <div className="card blue-grey darken-1">
+                                    <div className="card-content white-text">
+                                        <span className="card-title">To View Progress Charts:</span>
+                                        <p>
+                                            Please choose a student's behavior from the left navigation page to view progress.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>)
                     }
                     <RatingForm 
                         teacherID={this.state.teacherID}

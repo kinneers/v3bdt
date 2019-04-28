@@ -5,7 +5,7 @@ function SideNav(props) {
     return(
         <div className="burger">
             <ul id="slide-out" className="sidenav sidenav-fixed">
-                <li className="top">Welcome!</li>
+                <li className="top">Welcome, {props.behaviorInfo.firstName} {props.behaviorInfo.lastName}!</li>
                     {(props.behaviorInfo.behaviors) ? (
                         <ul className="collapsible" >
                             {props.behaviorInfo.behaviors.map(behavior => (
@@ -18,7 +18,7 @@ function SideNav(props) {
                             ))}
                         </ul>
                 ) : 
-                (<p>No Students</p>)}
+                (<p>No Students Assigned</p>)}
             </ul>
             <a href="#!" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
         </div>
