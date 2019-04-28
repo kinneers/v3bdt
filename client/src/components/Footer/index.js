@@ -11,14 +11,14 @@ function Footer(props) {
                     <h5>Learn</h5>
                     <ul>
                         <li><a href="https://github.com/kinneers/v3bdt" target="_blank" rel="noopener noreferrer">Github</a></li>
-                        <li><a href="%PUBLIC_URL%/docs.html">Docs</a></li>
+                        <li><a href="docs.html">Docs</a></li>
                     </ul>
                 </div>
                 <div className="col s8 m4">
                     <h5>About</h5>
                     <ul>
-                        <li><a href="%PUBLIC_URL%/terms.html">Terms of Use</a></li>
-                        <li><a href="%PUBLIC_URL%/privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div className="col s8 m4">
