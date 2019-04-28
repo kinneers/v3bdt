@@ -3,7 +3,7 @@ nav {
     height: 100px;
 }
 
-img {
+.small-logo {
     height: 100px;
 }
 
@@ -15,7 +15,7 @@ div.section {
     font-size: 30px;
 }
 
-body {
+.body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -25,7 +25,27 @@ body {
     flex: 1 0 auto;
 }
 
-footer.page-footer {
+.page-footer {
     text-align: center;
     background-color: #250f10;
 }
+
+.footer-container {
+    width: 70%;
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.fixWidth {
+    width: 33.33333% !important;
+    margin-left: auto !important;
+    left: auto !important;
+    right: auto !important;
+}
+
