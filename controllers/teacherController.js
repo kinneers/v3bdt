@@ -38,24 +38,36 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    // //Finds the behaviorData collection for the current behavior and day and updates or, if no collection for the day yet exists, creates it
-    // saveRating: function(req, res) {
-    //     db.BehaviorData
-    //         .findOneAndUpdate(req.query, req.dataToSend, {upsert: true}, function(err, doc) {
-    //             if (err) return res.send(500, {error: err});
-    //             return res.send('Successfully saved');
-    //         });
-    // },
+    //Saves the ratings to the database... not sure why, but the inc is doubling everything (will just factor that into the math until a fix is found)
     saveRatings: function(req, res) {
+        let newData = req.body;
+        console.log(newData);
+        console.log(req.body);
         db.BehaviorData
             .findOneAndUpdate(
+<<<<<<< HEAD
                 { behavior: "5cc25dd07e773b3e9f1584e3", behaviorDate: '04/30/2019'},
                 {$set:{ behaviorDate: '04/30/2019', behavior: "5cc25dd07e773b3e9f1584e3"}, $inc:{behaviorCount: 1, behaviorTotal: 1}}, { upsert: true }            )
+=======
+                { behavior: newData.behavior, behaviorDate: newData.behaviorDate },
+                {$inc:{behaviorCount: newData.behaviorCount, behaviorTotal: newData.behaviorTotal},
+                $set:{ behaviorDate: newData.behaviorDate, behavior: newData.behavior}}, 
+                { upsert: true })
+>>>>>>> bbc8538f610db3ab315fad68b8a30da864919a1e
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
-    findAll: function(req, res) {
+    //Gets the data required to create a given behavior's progress chart
+    getChartData: function(req, res) {
+        db.BehaviorData
+            .find({ behavior: req.params.id })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    
+
+  findAll: function(req, res) {
     db.Teacher
       .find(req.query)
       .sort({ date: -1 })

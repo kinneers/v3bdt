@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-    
+
 function SideNav(props) {
     return(
         <div className="burger">
@@ -10,11 +10,10 @@ function SideNav(props) {
                         <ul className="collapsible" >
                             {props.behaviorInfo.behaviors.map(behavior => (
                                 <li key={behavior._id}>
-                                {console.log(behavior)}
                                     <div className="collapsible-header"><i className="material-icons">assignment</i>{behavior.studentName}
                                         <div><i className="material-icons">expand_more</i></div>
                                     </div>
-                                    <div className="collapsible-body"><span><a href="#!" value={behavior._id}>{behavior.behaviorName}</a></span></div>
+                                    <div className="collapsible-body"><span><a href="#!" onClick={props.handleClick} data-studentname={behavior.studentName} name={behavior._id}>{behavior.behaviorName}</a></span></div>
                                 </li>                                    
                             ))}
                         </ul>
@@ -24,6 +23,7 @@ function SideNav(props) {
             <a href="#!" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
         </div>
     );
-}
+};
+
 
 export default SideNav;
