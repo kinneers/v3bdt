@@ -54,7 +54,7 @@ class Login extends Component {
             <main>
                 <LoginComponent {...passedProps} />
             </main>
-            <footer>
+            <footer className="page-footer">
                 <Footer />
             </footer>
         </div>
