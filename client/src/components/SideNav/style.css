@@ -13,3 +13,7 @@
 .burger {
     float: left;
 }
+
+li.top {
+    background-color: #250f10;
+}

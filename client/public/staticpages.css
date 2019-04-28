@@ -1,0 +1,31 @@
+nav {
+    background-color: #250f10;
+    height: 100px;
+}
+
+img {
+    height: 100px;
+}
+
+div.section {
+    margin-top: 60px;
+}
+
+.settings-title {
+    font-size: 30px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.content-div {
+    flex: 1 0 auto;
+}
+
+footer.page-footer {
+    text-align: center;
+    background-color: #250f10;
+}

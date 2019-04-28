@@ -8,8 +8,8 @@ class BxChart extends Component{
         super(props);
 
         this.state = {
-            retrievedData: {},
-            chartData:{}
+            // retrievedData: {},
+            chartData:{},
         };
     };
 
@@ -17,44 +17,41 @@ class BxChart extends Component{
         this.populateChart();
     };
 
+    componentDidUpdate() {
+        this.populateChart();
+    }
+
     populateChart() {
         const id = this.props.chosenBxId;
 
         API.getChartData(id, this.props.user.accessToken.jwtToken)
-        .then(res => {                    
-            this.setState({ retrievedData: res.data });
-            console.log(this.state.retrievedData);
+        .then(res => {
+            const returnedData = res.data;        
+            // this.setState({ retrievedData: res.data });
+            console.log(returnedData);
                 
-            const retrievedData = this.state.retrievedData;
+            // const retrievedData = this.state.retrievedData;
 
             let behaviorDates = []; //initialize an array to hold all dates
             let behaviorAverages = []; //initialize an array to hold all averages
 
-            for (let i=0; i<retrievedData.length; i++) {
-                console.log('BX DATE: ', retrievedData[i].behaviorDate); 
-                let bxDate = retrievedData[i].behaviorDate;
-                console.log('BX Count: ', retrievedData[i].behaviorCount);
-                let bxCount = (retrievedData[i].behaviorCount);
+            for (let i=0; i<returnedData.length; i++) {
+                let bxDate = returnedData[i].behaviorDate;
+                let bxCount = (returnedData[i].behaviorCount);
                 
-                console.log(retrievedData[i].behaviorTotal)
-                let bxTotal = (retrievedData[i].behaviorTotal);
-                console.log('BX Total: ', bxTotal);
+                let bxTotal = (returnedData[i].behaviorTotal);
 
                 let averagePercentage = ((bxTotal/bxCount)*100).toFixed(2);
-                console.log("AVERAGE: ", averagePercentage);
 
                 behaviorDates.push(bxDate);
                 behaviorAverages.push(averagePercentage);
             }
 
-            console.log('BEHAVIOR DATES: ', behaviorDates);
-            console.log('BEHAVIOR AVERAGES: ', behaviorAverages);
-
             this.setState({
                 chartData: {
                     labels: behaviorDates,
                     datasets:[{
-                        label: 'Behavior 1',
+                        label: this.props.bxDescription,
                         backgroundColor: "#48344f",
                         data: behaviorAverages,
                         borderColor: '"#48344f"',
@@ -81,7 +78,7 @@ class BxChart extends Component{
                         options={{
                             title:{
                                 display:true,
-                                text:'Progress',
+                                text: `${this.props.chosenStudent}`,
                                 fontSize:25,
                                 legend: {
                                     labels: {
