@@ -50,14 +50,14 @@ class Login extends Component {
     console.log(this.props);
 
     return (
-        <body>
+        <div className='body'>
             <main>
                 <LoginComponent {...passedProps} />
             </main>
             <footer>
                 <Footer />
             </footer>
-        </body>
+        </div>
     );
   }
 }
