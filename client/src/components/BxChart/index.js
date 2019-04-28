@@ -90,6 +90,9 @@ class BxChart extends Component{
                         }}
                     />
                 </div>
+                <div>
+                    <button className="waves-effect waves-light btn-small" id="hideChart" onClick={this.props.hideChart}>Click to Hide Chart</button>
+                </div>
             </div>
         )
     }

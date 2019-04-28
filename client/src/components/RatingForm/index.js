@@ -95,7 +95,6 @@ class RatingForm extends Component {
             <>
             {(this.state.mount) ? (
             <main>      
-                {/* <!-- Tables --> */}
                 <div className="container">
                     <div className="row">
                         <div className="col s12">
@@ -148,12 +147,14 @@ class RatingForm extends Component {
                     </div>
                 </div>
             </main>) : (
-            <div className="row chartCard">
-                <div className="col s12 m6 center-align">
-                    <div className="card blue-grey darken-1">
-                        <div className="card-content white-text">
-                            <span className="card-title">Ratings Saved!</span>
-                            <button onClick={this.remount}>Click to Rate Again!</button>
+            <div className="container">
+                <div className="row chartCard">
+                    <div className="col s12 center-align">
+                        <div className="card blue-grey darken-1">
+                            <div className="card-content white-text">
+                                <span className="card-title">Ratings Saved!</span>
+                                <button className="waves-effect waves-light btn-small" id="rateAgain" onClick={this.remount}>Click to Rate Again!</button>
+                            </div>
                         </div>
                     </div>
                 </div>

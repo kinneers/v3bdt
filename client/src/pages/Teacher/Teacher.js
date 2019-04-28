@@ -44,6 +44,11 @@ class Teacher extends Component {
         this.setState({ chosenStudent: event.target.getAttribute('data-studentname'), chosenBxId: event.target.name, chosenBx: event.target.getAttribute('data-bxDescription') });
     };
 
+    hideChart = event => {
+        event.preventDefault();
+        this.setState({ chosenStudent: '', chosenBxId: '', chosenBx: '' });
+    }
+
     render() {
         console.log(this.props);
         return (
@@ -62,15 +67,18 @@ class Teacher extends Component {
                             chosenStudent={this.state.chosenStudent}
                             bxDescription={this.state.chosenBx}
                             user={this.props.user}
+                            hideChart={this.hideChart}
                         /> : 
-                        (<div className="row chartCard">
-                            <div className="col s12 m6">
-                                <div className="card blue-grey darken-1">
-                                    <div className="card-content white-text">
-                                        <span className="card-title">To View Progress Charts:</span>
-                                        <p>
-                                            Please choose a student's behavior from the left navigation page to view progress.
-                                        </p>
+                        (<div className="container">
+                            <div className="row chartCard">
+                                <div className="col s12 center-align">
+                                    <div className="card blue-grey darken-1">
+                                        <div className="card-content white-text">
+                                            <span className="card-title">To View Progress Charts:</span>
+                                            <p>
+                                                Please choose a student's behavior from the left navigation page to view progress.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
