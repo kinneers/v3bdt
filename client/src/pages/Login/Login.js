@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import LoginComponent from './../../components/LoginComponent';
 import Footer from './../../components/Footer';
 import API from '../../utils/API';
+import './style.css';
 
 class Login extends Component {
 
@@ -49,10 +50,14 @@ class Login extends Component {
     console.log(this.props);
 
     return (
-        <div>
-            <LoginComponent {...passedProps} />
-            <Footer />
-        </div>
+        <body>
+            <main>
+                <LoginComponent {...passedProps} />
+            </main>
+            <footer>
+                <Footer />
+            </footer>
+        </body>
     );
   }
 }

@@ -11,8 +11,6 @@ function LoginComponent(props) {
                         <div className="card horizontal">
                         <div className="card-image">
                         <img className="background" src="images/geometric-cave.jpg" alt="background design" />
-                        <img className="logo" src="images/bdt-logo-square.png" alt="Logo" />
-
                         </div>
                         <div className="card-stacked">
                             <div className="card-content">
