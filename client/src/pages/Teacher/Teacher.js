@@ -12,7 +12,8 @@ class Teacher extends Component {
         behaviorInfo: {},
         teacherID: this.props.user._id,
         chosenBxId: '', //It would be nice to add a hide chart button that clears this
-        chosenStudent: ''
+        chosenStudent: '',
+        chosenBx: ''
     };
 
     componentDidMount() {
@@ -40,8 +41,13 @@ class Teacher extends Component {
 
     handleSideNavClick = event => {
         event.preventDefault();
-        this.setState({ chosenStudent: event.target.getAttribute('data-studentname'), chosenBxId: event.target.name });
+        this.setState({ chosenStudent: event.target.getAttribute('data-studentname'), chosenBxId: event.target.name, chosenBx: event.target.getAttribute('data-bxDescription') });
     };
+
+    hideChart = event => {
+        event.preventDefault();
+        this.setState({ chosenStudent: '', chosenBxId: '', chosenBx: '' });
+    }
 
     render() {
         console.log(this.props);
@@ -59,9 +65,24 @@ class Teacher extends Component {
                         <BxChart 
                             chosenBxId={this.state.chosenBxId}
                             chosenStudent={this.state.chosenStudent}
+                            bxDescription={this.state.chosenBx}
                             user={this.props.user}
+                            hideChart={this.hideChart}
                         /> : 
-                        (<h1>Choose a student's behavior from the left navigation page to view progress.</h1>)
+                        (<div className="container">
+                            <div className="row chartCard">
+                                <div className="col s12 center-align">
+                                    <div className="card blue-grey darken-1">
+                                        <div className="card-content white-text">
+                                            <span className="card-title">To View Progress Charts:</span>
+                                            <p>
+                                                Please choose a student's behavior from the left navigation page to view progress.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>)
                     }
                     <RatingForm 
                         teacherID={this.state.teacherID}
