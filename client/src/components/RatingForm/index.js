@@ -148,11 +148,16 @@ class RatingForm extends Component {
                     </div>
                 </div>
             </main>) : (
-                <>
-                <h1>Ratings Saved!</h1>
-                <button onClick={this.remount}>Click to Rate Again!</button>
-                </>
-            )};
+            <div className="row chartCard">
+                <div className="col s12 m6 center-align">
+                    <div className="card blue-grey darken-1">
+                        <div className="card-content white-text">
+                            <span className="card-title">Ratings Saved!</span>
+                            <button onClick={this.remount}>Click to Rate Again!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>)}
         </>
         );
     };
