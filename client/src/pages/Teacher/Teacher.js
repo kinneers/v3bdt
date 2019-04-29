@@ -57,6 +57,7 @@ class Teacher extends Component {
     }
 
     render() {
+        console.log(this.props);
         return(
             <div className='fixtop'>
                 <div className='side-nav'>
@@ -66,7 +67,7 @@ class Teacher extends Component {
                     />
                 </div>
                 <div className='main-right'>
-                    <TopNav />
+                    <TopNav logout={this.props.onLogout} />
                     <MainContainer 
                         chosenStudent={this.state.chosenStudent}
                         chosenBx={this.state.chosenBx}

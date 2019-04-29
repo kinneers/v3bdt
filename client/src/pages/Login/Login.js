@@ -18,11 +18,17 @@ class Login extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    API.loginUser(this.state).then(({data}) => {
-      API.associateUser(this.state.email, data.accessToken && data.accessToken.jwtToken).then(({data: userData}) => {
+    this.props.onLogin(this.state.email, this.state.password).then((data) => {
+      console.log(data);
+      API.associateUser(this.state.email, data.accessToken).then(({data: userData}) => {
+        const tokens = {
+          refreshToken: {token: data.refreshToken},
+          idToken: {jwtToken: data.idToken},
+          accessToken: {jwtToken: data.accessToken}
+        }
         const user = {
           email: this.state.email,
-          ...data, ...userData
+          ...userData, ...tokens
         }
         this.props.handleUser(user);
         //we can write if statement here to push to teacher for authLevel 3...
