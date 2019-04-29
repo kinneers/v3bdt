@@ -45,15 +45,10 @@ module.exports = {
         console.log(req.body);
         db.BehaviorData
             .findOneAndUpdate(
-<<<<<<< HEAD
-                { behavior: "5cc25dd07e773b3e9f1584e3", behaviorDate: '04/30/2019'},
-                {$set:{ behaviorDate: '04/30/2019', behavior: "5cc25dd07e773b3e9f1584e3"}, $inc:{behaviorCount: 1, behaviorTotal: 1}}, { upsert: true }            )
-=======
                 { behavior: newData.behavior, behaviorDate: newData.behaviorDate },
                 {$inc:{behaviorCount: newData.behaviorCount, behaviorTotal: newData.behaviorTotal},
                 $set:{ behaviorDate: newData.behaviorDate, behavior: newData.behavior}}, 
                 { upsert: true })
->>>>>>> bbc8538f610db3ab315fad68b8a30da864919a1e
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
