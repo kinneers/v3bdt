@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-//import RatingForm from './../../components/RatingForm';
 import TopNav from './../../components/TopNav';
 import SideNav from './../../components/SideNav';
-//import BxChart from './../../components/BxChart';
 import MainContainer from './../../components/MainContainer';
 import './style.css';
 import M from "materialize-css";

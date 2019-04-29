@@ -1,9 +1,11 @@
 import React from 'react';
-import RatingForm from './../RatingForm';
-import ChooseChart from './../ChooseChart';
+import RatingForm from '../RatingForm';
+//import BxChart from './../BxChart';
+//import TeacherDirections from './../TeacherDirections';
+import ChooseChart from '../ChooseChart';
 import './style.css';
 
-function MainContainer(props) {
+function AdminMainContainer(props) {
 
     switch(props.chooseComponent) {
         case 'Rate Your Students':
@@ -22,7 +24,8 @@ function MainContainer(props) {
                     bxDescription={props.chosenBx} 
                     hideChart={props.hideChart}  
                 />
-            )   
+            )
+            
         default:
             return (
                 <div className="container">
@@ -46,4 +49,4 @@ function MainContainer(props) {
     };
 };
 
-export default MainContainer;
+export default AdminMainContainer;
