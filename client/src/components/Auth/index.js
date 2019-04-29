@@ -8,7 +8,33 @@ import { Authenticator } from 'aws-amplify-react';
 
 //import { getConfig } from './../../utils/API';
 //import { Loader } from '../common';
-
+const refreshSession = () => {
+    return new Promise (async resolve => {
+        try {
+            const user = await Auth.currentAuthenticatedUser();
+            if (!user) {
+                resolve(true);
+                return
+            }
+            user.getSession((err, session) => {
+                if (err || session.isValid()) {
+                    resolve (true);
+                    return
+                }
+                const refreshToken = session.getRefreshToken();
+                user.refreshSession(refreshToken, (refreshError, refresh_session) => {
+                    if (!refreshError) {
+                        user.setSignInUserSession(refresh_session);
+                        resolve (true);
+                    }
+                })
+            })
+        }
+        catch(error) {
+            resolve (false);
+        }
+    })
+}
 class CustomAuthenticator extends Component {
     state = {
         config: 
@@ -16,7 +42,7 @@ class CustomAuthenticator extends Component {
             userPoolId: "us-east-1_RX3L5Cy35", // Your user pool id here. Should be added to keys.   
             userPoolWebClientId: "v13f23lpjv5143ko1rcoifj57" // Your client id here. Should be added to keys.
         },  
-        isLoading: true,
+        isLoading: false,
         userIsAuthenticated: false,
         user: null,
         cognitoUser: null
@@ -24,19 +50,21 @@ class CustomAuthenticator extends Component {
 
     getErrorMessage = err => (typeof err === 'string' ? err : err.message);
 
-    onLogin = async (username, password) => {
-        const response = await Auth.signIn(username, password)
-            .then(user => {
-            console.log('user :::', user);
-            const { challengeName, username } = user;
-            if (challengeName === 'NEW_PASSWORD_REQUIRED') {
-                this.setState({ cognitoUser: user });
-                this.props.history.push(
-                    `/password_reset?user_name=${username}&new_user=1`
-                );
-            } else {
-                this.setState({ user, userIsAuthenticated: true });
+    onLogin = (username, password) => {
+        const response = Auth.signIn(username, password)
+            .then(cognitoUser => {
+            console.log('user :::', cognitoUser);
+            const { attributes, signInUserSession } = cognitoUser;
+            const {email} = attributes;
+            const {
+                refreshToken: {token: refreshToken},
+                idToken: {jwtToken: idToken},
+                accessToken: {jwtToken: accessToken}
+            } = signInUserSession;
+            const user = {
+                userName: email, refreshToken, idToken, accessToken
             }
+            this.props.handleUser(user);
             return user;
             })
             .catch(err => {
@@ -59,7 +87,7 @@ class CustomAuthenticator extends Component {
     onLogout = async () => {
         const currentUser = Auth.userPool.getCurrentUser();
         await currentUser.signOut();
-        this.setState({ userIsAuthenticated: false });
+        this.props.handleUser(null);
     };
 
     onSignUp = async (username, password, attributes) => {
@@ -144,13 +172,13 @@ class CustomAuthenticator extends Component {
         history.push('/');
     };
 
-    componentDidMount() {
-        const { config } = this.state;
-        if (config && !(config.userPoolId || config.userPoolWebClientId)) {
-            // getConfig().then(({ data }) =>
-            //     this.setState({ config: data, isLoading: false })
-            // );
-        }
+    async componentDidMount() {
+        setInterval(async()=> {
+            console.log("interval refresh");
+            await refreshSession()
+        }, 1000*60);
+        console.log("normal refresh");
+        await refreshSession();
     }
 
     // componentDidUpdate(prevProps, prevState, snapshot) {

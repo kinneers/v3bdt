@@ -10,5 +10,5 @@ router.route("/login").post(function (req,res) {
         cognito.Login(req, res);
     }
 })
-
+router.route("/logout").get(cognito.Logout);
 module.exports = router;

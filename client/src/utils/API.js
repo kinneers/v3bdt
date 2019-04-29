@@ -1,4 +1,11 @@
 import axios from "axios";
+import {Auth} from "aws-amplify";
+
+function getSession () {
+    Auth.currentSession().then(data => {
+        return data.accessToken && data.accessToken.jwtToken;
+    })
+}
 
 export default {
 
@@ -17,7 +24,16 @@ export default {
         return axios.post('/auth/login', body);
     },
 
+    //Logout User
+    logoutUser: async function () {
+        const currentUser = Auth.userPool.getCurrentUser();
+        if (!currentUser) return;
+        await currentUser.signOut();
+        window.localStorage.clear();
+    },
+
     associateUser: function(email, accesstoken) {
+        getSession();
         return axios({
             url: "/api/teacher/a/" + email,
             headers: {
