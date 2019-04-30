@@ -1,11 +1,12 @@
 import axios from "axios";
 import {Auth} from "aws-amplify";
 
-function getSession () {
-    Auth.currentSession().then(data => {
-        return data.accessToken && data.accessToken.jwtToken;
-    })
-}
+// function getSession () {
+//     Auth.currentSession().then(data => {
+//         console.log('THE ACCESSTOKEN BEING RETURNED IS: ', data.accessToken)
+//         return data.accessToken && data.accessToken.jwtToken;
+//     })
+// }
 
 export default {
 
@@ -33,7 +34,6 @@ export default {
     },
 
     associateUser: function(email, accesstoken) {
-        getSession();
         return axios({
             url: "/api/teacher/a/" + email,
             headers: {

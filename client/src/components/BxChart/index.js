@@ -8,7 +8,6 @@ class BxChart extends Component{
         super(props);
 
         this.state = {
-            // retrievedData: {},
             chartData:{},
         };
     };
@@ -17,54 +16,66 @@ class BxChart extends Component{
         this.populateChart();
     };
 
+    //Doesn't work
+    // shouldComponentUpdate(, nextState) {
+    //     return nextProps.chosenBxId !== this.props.chosenBxId;
+    // };
+
+    //Maybe try to get a snapshot of the previous state to compare...
     componentDidUpdate() {
-        this.populateChart();
-    }
-
+        // if (this.shouldComponentUpdate()) {
+        //     this.populateChart();
+        // } else {
+        //     console.log('Do nothing.')
+        // }
+    };
+    
     populateChart() {
-        const id = this.props.chosenBxId;
+        if (this.props.chosenBxId) {
+            const id = this.props.chosenBxId;
+            //Call for all the data associated with this behavior needed for chart
+            API.getChartData(id, this.props.user.accessToken.jwtToken)
+            .then(res => {
+                const returnedData = res.data;        
+                // this.setState({ retrievedData: res.data });
+                console.log(returnedData);
+                    
+                // const retrievedData = this.state.retrievedData;
 
-        API.getChartData(id, this.props.user.accessToken.jwtToken)
-        .then(res => {
-            const returnedData = res.data;        
-            // this.setState({ retrievedData: res.data });
-            console.log(returnedData);
-                
-            // const retrievedData = this.state.retrievedData;
+                let behaviorDates = []; //initialize an array to hold all dates
+                let behaviorAverages = []; //initialize an array to hold all averages
 
-            let behaviorDates = []; //initialize an array to hold all dates
-            let behaviorAverages = []; //initialize an array to hold all averages
-
-            for (let i=0; i<returnedData.length; i++) {
-                let bxDate = returnedData[i].behaviorDate;
-                let bxCount = (returnedData[i].behaviorCount);
-                
-                let bxTotal = (returnedData[i].behaviorTotal);
-
-                let averagePercentage = ((bxTotal/bxCount)*100).toFixed(2);
-
-                behaviorDates.push(bxDate);
-                behaviorAverages.push(averagePercentage);
-            }
-
-            this.setState({
-                chartData: {
-                    labels: behaviorDates,
-                    datasets:[{
-                        label: this.props.bxDescription,
-                        backgroundColor: "#48344f",
-                        data: behaviorAverages,
-                        borderColor: '"#48344f"',
-                        pointBackgroundColor: '#48344f"',
-                        pointBorderColor: ("#48344f"),
-                        lineTension: 0,
-                        pointStyle: 'circle',
-                        fill: false
-                    }]
+                for (let i=0; i<returnedData.length; i++) {
+                    //Gathers info needed to populate chart
+                    let bxDate = returnedData[i].behaviorDate;
+                    let bxCount = (returnedData[i].behaviorCount);
+                    let bxTotal = (returnedData[i].behaviorTotal);
+                    //Calculates percent met for the day
+                    let averagePercentage = ((bxTotal/bxCount)*100).toFixed(2);
+                    //Pushes date and percent met to arrays
+                    behaviorDates.push(bxDate);
+                    behaviorAverages.push(averagePercentage);
                 }
-            });       
-        })
-        .catch(err => console.log(err));
+
+                this.setState({
+                    chartData: {
+                        labels: behaviorDates,
+                        datasets:[{
+                            label: this.props.bxDescription,
+                            backgroundColor: "#48344f",
+                            data: behaviorAverages,
+                            borderColor: '"#48344f"',
+                            pointBackgroundColor: '#48344f"',
+                            pointBorderColor: ("#48344f"),
+                            lineTension: 0,
+                            pointStyle: 'circle',
+                            fill: false
+                        }]
+                    }
+                });       
+            })
+            .catch(err => console.log(err));
+        } else { console.log('THIS IS WHERE A RE-RENDER NEEDS TO HAPPEN!') };
     };
   
     render(){
@@ -76,6 +87,14 @@ class BxChart extends Component{
                         width={500}
                         height={150}
                         options={{
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        min: 0,
+                                        max: 100
+                                    }
+                                }]
+                            },
                             title:{
                                 display:true,
                                 text: `${this.props.chosenStudent}`,
