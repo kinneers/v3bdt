@@ -1,4 +1,12 @@
 import axios from "axios";
+import {Auth} from "aws-amplify";
+
+// function getSession () {
+//     Auth.currentSession().then(data => {
+//         console.log('THE ACCESSTOKEN BEING RETURNED IS: ', data.accessToken)
+//         return data.accessToken && data.accessToken.jwtToken;
+//     })
+// }
 
 export default {
 
@@ -15,6 +23,14 @@ export default {
     //Login User
     loginUser: function(body) {
         return axios.post('/auth/login', body);
+    },
+
+    //Logout User
+    logoutUser: async function () {
+        const currentUser = Auth.userPool.getCurrentUser();
+        if (!currentUser) return;
+        await currentUser.signOut();
+        window.localStorage.clear();
     },
 
     associateUser: function(email, accesstoken) {

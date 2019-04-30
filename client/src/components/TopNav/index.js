@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 import M from "materialize-css";
 import logo from './logo.png';
+//import API from '../../utils/API';
 
 class TopNav extends Component {
 
@@ -14,7 +15,7 @@ class TopNav extends Component {
         return(
             <div>
                 <ul id="dropdown1" className="dropdown-content">
-                    <li><a href="#!">Log Out</a></li>
+                    <li><button onClick={this.props.logout}>Log Out</button></li>
                 </ul>
                 <nav>
                     <div className="nav-wrapper">

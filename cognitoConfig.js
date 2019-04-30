@@ -61,6 +61,12 @@ function Login(req, res) {
     });
 }
 
+function Logout(req, res) {
+    var cognitoUser = userPool.getCurrentUser();
+    cognitoUser.signOut();
+    res.json("Logged Out");
+}
+
 function confirmUser(req, res) {
     const { email, code } = req.body;
     var userData = {
@@ -154,4 +160,4 @@ function renew() {
     })
 }
 
-module.exports = { Login, confirmUser, RegisterUser }
+module.exports = { Login, Logout, confirmUser, RegisterUser }

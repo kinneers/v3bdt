@@ -72,6 +72,7 @@ class RatingForm extends Component {
                 } else {
                     console.log('Something went wrong with that logic!'); //This should never occur
                 };
+
             } else {
                 console.log('A behavior was not rated or had a value of null.');
             };

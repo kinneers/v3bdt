@@ -13,8 +13,8 @@ function ChooseChart(props) {
                     user={props.user}
                     hideChart={props.hideChart}
                 />
-            ) : 
-            (<div className="container">
+            ) : (
+            <div className="container">
                 <div className="row chartCard">
                     <div className="col s12 center-align">
                         <div className="card blue-grey darken-1">
@@ -27,7 +27,8 @@ function ChooseChart(props) {
                         </div>
                     </div>
                 </div>
-            </div>)}
+            </div>
+            )}
             <div className="container">
                 <div className="row">
                     <div className="col s12">
