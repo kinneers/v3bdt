@@ -7,17 +7,17 @@ import Teacher from './pages/Teacher';
 import Student from './pages/Student';
 import Admin from './pages/Admin';
 import Authenticator from './components/Auth';
-import API from './utils/API';
+//import API from './utils/API';
 
 const Routes = props => {
     return(
-            props.isAuthenticated || props.user ? (
-                <React.Fragment>
-                    <Route exact path="/teacher" render={() => <Teacher {...props} />} />
-                    <Route exact path="/student" component={Student} />
-                    <Route exact path="/admin" component={Admin} />
-                </React.Fragment>
-            ) : (<Route render={() => <Login {...props} />} />)
+        props.isAuthenticated || props.user ? (
+            <React.Fragment>
+                <Route exact path="/teacher" render={() => <Teacher {...props} />} />
+                <Route exact path="/student" component={Student} />
+                <Route exact path="/admin" component={Admin} />
+            </React.Fragment>
+        ) : (<Route render={() => <Login {...props} />} />)
     )
 }
 class App extends Component {

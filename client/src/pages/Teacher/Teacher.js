@@ -7,25 +7,30 @@ import M from "materialize-css";
 import API from './../../utils/API';
 
 class Teacher extends Component {
-    state = {
-        behaviorInfo: {},
-        teacherID: this.props.user._id,
-        chooseComponent: '',
-        chosenBxId: '',
-        chosenStudent: '',
-        chosenBx: ''
-    };
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            behaviorInfo: {},
+            teacherId: '',
+            chooseComponent: '',
+            chosenBxId: '',
+            chosenStudent: '',
+            chosenBx: ''
+        };
+    }
+    
     componentDidMount() {
         // Auto initialize all the things!
         M.AutoInit();
-        let id = this.state.teacherID;
-        this.loadBehaviors(id);
+        API.associateUser(this.props.user.userName, this.props.user.accessToken)
+            .then(res => this.loadBehaviors(res.data._id))
+            .catch(err=> console.log(err));
     }
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
     loadBehaviors = (id) => {
-        API.getBehaviors(id, this.props.user.accessToken.jwtToken)
+        API.getBehaviors(id, this.props.user.accessToken)
             .then(res => 
                 {                    
                     this.setState({ behaviorInfo: res.data });
@@ -34,11 +39,6 @@ class Teacher extends Component {
             .catch(err => console.log(err));
     };
 
-    // Just in case
-    componentDidUpdate() {
-        M.AutoInit();
-    }
-
     handleSideNavClick = event => {
         event.preventDefault();
         this.setState({ chooseComponent: event.target.text });
@@ -46,16 +46,19 @@ class Teacher extends Component {
 
     handleChooseStudent = event => {
         event.preventDefault();
-        this.setState({ chosenStudent: event.target.getAttribute('data-student'), chosenBxId: event.target.name, chosenBx: event.target.text });
+        console.log(event.target);
+        const studentName = event.target.getAttribute('data-student');
+        const bxId = event.target.name;
+        const bxDescription = event.target.text;
+        this.setState({ chosenStudent: studentName, chosenBxId: bxId, chosenBx: bxDescription });
     };
 
     hideChart = event => {
         event.preventDefault();
-        this.setState({ chosenStudent: '', chosenBxId: '', chosenBx: '' })
+        this.setState({ chosenStudent: '', chosenBxId: '', chosenBx: '' });
     }
 
     render() {
-        console.log(this.props);
         return(
             <div className='fixtop'>
                 <div className='side-nav'>

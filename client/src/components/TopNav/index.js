@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 import M from "materialize-css";
 import logo from './logo.png';
-import API from '../../utils/API';
+//import API from '../../utils/API';
 
 class TopNav extends Component {
 
