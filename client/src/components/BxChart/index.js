@@ -90,14 +90,9 @@ class BxChart extends Component{
                             scales: {
                                 yAxes: [{
                                     ticks: {
-<<<<<<< HEAD
                                         beginAtZero: true,
                                         max: 100,
                                         min: 0
-=======
-                                        min: 0,
-                                        max: 100
->>>>>>> 78bbf9176d701d75985e5edf25ad5e4269447d71
                                     }
                                 }]
                             },
