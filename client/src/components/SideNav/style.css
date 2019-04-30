@@ -6,7 +6,8 @@
 }
 
 .sidenav {
-    width: 15%;
+    width: 200px;
+    /* width: 15%; */
     text-align: center;
 }
 

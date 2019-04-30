@@ -76,6 +76,15 @@ class BxChart extends Component{
                         width={500}
                         height={150}
                         options={{
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        max: 100,
+                                        min: 0
+                                    }
+                                }]
+                            },
                             title:{
                                 display:true,
                                 text: `${this.props.chosenStudent}`,
