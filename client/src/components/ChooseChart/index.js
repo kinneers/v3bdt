@@ -12,6 +12,8 @@ function ChooseChart(props) {
                     bxDescription={props.bxDescription}
                     user={props.user}
                     hideChart={props.hideChart}
+                    populateChart={props.populateChart}
+                    chartData={props.chartData}
                 />
             ) : (
             <div className="container">
