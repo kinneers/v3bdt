@@ -10,7 +10,7 @@ function MainContainer(props) {
             return <RatingForm 
                         user={props.user}
                         behaviorInfo={props.behaviorInfo}
-                    />;
+                    />
         case 'View Progress':
             return (
                 <ChooseChart 
@@ -19,8 +19,11 @@ function MainContainer(props) {
                     handleChooseStudent={props.handleChooseStudent}
                     chosenBxId={props.chosenBxId}
                     chosenStudent={props.chosenStudent}
-                    bxDescription={props.chosenBx} 
-                    hideChart={props.hideChart}  
+                    chosenBx={props.chosenBx} 
+                    hideChart={props.hideChart}
+                    populateChart={props.populateChart}
+                    chartData={props.chartData}
+                    ready={props.ready}
                 />
             )   
         default:

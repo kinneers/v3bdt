@@ -2,7 +2,6 @@ import React from 'react';
 import './style.css';
 
 function LoginComponent(props) {
-    console.log(props);
     return (
         <div className="container">
             <div className="row loginbox">
