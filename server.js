@@ -17,11 +17,10 @@ app.use(routes);
 // Connect to the Mongo DB
 // If deployed, use the deployed database. Otherwise use the local database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/behavior_db";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err) {
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true }, function(err) {
   if (err)
   console.log(err);
 });
-mongoose.set('useCreateIndex', true);
 
 // Start the API server
 app.listen(PORT, function() {

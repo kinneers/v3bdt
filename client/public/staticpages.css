@@ -3,6 +3,10 @@ nav {
     height: 100px;
 }
 
+a {
+    color: #26a69a;
+}
+
 .small-logo {
     height: 100px;
 }
