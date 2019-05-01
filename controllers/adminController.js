@@ -10,6 +10,20 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    createAdmin: function(req, res) {
+        db.Admin
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    findByEmail: function(req, res) {
+        db.Admin
+            .findOne({ userName: req.params.email })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
     //Create student
     createStudent: function(req, res) {
         db.Student

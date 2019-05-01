@@ -20,7 +20,7 @@ class Login extends Component {
     e.preventDefault();
     this.props.onLogin(this.state.email, this.state.password).then((data) => {
       console.log(data);
-      API.associateUser(this.state.email, data.accessToken).then(({data: userData}) => {
+      API.associateTeacher(this.state.email, data.accessToken).then(({data: userData}) => {
         const tokens = {
           refreshToken: {token: data.refreshToken},
           idToken: {jwtToken: data.idToken},
