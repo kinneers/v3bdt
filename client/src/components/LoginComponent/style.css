@@ -16,3 +16,7 @@ div.row.loginbox {
     bottom: 0;
     margin: auto;
 }
+
+.btn {
+    cursor: pointer;
+}
