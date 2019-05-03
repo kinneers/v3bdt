@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TopNav from './../../components/TopNav';
 import AdminSideNav from './../../components/AdminSideNav';
 import AdminMainContainer from './../../components/AdminMainContainer';
-import './style.css';
+// import './style.css';
 import M from "materialize-css";
 import API from './../../utils/API';
 

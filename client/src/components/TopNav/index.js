@@ -13,19 +13,29 @@ class TopNav extends Component {
   
     render() {
         return(
-            <div>
-                <ul id="dropdown1" className="dropdown-content">
-                    <li><button onClick={this.props.logout}>Log Out</button></li>
-                </ul>
-                <nav>
-                    <div className="nav-wrapper">
-                        <img id="brand-logo" src={logo} alt="Logo" />;
-                        <ul className="right hide-on-med-and-down">
-                            <li><a className="dropdown-trigger" href="#!" data-target="dropdown1"><i className="material-icons right">settings</i></a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+
+            <nav>
+                <div className="nav-wrapper">
+                    <img id="brand-logo" src={logo} alt="Logo" />;
+                    {/* <ul id="logout" className="right">
+                        <li><button onClick={this.props.logout}>Log Out</button></li>
+                    </ul> */}
+                </div>
+            </nav>
+
+            // <div>
+            //     <ul id="dropdown1" className="dropdown-content">
+            //         <li><button onClick={this.props.logout}>Log Out</button></li>
+            //     </ul>
+            //     <nav>
+            //         <div className="nav-wrapper">
+            //             <img id="brand-logo" src={logo} alt="Logo" />;
+            //             <ul className="right hide-on-med-and-down">
+            //                 <li><a className="dropdown-trigger" href="#!" data-target="dropdown1"><i className="material-icons right">settings</i></a></li>
+            //             </ul>
+            //         </div>
+            //     </nav>
+            // </div>
         );
     };
 };

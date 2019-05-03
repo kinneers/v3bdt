@@ -111,7 +111,7 @@ class Teacher extends Component {
                 </div>
                 <div className='main-right'>
                     <TopNav logout={this.props.onLogout} />
-                    <MainContainer 
+                    <MainContainer
                         chosenStudent={this.state.chosenStudent}
                         chosenBx={this.state.chosenBx}
                         chosenBxId={this.state.chosenBxId}

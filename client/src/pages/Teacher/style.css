@@ -1,7 +1,15 @@
 .main-right {
-    width: 85%;
-    float: right;
+    width: 90%;
+    /* float: right; */
     margin-top: 0px;
+    margin-left: 200px;
+    padding: auto;
+}
+
+@media screen and (max-width: 992px) {
+    .main-right {
+        margin-left: 40px;
+    }
 }
 
 .chartCard {
