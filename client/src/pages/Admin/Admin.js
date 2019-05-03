@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import TopNav from './../../components/TopNav';
 import AdminSideNav from './../../components/AdminSideNav';
 import AdminMainContainer from './../../components/AdminMainContainer';
-import './style.css';
+// import './style.css';
 import M from "materialize-css";
-//import API from './../../utils/API';
+import API from './../../utils/API';
 
 class Admin extends Component {
     state = {
         //behaviorInfo: {},
-        adminID: this.props.user._id,
+        adminID: '',
         chooseComponent: '',
         // chosenBxId: '',
         // chosenStudent: '',
@@ -19,8 +19,9 @@ class Admin extends Component {
     componentDidMount() {
         // Auto initialize all the things!
         M.AutoInit();
-        let id = this.state.adminID;
-        console.log(id);
+        API.associateAdmin(this.props.user.userName, this.props.user.accessToken)
+            .then(res => this.loadBehaviors(res.data._id))
+            .catch(err=> console.log(err));
         // this.loadBehaviors(id);
     }
 

@@ -15,7 +15,7 @@ const Routes = props => {
             <React.Fragment>
                 <Route exact path="/teacher" render={() => <Teacher {...props} />} />
                 <Route exact path="/student" component={Student} />
-                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/admin" render={() => <Admin {...props} />} />
             </React.Fragment>
         ) : (<Route render={() => <Login {...props} />} />)
     )
@@ -34,7 +34,7 @@ class App extends Component {
     //     const refreshToken = window.localStorage.getItem("refreshToken");
     //     console.log(accessToken);
     //     if (email && accessToken !== "undefined" && !this.state.user) {
-    //         API.associateUser(email, accessToken).then(({data}) => {
+    //         API.associateTeacher(email, accessToken).then(({data}) => {
     //             this.setState({user: {
     //                 accessToken: {jwtToken: accessToken}, idToken: {jwtToken: idToken}, refreshToken: {token: refreshToken}, ...data
     //             }})
@@ -45,7 +45,7 @@ class App extends Component {
     
     componentDidUpdate(prevProps, prevState, snapshot) {
         // if (prevState.user._id !== this.state.user._id) {
-        //     API.associateUser(this.state.user.userName, this.state.user.accessToken.jwtToken).then(({data})=>{
+        //     API.associateTeacher(this.state.user.userName, this.state.user.accessToken.jwtToken).then(({data})=>{
         //         this.handleUser(...this.state.user, ...data)
         //     })
         // }

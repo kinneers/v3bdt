@@ -9,6 +9,7 @@ function SideNav(props) {
                 <ul>
                     <li><a href='!#' onClick={props.handleSideNavClick}>Rate Your Students</a></li>
                     <li><a href='!#' onClick={props.handleSideNavClick}>View Progress</a></li>
+                    <li><a href='/logout'>Log Out</a></li>
                 </ul>
             </ul>
             <a href="#!" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>

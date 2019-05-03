@@ -25,7 +25,7 @@ class Teacher extends Component {
     componentDidMount() {
         // Auto initialize all the things!
         M.AutoInit();
-        API.associateUser(this.props.user.userName, this.props.user.accessToken)
+        API.associateTeacher(this.props.user.userName, this.props.user.accessToken)
             .then(res => this.loadBehaviors(res.data._id))
             .catch(err=> console.log(err));
     }
@@ -111,7 +111,7 @@ class Teacher extends Component {
                 </div>
                 <div className='main-right'>
                     <TopNav logout={this.props.onLogout} />
-                    <MainContainer 
+                    <MainContainer
                         chosenStudent={this.state.chosenStudent}
                         chosenBx={this.state.chosenBx}
                         chosenBxId={this.state.chosenBxId}

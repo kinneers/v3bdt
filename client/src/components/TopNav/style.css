@@ -1,14 +1,16 @@
+<<<<<<< HEAD
 .dropdown-trigger {
   float: right; 
   color: black;}
 
+=======
+>>>>>>> 4936a019a68f8d1a21d8cf7961399577df0cc19e
 nav {
-    background-color: white;    
+    background-color: white;
+    width: 100%;
 }
 
 #brand-logo {
     width:300px;
     margin-top: 22px;
-  
-  }
-
+}

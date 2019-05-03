@@ -33,9 +33,20 @@ export default {
         window.localStorage.clear();
     },
 
-    associateUser: function(email, accesstoken) {
+    associateTeacher: function(email, accesstoken) {
         return axios({
             url: "/api/teacher/a/" + email,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken 
+            },
+            method: 'get'
+        });
+    },
+
+    associateAdmin: function(email, accesstoken) {
+        return axios({
+            url: "/api/admin/a/" + email,
             headers: {
                 'Content-Type': 'application/json',
                 accesstoken 
