@@ -7,8 +7,8 @@ const jwt = require('jsonwebtoken');
 global.fetch = require('node-fetch');
 
 const poolData = {
-    UserPoolId: process.env.USERPOOLID, // Your user pool id here. Should be added to keys.   
-    ClientId: process.env.WEBCLIENTID// Your client id here. Should be added to keys.
+    UserPoolId: "us-east-1_RX3L5Cy35", // Your user pool id here. Should be added to keys.   
+    ClientId: "v13f23lpjv5143ko1rcoifj57" // Your client id here. Should be added to keys.
 };
 const pool_region = 'us-east-1';
 

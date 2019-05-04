@@ -39,10 +39,8 @@ class CustomAuthenticator extends Component {
     state = {
         config: 
         {
-            userPoolId: process.env.USERPOOLID,
-            userPoolWebClientId: process.env.WEBCLIENTID
-            // Your user pool id here. Should be added to keys.   
-            // Your client id here. Should be added to keys.
+            userPoolId: "us-east-1_RX3L5Cy35", // Your user pool id here. Should be added to keys.   
+            userPoolWebClientId: "v13f23lpjv5143ko1rcoifj57" // Your client id here. Should be added to keys.
         },  
         isLoading: false,
         userIsAuthenticated: false,
