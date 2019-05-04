@@ -16,7 +16,7 @@ class TopNav extends Component {
 
             <nav>
                 <div className="nav-wrapper">
-                    <img id="brand-logo" src={logo} alt="Logo" />
+                    <img id="brand-logo" src={logo} alt="Logo" />;
                     {/* <ul id="logout" className="right">
                         <li><button onClick={this.props.logout}>Log Out</button></li>
                     </ul> */}
