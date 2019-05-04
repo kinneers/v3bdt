@@ -49,6 +49,7 @@ module.exports = {
                 { $inc:{ behaviorCount: newData.behaviorCount, behaviorTotal: newData.behaviorTotal },
                 $set:{ behaviorDate: newData.behaviorDate, behavior: newData.behavior }, 
                 $push: {behaviorTracking: { behaviorValue: newData.behaviorTotal, behaviorTime: Date.now() }} },
+
                 { upsert: true })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
