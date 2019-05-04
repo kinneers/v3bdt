@@ -5,7 +5,7 @@ A Behavioral Tracking Application for whole-interval recording, designed for eas
 ## May 2019
 
 ### Login Page
-![Photo of Login Page](login.png)
+![Photo of Login Page](Login.png)
 
 ### Welcome Page
 ![Photo of Welcome Page](welcome.png)
