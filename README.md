@@ -34,7 +34,7 @@ HTML5, CSS3, React, Materialize, JavaScript, MongoDB, Mongoose, Express, Chart, 
 - Click on a student name to view that student's behavioral progress over time. These charts show the average percentage of intervals the identified goal was met each day.
 
 ## Future Development:
-- There are plans to develop this application further, including adding student/parent and admin interfaces as well as additional behavioral monitoring features (such as student self-monitoring, frequency counts, duration recording, random instance recording, etc.).  We also plan to add additional security measures to ensure that student data is protected per FERPA and COPPA regulations.
+- There are plans to develop this application further, including adding student/parent and admin interfaces as well as additional behavioral monitoring features (such as student self-monitoring, frequency counts, duration recording, random instance recording, etc.).  We also plan to strengthen security measures to ensure that student data is protected per FERPA and COPPA regulations.
 
 ## Sources:
 Templates adapted from Materialize
