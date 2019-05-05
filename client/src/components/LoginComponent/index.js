@@ -6,9 +6,9 @@ function LoginComponent(props) {
         <div className="container">
             <div className="row loginbox">
                 <div className="col s8 offset-s2">
-                    <div className="card horizontal">
+                    <div className="card">
                     <div className="card-image">
-                    <img className="background" src="images/geometric-cave.jpg" alt="background design" />
+                    <img className="background" src="images/geometric-cave2.jpg" alt="background design" />
                     </div>
                     <div className="card-stacked">
                         <div className="card-content">

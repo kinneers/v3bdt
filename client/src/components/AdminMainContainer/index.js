@@ -1,8 +1,7 @@
 import React from 'react';
 //import RatingForm from '../RatingForm';
 //import BxChart from './../BxChart';
-//import TeacherDirections from './../TeacherDirections';
-//import ChooseChart from '../ChooseChart';
+import ChooseChart from '../ChooseChart';
 import './style.css';
 
 function AdminMainContainer(props) {
@@ -21,9 +20,21 @@ function AdminMainContainer(props) {
                     <p>This is currently empty.</p>
                 </div>);
         case 'View Student Data':
-            return (<div className="fixmain">
-                    <p>This is currently empty.</p>
-                </div>);
+        return (<div className="fixmain">
+                    <ChooseChart 
+                        user={props.user}
+                        behaviorInfo={props.behaviorInfo}
+                        handleChooseStudent={props.handleChooseStudent}
+                        chosenBxId={props.chosenBxId}
+                        chosenStudent={props.chosenStudent}
+                        chosenBx={props.chosenBx} 
+                        hideChart={props.hideChart}
+                        populateChart={props.populateChart}
+                        chartData={props.chartData}
+                        // ready={props.ready}
+                    />
+                </div>); 
+
         default:
             return (
                 <div className="fixmain">

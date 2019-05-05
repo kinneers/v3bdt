@@ -19,6 +19,8 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.onLogin(this.state.email, this.state.password).then((data) => {
+        //THIS NEEDS TO BE ASSOCIATE USER TO SEND USERS TO THE CORRECT DASHBOARD!!!
+        //For now, can be changed manually to "associateAdmin" to work on admin page
       console.log(data);
       API.associateTeacher(this.state.email, data.accessToken).then(({data: userData}) => {
         const tokens = {

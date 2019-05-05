@@ -67,10 +67,10 @@ export default {
         });
     },
 
-    // Gets all behaviors
+    // Gets all behaviors (for admin use)
     getAllBehaviors: function(accesstoken) {
         return axios({
-            url: "/api/teacher/behaviors/",
+            url: "/api/admin/behaviors/",
             headers: {
                 'Content-Type': 'application/json',
                 accesstoken
