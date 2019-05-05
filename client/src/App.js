@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
-import 'materialize-css/dist/css/materialize.min.css';
 import Login from './pages/Login';
 import Teacher from './pages/Teacher';
 import Student from './pages/Student';
 import Admin from './pages/Admin';
 import Authenticator from './components/Auth';
-// import API from './utils/API';
 
 const Routes = props => {
     return(
