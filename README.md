@@ -26,7 +26,7 @@ HTML5, CSS3, React, Materialize, JavaScript, MongoDB, Mongoose, Express, Chart, 
 - [Log some (fictional) data!](https://behavioraldatatrackerv3.herokuapp.com/)
 
 ## To Use the Live Site:
-- Sign in with your user id and password. You may view a demo site with our fictional teacher 'Becky Tanner' who has the username 'misstanner@fenceworkshop.com', and the extra-super-secure password 'Password1!'.  *** NOTE: Due to an Amplify Cognito async issue, you must login using the test credentials and then immediately refresh the screen and login again.  We regret the inconvenience but are diligently working to solve this as soon as possible.
+- Sign in with your user id and password. You may view a demo site with our fictional teacher 'Becky Tanner' who has the username 'misstanner@fenceworkshop.com', and the extra-super-secure password 'Password1!'.
 - Once logged in you will arrive at the welcome screen.  In the left side navigation there are options to 'Rate Your Students', 'View Progress', and 'Logout'.
 - Since 'Becky Tanner' is a staff member, if you select 'Rate Your Students' you will see her dashboard page with several make-believe student goals ready for rating.
 - Feel free to enter data by selecting radio buttons telling whether or not each student met their behavior goals during a rating interval and clicking the 'SAVE DATA' button.  This saves a rating instance to the database.  It is up to the team working with each student to determine rating intervals.  Not all students necessarily need to be rated at each interval (the app is designed to handle null/undefined inputs).
