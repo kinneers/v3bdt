@@ -18,21 +18,35 @@ class Teacher extends Component {
             chosenStudent: '',
             chosenBx: '',
             chartData: {},
-            ready: false
+            ready: false,
+            accessToken: ''
         };
     }
     
     componentDidMount() {
         // Auto initialize all the things!
         M.AutoInit();
-        API.associateTeacher(this.props.user.userName, this.props.user.accessToken)
+        
+        let email = this.props.user.userName;
+        let accessToken = '';
+        //Gathers access token depending upon how it is sent in (this varies depending upon initial load or refresh)
+        if (!this.props.user.accessToken.jwtToken) {
+            accessToken = this.props.user.accessToken;
+        } else {
+            accessToken = this.props.user.accessToken.jwtToken;
+        }
+        //Sets accessToken to state in order to make initial loadBehaviors call
+        this.setState({accessToken: accessToken});
+        
+        //Gathers this user's data and makes call to load behaviors associated with this user
+        API.associateTeacher(email, accessToken)
             .then(res => this.loadBehaviors(res.data._id))
             .catch(err=> console.log(err));
     }
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
     loadBehaviors = (id) => {
-        API.getBehaviors(id, this.props.user.accessToken)
+        API.getBehaviors(id, this.state.accessToken)
             .then(res => 
                 {                    
                     this.setState({ behaviorInfo: res.data });

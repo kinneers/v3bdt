@@ -7,8 +7,8 @@ router.route('/create/admin')
   .post(adminController.createAdmin);
 //.post(teacherController.create);
 
-router
-  .route("/a/:email")
+//Matches with /api/admin/a/:email
+router.route("/a/:email")
   .get(adminController.findByEmail)
 
 module.exports = router;

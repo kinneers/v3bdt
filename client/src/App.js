@@ -7,7 +7,7 @@ import Teacher from './pages/Teacher';
 import Student from './pages/Student';
 import Admin from './pages/Admin';
 import Authenticator from './components/Auth';
-//import API from './utils/API';
+// import API from './utils/API';
 
 const Routes = props => {
     return(
@@ -28,19 +28,23 @@ class App extends Component {
 
     componentWillMount() {
         window.localStorage.clear();
+        // const email = this.props.user._id;
+        // const accessToken = this.props.user.accessToken;
+        // const idToken = this.state.idToken;
+        // const refreshToken = this.state.refreshToken;
     //     const email = window.localStorage.getItem("email");
     //     const accessToken = window.localStorage.getItem("accessToken");
     //     const idToken = window.localStorage.getItem("idToken");
     //     const refreshToken = window.localStorage.getItem("refreshToken");
     //     console.log(accessToken);
-    //     if (email && accessToken !== "undefined" && !this.state.user) {
-    //         API.associateTeacher(email, accessToken).then(({data}) => {
-    //             this.setState({user: {
-    //                 accessToken: {jwtToken: accessToken}, idToken: {jwtToken: idToken}, refreshToken: {token: refreshToken}, ...data
-    //             }})
-    //         })
+        // if (email && accessToken !== "undefined" && !this.state.user) {
+        //     API.associateTeacher(email, accessToken).then(({data}) => {
+        //         this.setState({user: {
+        //             accessToken: {jwtToken: accessToken}, idToken: {jwtToken: idToken}, refreshToken: {token: refreshToken}, ...data
+        //         }})
+        //     })
             
-    //     }
+        // }
     }
     
     componentDidUpdate(prevProps, prevState, snapshot) {

@@ -59,10 +59,12 @@ module.exports = {
     getChartData: function(req, res) {
         db.BehaviorData
             .find({ behavior: req.params.id })
+            .sort({behaviorDate: 1})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     
+    //Gets user data by email
     findByEmail: function(req, res) {
         db.Teacher
             .findOne({ userName: req.params.email })

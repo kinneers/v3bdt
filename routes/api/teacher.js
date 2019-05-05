@@ -26,18 +26,7 @@ router.route('/saveratings')
 router.route('/chartdata/:id')
     .get(teacherController.getChartData);
 
-// router.route("/")
-//   .get(teacherController.findAll)
-//   .post(teacherController.create);
-
-// router
-//   .route("/:id")
-//   .get(teacherController.findById)
-//   .put(teacherController.update)
-//   .delete(teacherController.remove);
-
-router
-  .route("/a/:email")
-  .get(teacherController.findByEmail)
+router.route("/a/:email")
+  .get(teacherController.findByEmail);
 
 module.exports = router;
