@@ -63,6 +63,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     
+    //Gets user data by email
     findByEmail: function(req, res) {
         db.Teacher
             .findOne({ userName: req.params.email })

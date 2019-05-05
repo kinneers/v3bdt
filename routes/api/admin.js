@@ -7,8 +7,7 @@ router.route('/create/admin')
   .post(adminController.createAdmin);
 //.post(teacherController.create);
 
-router
-  .route("/a/:email")
+router.route("/a/:email")
   .get(adminController.findByEmail)
 
 module.exports = router;

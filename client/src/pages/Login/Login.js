@@ -7,7 +7,7 @@ import './style.css';
 
 class Login extends Component {
 
-//   // Set component's initial state
+  // Set component's initial state
   state = {
     email: "",
     password: ""
