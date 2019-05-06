@@ -29,14 +29,14 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    //Gets all behaviors
-    findAllBehaviorsRefTeachers: function(req, res) {
-        db.Teacher
-            .find(req.query) //we're not passing req.query
-            .populate("behaviors")
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
+    // //Gets all behaviors
+    // findAllBehaviorsRefTeachers: function(req, res) {
+    //     db.Teacher
+    //         .find(req.query) //we're not passing req.query
+    //         .populate("behaviors")
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err));
+    // },
 
     //Saves the ratings to the database... not sure why, but the inc is doubling everything (will just factor that into the math until a fix is found)
     saveRatings: function(req, res) {

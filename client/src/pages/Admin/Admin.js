@@ -12,7 +12,7 @@ class Admin extends Component {
 
         this.state = {
             currentUserInfo: {},
-            teacherId: '',
+            behaviorInfo: {behaviors: {}},
             chooseComponent: '',
             chosenBxId: '',
             chosenStudent: '',
@@ -40,79 +40,80 @@ class Admin extends Component {
         
         //Gathers this user's data and makes call to load behaviors associated with this user
         API.associateAdmin(email, accessToken)
-            .then(res => this.setState({currentUserInfo: res.data}))
+            .then(res => {this.setState({currentUserInfo: res.data}); this.loadBehaviors()})
             .catch(err=> console.log(err));
     }
 
-    // // Loads all behaviors and sets them to this.state.behaviorInfo
-    // loadBehaviors = (id) => {
-    //     API.getBehaviors(id, this.state.accessToken)
-    //         .then(res => 
-    //             {                    
-    //                 this.setState({ behaviorInfo: res.data });
-    //                 M.AutoInit();
-    //             })
-    //         .catch(err => console.log(err));
-    // };
+    // Loads all behaviors and sets them to this.state.behaviorInfo
+    loadBehaviors = () => {
+        console.log("The call to load behaviors was made");
+        API.getAllBehaviors(this.state.accessToken)
+            .then(res => 
+                {                    
+                    this.setState({ behaviorInfo: {behaviors: res.data} });
+                    M.AutoInit();
+                })
+            .catch(err => console.log(err));
+    };
 
     handleSideNavClick = event => {
         event.preventDefault();
         this.setState({ chooseComponent: event.target.text });
     };
 
-    // handleChooseStudent = event => {
-    //     event.preventDefault();
-    //     //Pulls in data from the event target
-    //     const studentName = event.target.getAttribute('data-student');
-    //     const bxId = event.target.name;
-    //     const bxDescription = event.target.text;
-    //     //Sets event target data in state
-    //     this.setState({ chosenStudent: studentName, chosenBxId: bxId, chosenBx: bxDescription });
+    handleChooseStudent = event => {
+        event.preventDefault();
+        //Pulls in data from the event target
+        const studentName = event.target.getAttribute('data-student');
+        const bxId = event.target.name;
+        const bxDescription = event.target.text;
+        //Sets event target data in state
+        this.setState({ chosenStudent: studentName, chosenBxId: bxId, chosenBx: bxDescription });
 
-    //     //Call for all the data associated with this behavior needed for chart
-    //     API.getChartData(bxId, this.props.user.accessToken.jwtToken)
-    //     .then(res => {
-    //         const returnedData = res.data; //save returned data     
-    //         let behaviorDates = []; //initialize an array to hold all dates
-    //         let behaviorAverages = []; //initialize an array to hold all averages
+        //Call for all the data associated with this behavior needed for chart
+        API.getChartData(bxId, this.props.user.accessToken.jwtToken)
+        .then(res => {
+            const returnedData = res.data; //save returned data     
+            let behaviorDates = []; //initialize an array to hold all dates
+            let behaviorAverages = []; //initialize an array to hold all averages
 
-    //         //Loop through each day's behavioral data
-    //         for (let i=0; i < returnedData.length; i++) {
-    //             //Gathers info needed to populate chart
-    //             let bxDate = returnedData[i].behaviorDate;
-    //             let bxCount = (returnedData[i].behaviorCount);
-    //             let bxTotal = (returnedData[i].behaviorTotal);
-    //             //Calculates percent met for the day
-    //             let averagePercentage = ((bxTotal/bxCount)*100).toFixed(2);
-    //             //Pushes date and percent met to arrays
-    //             behaviorDates.push(bxDate);
-    //             behaviorAverages.push(averagePercentage);
-    //         }
-    //         //Sets state for the charts
-    //         this.setState({
-    //             chartData: {
-    //                 labels: behaviorDates,
-    //                 datasets:[{
-    //                     label: this.state.chosenBx,
-    //                     backgroundColor: "#48344f",
-    //                     data: behaviorAverages,
-    //                     borderColor: '"#48344f"',
-    //                     pointBackgroundColor: '#48344f"',
-    //                     pointBorderColor: ("#48344f"),
-    //                     lineTension: 0,
-    //                     pointStyle: 'circle',
-    //                     fill: false
-    //                 }]
-    //             }
-    //         });
-    //     })
-    //     .catch(err => console.log(err));
-    // };
+            //Loop through each day's behavioral data
+            for (let i=0; i < returnedData.length; i++) {
+                //Gathers info needed to populate chart
+                let bxDate = returnedData[i].behaviorDate;
+                let bxCount = (returnedData[i].behaviorCount);
+                let bxTotal = (returnedData[i].behaviorTotal);
+                //Calculates percent met for the day
+                let averagePercentage = ((bxTotal/bxCount)*100).toFixed(2);
+                //Pushes date and percent met to arrays
+                behaviorDates.push(bxDate);
+                behaviorAverages.push(averagePercentage);
+            }
+            //Sets state for the charts
+            this.setState({
+                chartData: {
+                    labels: behaviorDates,
+                    datasets:[{
+                        label: this.state.chosenBx,
+                        backgroundColor: "#48344f",
+                        data: behaviorAverages,
+                        borderColor: '"#48344f"',
+                        pointBackgroundColor: '#48344f"',
+                        pointBorderColor: ("#48344f"),
+                        lineTension: 0,
+                        pointStyle: 'circle',
+                        fill: false
+                    }]
+                }
+            });
+        })
+        .catch(err => console.log(err));
+    };
 
-    // hideChart = event => {
-    //     event.preventDefault();
-    //     this.setState({ chosenStudent: '', chosenBxId: '', chosenBx: '' });
-    // }
+    hideChart = event => {
+        event.preventDefault();
+        this.setState({ chosenStudent: '', chosenBxId: '', chosenBx: '' });
+    }
 
     render() {
         return(
@@ -124,18 +125,20 @@ class Admin extends Component {
                     />
                 </div>
                 <div className='main-right'>
-                    <TopNav logout={this.props.onLogout} />
+                    <div className="navbar-fixed">
+                        <TopNav logout={this.props.onLogout} />
+                    </div>
                     <AdminMainContainer
-                        // chosenStudent={this.state.chosenStudent}
-                        // chosenBx={this.state.chosenBx}
-                        // chosenBxId={this.state.chosenBxId}
+                        chosenStudent={this.state.chosenStudent}
+                        chosenBx={this.state.chosenBx}
+                        chosenBxId={this.state.chosenBxId}
                         chooseComponent={this.state.chooseComponent}
                         currentUserInfo={this.state.currentUserInfo}
-                        // behaviorInfo={this.state.behaviorInfo}
-                        // handleChooseStudent={this.handleChooseStudent}
-                        // hideChart={this.hideChart}
-                        // populateChart={this.populateChart}
-                        // chartData={this.state.chartData}
+                        behaviorInfo={this.state.behaviorInfo}
+                        handleChooseStudent={this.handleChooseStudent}
+                        hideChart={this.hideChart}
+                        populateChart={this.populateChart}
+                        chartData={this.state.chartData}
                         // ready={this.state.ready}
                     />
                 </div>

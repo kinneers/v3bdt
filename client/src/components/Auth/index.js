@@ -1,7 +1,6 @@
 /*Shoutout and many thanks to John Blackwell for teaching us AWS Cognito*/
 
 import React, {Component} from 'react';
-import './style.css';
 
 import Amplify, { Auth } from 'aws-amplify';
 import { Authenticator } from 'aws-amplify-react';

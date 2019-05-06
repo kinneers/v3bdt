@@ -78,7 +78,7 @@ function confirmUser(req, res) {
             console.log(err);
             return;
         }
-        if (result === "SUCCESS" || (err && err.code === "NotAuthorizedException" && err.message === "User cannot be confirm. Current status is CONFIRMED")) {
+        if (result === "SUCCESS" || (err && err.code === "NotAuthorizedException" && err.message === "User cannot be confirmed. Current status is NOT CONFIRMED.")) {
         Login(req, res);
     }
     });

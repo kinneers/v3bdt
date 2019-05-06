@@ -124,7 +124,9 @@ class Teacher extends Component {
                     />
                 </div>
                 <div className='main-right'>
-                    <TopNav logout={this.props.onLogout} />
+                    <div className="navbar-fixed">
+                        <TopNav logout={this.props.onLogout} />
+                    </div>                    
                     <MainContainer
                         chosenStudent={this.state.chosenStudent}
                         chosenBx={this.state.chosenBx}
