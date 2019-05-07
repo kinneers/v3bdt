@@ -29,8 +29,8 @@ HTML5, CSS3, React, Materialize, JavaScript, MongoDB, Mongoose, Express, Chart, 
 - Sign in with your user id and password. You may view a demo site with our fictional teacher 'Becky Tanner' who has the username 'misstanner@fenceworkshop.com', and the extra-super-secure password 'Password1!'.
 - Once logged in you will arrive at the welcome screen.  In the left side navigation there are options to 'Rate Your Students', 'View Progress', and 'Logout'.
 - Since 'Becky Tanner' is a staff member, if you select 'Rate Your Students' you will see her dashboard page with several make-believe student goals ready for rating.
-- Feel free to enter data by selecting radio buttons telling whether or not each student met their behavior goals during a rating interval and clicking the 'SAVE DATA' button.  This saves a rating instance to the database.  It is up to the team working with each student to determine rating intervals.  Not all students necessarily need to be rated at each interval (the app is designed to handle null/undefined inputs).
-- Click on 'View Progress' in the left side navigation and you will be presented with the behavior performance grapgh of the first student being tracked, along with a clickable lost of students and their behaviors that are being monitored.
+- Feel free to enter data by selecting radio buttons telling whether each student met their behavior goals during a rating interval and clicking the 'SAVE DATA' button.  This saves a rating instance to the database.  It is up to the team working with each student to determine rating intervals.  Not all students necessarily need to be rated at each interval (the app is designed to handle null/undefined inputs).
+- Click on 'View Progress' in the left side navigation and you will be presented with the behavior performance graph of the first student being tracked, along with a clickable list of students and their behaviors that are being monitored.
 - Click on a student name to view that student's behavioral progress over time. These charts show the average percentage of intervals the identified goal was met each day.
 
 ## Future Development:
