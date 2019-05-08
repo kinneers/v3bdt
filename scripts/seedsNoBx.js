@@ -12,10 +12,10 @@ mongoose.Promise = global.Promise;
 
 var MONGODB_URI =
   // process.env.MONGODB_URI || "mongodb://localhost/behavior_db_test";
-  process.env.MONGODB_URI || "mongodb://localhost/behavior_db";
+    process.env.MONGODB_URI || "mongodb://localhost/behavior_db";
     mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true }, function(err) {
-    mongoose.connection.db.dropDatabase();
-    console.log("$$$$$$$$$ DATABASE DROPPED $$$$$$$$$");
+    // mongoose.connection.db.dropDatabase();
+    // console.log("$$$$$$$$$ DATABASE DROPPED $$$$$$$$$");
     if (err) console.log(err);
 });
 
@@ -77,6 +77,45 @@ const studentSeed = [
   }
 ];
 
+const userSeed = [
+  {
+    userName: "misstanner@fenceworkshop.com",
+    authLevel: 3,
+  },
+  {
+    userName: "misscooper@fenceworkshop.com",
+    authLevel: 3,
+  },
+  {
+    userName: "misskinneer@fenceworkshop.com",
+    authLevel: 5,
+  },
+  {
+    userName: "timmyt@gmail.com",
+    authLevel: 1
+  },
+  {
+    userName: "marym@gmail.com",
+    authLevel: 1
+  },
+  {
+    userName: "suzys@gmail.com",
+    authLevel: 1
+  },
+  {
+    userName: "jamesj@gmail.com",
+    authLevel: 1
+  },
+  {
+    userName: "charliec@gmail.com",
+    authLevel: 1
+  },
+  {
+    userName: "bethb@gmail.com",
+    authLevel: 1
+  }
+];
+
 const behaviorSeeds = [
   {
     behaviorName: "sit still in class",
@@ -106,6 +145,14 @@ const behaviorSeeds2 = [
     studentName: "Beth Brewster"
   }
 ];
+
+console.log(userSeed);
+
+db.User.deleteMany({})
+  .then(() => db.User.insertMany(userSeed))
+  .then(userData => {
+    console.log("USERS: ", userData);
+  });
 
 db.Teacher.deleteMany({})
   .then(() => db.Teacher.insertMany(teacherSeed))
