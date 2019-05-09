@@ -33,6 +33,17 @@ export default {
         window.localStorage.clear();
     },
 
+    associateUser: function(email, accesstoken) {
+        return axios({
+            url: "/api/pageroutes/a/" + email,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken 
+            },
+            method: 'get'
+        });
+    },
+
     associateTeacher: function(email, accesstoken) {
         return axios({
             url: "/api/teacher/a/" + email,
