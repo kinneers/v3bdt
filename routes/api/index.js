@@ -2,6 +2,7 @@ const CognitoExpress = require("cognito-express");
 const router = require("express").Router();
 const teacherRoutes = require("./teacher");
 const adminRoutes = require("./admin");
+const pageRoutes = require("./pageroutes");
 
 const cognitoExpress = new CognitoExpress({
     region: "us-east-1",
@@ -32,5 +33,6 @@ router.use(function(req, res, next) {
 
 router.use("/teacher", teacherRoutes);
 router.use("/admin", adminRoutes);
+router.use("/pageroutes", pageRoutes);
 
 module.exports = router;
