@@ -2,6 +2,7 @@ const CognitoExpress = require("cognito-express");
 const router = require("express").Router();
 const teacherRoutes = require("./teacher");
 const adminRoutes = require("./admin");
+const studentRoutes = require("./student");
 const pageRoutes = require("./pageroutes");
 
 const cognitoExpress = new CognitoExpress({
@@ -33,6 +34,7 @@ router.use(function(req, res, next) {
 
 router.use("/teacher", teacherRoutes);
 router.use("/admin", adminRoutes);
+router.use("/student", studentRoutes);
 router.use("/pageroutes", pageRoutes);
 
 module.exports = router;

@@ -66,6 +66,17 @@ export default {
         });
     },
 
+    associateStudent: function(email, accesstoken) {
+        return axios({
+            url: "/api/student/a/" + email,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'get'
+        });
+    },
+
     // Gets all behaviors' basic info (behaviorID, behavior, studentID, name) ref'd to a teacher
     getBehaviors: function(id, accesstoken) {
         return axios({
@@ -125,6 +136,28 @@ export default {
             },
             method: 'put'
         });
-    }
+    },
+
+    //Gets a student chart
+//     //Matches with '/api/student/behaviors/:id'
+// router.route('/behaviors/:id')
+// .get(studentController.findAllBehaviorsRefStudent);
+
+// //Matches with '/api/student/student/:id'
+// router.route('/student/:id')
+//   .get(studentController.findStudentById);
+
+// //Matches with '/api/student/behaviorchart/:id'
+// router.route('/behaviorchart/:id')
+//   .get(studentController.findBehaviorById);
+
+// //Matches with '/api/student/chartdata/:id'
+// router.route('/chartdata/:id')
+//   .get(studentController.getChartData);
+
+// //Matches with '/api/student/a/:email'
+// router.route("/a/:email")
+// .get(studentController.findByEmail);
+
     
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 //import RatingForm from '../RatingForm';
-//import BxChart from './../BxChart';
+import AddUser from '../AddUser';
 import ChooseChart from '../ChooseChart';
 import './style.css';
 
@@ -9,7 +9,9 @@ function AdminMainContainer(props) {
     switch(props.chooseComponent) {
         case 'Create/Edit Users':
             return (<div className="fixmain">
-                    <p>This is currently empty.</p>
+                    <AddUser 
+                        user={props.user}
+                    />
                 </div>);
         case 'Create Classes':
             return (<div className="fixmain">
