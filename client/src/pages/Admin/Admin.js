@@ -21,7 +21,7 @@ class Admin extends Component {
             ready: false,
             accessToken: ''
         };
-    }
+    };
     
     componentDidMount() {
         // Auto initialize all the things!
@@ -34,7 +34,7 @@ class Admin extends Component {
             accessToken = this.props.user.accessToken;
         } else {
             accessToken = this.props.user.accessToken.jwtToken;
-        }
+        };
         //Sets accessToken to state in order to make initial loadBehaviors call
         this.setState({accessToken: accessToken});
         
@@ -42,7 +42,7 @@ class Admin extends Component {
         API.associateAdmin(email, accessToken)
             .then(res => {this.setState({currentUserInfo: res.data}); this.loadBehaviors()})
             .catch(err=> console.log(err));
-    }
+    };
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
     loadBehaviors = () => {
@@ -88,7 +88,8 @@ class Admin extends Component {
                 //Pushes date and percent met to arrays
                 behaviorDates.push(bxDate);
                 behaviorAverages.push(averagePercentage);
-            }
+            };
+
             //Sets state for the charts
             this.setState({
                 chartData: {
@@ -113,7 +114,7 @@ class Admin extends Component {
     hideChart = event => {
         event.preventDefault();
         this.setState({ chosenStudent: '', chosenBxId: '', chosenBx: '' });
-    }
+    };
 
     render() {
         return(
@@ -140,6 +141,7 @@ class Admin extends Component {
                         populateChart={this.populateChart}
                         chartData={this.state.chartData}
                         // ready={this.state.ready}
+                        user={this.props.user}
                     />
                 </div>
             </div>
