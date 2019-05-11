@@ -8,8 +8,8 @@ function AdminSideNav(props) {
             <ul id='slide-out' className='sidenav sidenav-fixed'>
                 <li className='top'>Welcome, {props.currentUserInfo.firstName} {props.currentUserInfo.lastName}!</li>
                 <ul>
-                    <li><a href='!#' onClick={props.handleSideNavClick}>Create/Edit Users</a></li>
-                    <li><a href='!#' onClick={props.handleSideNavClick}>Create Classes</a></li>
+                    <li><a href='!#' onClick={props.handleSideNavClick}>Create Users</a></li>
+                    <li><a href='!#' onClick={props.handleSideNavClick}>Link Users</a></li>
                     <li><a href='!#' onClick={props.handleSideNavClick}>Enter Behavior Goals</a></li>
                     <li><a href='!#' onClick={props.handleSideNavClick}>View Student Data</a></li>
                     <li className="white"><div className="divider"></div></li>

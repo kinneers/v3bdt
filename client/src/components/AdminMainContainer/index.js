@@ -1,5 +1,5 @@
 import React from 'react';
-//import RatingForm from '../RatingForm';
+import LinkUsers from '../LinkUsers';
 import AddUser from '../AddUser';
 import ChooseChart from '../ChooseChart';
 import './style.css';
@@ -7,15 +7,17 @@ import './style.css';
 function AdminMainContainer(props) {
 
     switch(props.chooseComponent) {
-        case 'Create/Edit Users':
+        case 'Create Users':
             return (<div className="fixmain">
                     <AddUser 
                         user={props.user}
                     />
                 </div>);
-        case 'Create Classes':
+        case 'Link Users':
             return (<div className="fixmain">
-                    <p>This is currently empty.</p>
+                    <LinkUsers 
+                        user={props.user}
+                    />
                 </div>);
         case 'Enter Behavior Goals':
             return (<div className="fixmain">

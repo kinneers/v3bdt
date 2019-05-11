@@ -181,12 +181,36 @@ export default {
     addNewStudent: function(data, accesstoken) {
         return axios({
             data: data,
-            url: "api/admin/addnewstudent",
+            url: 'api/admin/addnewstudent',
             headers: {
                 'Content-Type': 'application/json',
                 accesstoken
             },
             method: 'post'
+        });
+    },
+
+    // Gets all teachers (for admin use)
+    getAllTeachers: function(accesstoken) {
+        return axios({
+            url: '/api/admin/getallteachers/',
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'get'
+        });
+    },
+
+    // Gets all students (for admin use)
+    getAllStudents: function(accesstoken) {
+        return axios({
+            url: 'api/admin/getallstudents/',
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'get'
         });
     }
 
