@@ -10,6 +10,13 @@ module.exports = {
             .catch(err=> res.status(422).json(err));
     },
 
+    createUser: function(req, res) {
+        db.User
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
     //Create teacher
     createTeacher: function(req, res) {
         db.Teacher
