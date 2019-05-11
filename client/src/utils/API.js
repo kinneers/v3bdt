@@ -140,8 +140,6 @@ export default {
 
     //Adds a new user to the user collection
     addNewUser: function(data, accesstoken) {
-        console.log(data);
-        console.log(accesstoken)
         return axios({
             data: data,
             url: "api/admin/adduser",

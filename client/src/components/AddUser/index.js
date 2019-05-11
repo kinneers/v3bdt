@@ -39,21 +39,25 @@ class AddUser extends Component {
             userName: this.state.newUserEmail,
             authLevel: this.state.newUserAuthLevel
         };
+        console.log('NEW USER OBJECT: ', newUserObject);
         const addToCollectionObject = {
             userName: this.state.newUserEmail,
             authLevel: this.state.newUserAuthLevel,
             firstName: this.state.newUserFirstName,
             lastName: this.state.newUserLastName
-        }
+        };
+        console.log('ADD TO COLLECTION OBJECT: ', addToCollectionObject)
+        const accessToken = this.props.user.accessToken.jwtToken;
+        console.log('ACCESS TOKEN: ', accessToken);
         //Send the data to the user collection
-        API.addNewUser(newUserObject, this.props.user.accessToken.jwtToken)
-            .then(res => console.log('New User sent to user collection'))
+        API.addNewUser(newUserObject, accessToken)
+            .then(res => console.log('New User sent to user collection. Data: ', res.data))
             .catch(err => console.log(err));
 
         //Send the data to the student, teacher, or admin collection based upon authLevel
         if (this.state.newUserAuthLevel === 5) {
             console.log('Send the data to the admin collection');
-            API.addNewAdmin(addToCollectionObject, this.props.user.accessToken.jwtToken)
+            API.addNewAdmin(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Admin added!');
                     this.setState({ newUserFirstName: '',
@@ -66,9 +70,9 @@ class AddUser extends Component {
                 });
         } else if (this.state.newUserAuthLevel === 3) {
             console.log('Send the data to the teacher collection');
-            API.addNewTeacher(addToCollectionObject, this.props.user.accessToken.jwtToken)
+            API.addNewTeacher(addToCollectionObject, accessToken)
                 .then(res => {
-                    console.log('Admin added!');
+                    console.log('Teacher added!');
                     this.setState({ newUserFirstName: '',
                         newUserLastName: '',
                         newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
@@ -79,9 +83,9 @@ class AddUser extends Component {
                 });
         } else if (this.state.newUserAuthLevel === 1) {
             console.log('Send the data to the student collection');
-            API.addNewStudent(addToCollectionObject, this.props.user.accessToken.jwtToken)
+            API.addNewStudent(addToCollectionObject, accessToken)
                 .then(res => {
-                    console.log('Admin added!');
+                    console.log('Student added!');
                     this.setState({ newUserFirstName: '',
                         newUserLastName: '',
                         newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
