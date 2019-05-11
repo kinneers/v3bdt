@@ -36,11 +36,15 @@ class AddUser extends Component {
         //After everything is validated, send it to mongo
 
         const newUserObject = {
-            firstName: this.state.newUserFirstName,
-            lastName: this.state.newUserLastName,
-            email: this.state.newUserEmail,
+            userName: this.state.newUserEmail,
             authLevel: this.state.newUserAuthLevel
         };
+        const addToCollectionObject = {
+            userName: this.state.newUserEmail,
+            authLevel: this.state.newUserAuthLevel,
+            firstName: this.state.newUserFirstName,
+            lastName: this.state.newUserLastName
+        }
         //Send the data to the user collection
         API.addNewUser(newUserObject, this.props.user.accessToken.jwtToken)
             .then(res => console.log('New User sent to user collection'))
@@ -49,7 +53,7 @@ class AddUser extends Component {
         //Send the data to the student, teacher, or admin collection based upon authLevel
         if (this.state.newUserAuthLevel === 5) {
             console.log('Send the data to the admin collection');
-            API.addNewAdmin(newUserObject, this.props.user.accessToken.jwtToken)
+            API.addNewAdmin(addToCollectionObject, this.props.user.accessToken.jwtToken)
                 .then(res => {
                     console.log('Admin added!');
                     this.setState({ newUserFirstName: '',
@@ -62,7 +66,7 @@ class AddUser extends Component {
                 });
         } else if (this.state.newUserAuthLevel === 3) {
             console.log('Send the data to the teacher collection');
-            API.addNewTeacher(newUserObject, this.props.user.accessToken.jwtToken)
+            API.addNewTeacher(addToCollectionObject, this.props.user.accessToken.jwtToken)
                 .then(res => {
                     console.log('Admin added!');
                     this.setState({ newUserFirstName: '',
@@ -75,7 +79,7 @@ class AddUser extends Component {
                 });
         } else if (this.state.newUserAuthLevel === 1) {
             console.log('Send the data to the student collection');
-            API.addNewStudent(newUserObject, this.props.user.accessToken.jwtToken)
+            API.addNewStudent(addToCollectionObject, this.props.user.accessToken.jwtToken)
                 .then(res => {
                     console.log('Admin added!');
                     this.setState({ newUserFirstName: '',

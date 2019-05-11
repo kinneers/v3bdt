@@ -138,6 +138,60 @@ export default {
         });
     },
 
+    //Adds a new user to the user collection
+    addNewUser: function(data, accesstoken) {
+        console.log(data);
+        console.log(accesstoken)
+        return axios({
+            data: data,
+            url: "api/admin/adduser",
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'post'
+        });
+    },
+
+    //Adds a new user to the admin collection
+    addNewAdmin: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: "api/admin/addnewadmin",
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'post'
+        });
+    },
+
+    //Adds a new user to the teacher collection
+    addNewTeacher: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: "api/admin/addnewteacher",
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'post'
+        });
+    },
+
+    //Adds a new user to the student collection
+    addNewStudent: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: "api/admin/addnewstudent",
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'post'
+        });
+    }
+
     //Gets a student chart
 //     //Matches with '/api/student/behaviors/:id'
 // router.route('/behaviors/:id')
