@@ -18,7 +18,6 @@ class Admin extends Component {
             chosenStudent: '',
             chosenBx: '',
             chartData: {},
-            ready: false,
             accessToken: ''
         };
     };
@@ -46,7 +45,6 @@ class Admin extends Component {
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
     loadBehaviors = () => {
-        console.log("The call to load behaviors was made");
         API.getAllBehaviors(this.state.accessToken)
             .then(res => 
                 {                    
@@ -140,7 +138,6 @@ class Admin extends Component {
                         hideChart={this.hideChart}
                         populateChart={this.populateChart}
                         chartData={this.state.chartData}
-                        // ready={this.state.ready}
                         user={this.props.user}
                     />
                 </div>

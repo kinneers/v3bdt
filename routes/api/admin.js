@@ -29,4 +29,12 @@ router.route('/addnewteacher')
 router.route('/addnewstudent')
     .post(adminController.createStudent);
 
+//Matches with 'api/admin/getallteachers'
+router.route('/getallteachers')
+    .get(adminController.getAllTeachers);
+
+//Matches with 'api/admin/getallstudents'
+router.route('/getallstudents')
+    .get(adminController.getAllStudents);
+
 module.exports = router;

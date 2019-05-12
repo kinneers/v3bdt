@@ -47,6 +47,22 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    //Get all teachers
+    getAllTeachers: function(req, res) {
+        db.Teacher
+            .find()
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    //Get all students
+    getAllStudents: function(req, res) {
+        db.Student
+            .find()
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    
     //Link student to teacher/teacher to students
 
 
