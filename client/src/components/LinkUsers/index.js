@@ -8,24 +8,73 @@ class LinkUsers extends Component {
         super(props);
         this.state = {
             //Initialize new user values
-            chosenTeacher: '',
-            chosenStudent: '',
+            chosenTeacherId: '',
+            chosenTeacherName: '',
+            chosenTeacherIndex: '',
+            chosenStudentId: '',
             allTeachers: [],
             allStudents: [],
-            teacherChosen: false
+            teacherCurrentStudents: [],
+            unlinked: [],
+            alreadyLinked: []
         };
     };
 
     componentDidMount() {
         M.AutoInit();
         const accessToken = this.props.user.accessToken.jwtToken;
-        console.log(accessToken);
-        //Get all teachers, their ids, and save in state
+        //Get all teachers and save in state
         API.getAllTeachers(accessToken)
             .then(res => this.setState({ allTeachers: res.data }))
             .catch(err => console.log(err));
-        //Get all students, their ids, and save in state
+        //Get all students and save in state
+        API.getAllStudents(accessToken)
+            .then(res => this.setState({ allStudents: res.data }))
+            .catch(err => console.log(err));
+    };
 
+    handleChooseTeacher = event => {
+        event.preventDefault();
+        let teacherIndex = event.target.getAttribute('data-key');
+        this.setState({ chosenTeacherId: event.target.name, chosenTeacherName: event.target.text, chosenTeacherIndex: teacherIndex });
+        console.log(teacherIndex);
+        //Get the student array for the index of this teacher
+
+        //This is not updating as I'd expect... need to debug
+        console.log('Chosen teacher index: ', this.state.chosenTeacherIndex)
+        console.log(this.state.allTeachers[teacherIndex].students);
+        const allStudentsArray = [...this.state.allStudents];
+        const thisTeachersStudents = [...this.state.allTeachers[teacherIndex].students];
+        console.log('All: ', allStudentsArray);
+        console.log('This teacher: ', thisTeachersStudents);
+        let unlinkedStudents = [];
+        let alreadyLinkedStudents = [];
+
+        for (let i = 0; i < allStudentsArray.length; i++) {
+            if (!thisTeachersStudents.includes(allStudentsArray[i]._id)) {
+                unlinkedStudents.push(allStudentsArray[i]);
+            } else {
+                alreadyLinkedStudents.push(allStudentsArray[i]);
+            };
+        };
+
+        console.log(unlinkedStudents);
+        console.log(alreadyLinkedStudents);
+
+        this.setState({ unlinked: unlinkedStudents, alreadyLinked: alreadyLinkedStudents});
+    };
+
+    handleChooseStudent = event => {
+        event.preventDefault();
+        let studentId = event.target.name;
+        this.linkUsers(studentId);
+    };
+
+    linkUsers = (id) => {
+
+        console.log('TeacherID: ', this.state.chosenTeacherId);
+        console.log('This teacher index in state is: ', this.state.chosenTeacherIndex)
+        console.log('StudentID: ', id);
     }
 
     // // Handles updating component state when the user types into the input field
@@ -109,65 +158,66 @@ class LinkUsers extends Component {
     render() {
         return (
             <div className="container">
-            {(this.state.chosenTeacher !== '') ? (
-            
-            <div className="row">
-                <div className="col s12">
-                    <div className="card">
-                        <table id="table-custom-elements" className="row-border" cellSpacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Teacher: {this.state.chosenTeacher}</th>
-                                </tr>
-                                <tr>
-                                    <th>Currently Linked Students</th>
-                                    <th>Click a Student Name to Add to this Teacher</th>
-                                </tr>
-                            </thead>
-                            {/* {(this.props.behaviorInfo.behaviors) ? (
-                            <tbody>
-                                {this.props.behaviorInfo.behaviors.map(behaviors => (
-                                <tr key={behaviors._id}>
-                                    <td>{behaviors.studentName}</td>
-                                    <td>{behaviors.behaviorName}</td>
-                                    <td>
-                                        <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
-                                             <label>
-                                                <input id='Met'  value={1} name={behaviors._id} type="radio" />
-                                                <span className="bspace"  >Met</span>
-                                                
-                                            </label>    
-                                            <label>
-                                                <input id="Not-Met"  value={0} name={behaviors._id} type="radio" />
-                                                <span className="bspace">Not Met</span>
-                                            </label>
-                                            <label>
-                                                <input id="N/A" value={''} name={behaviors._id} type="radio" />
-                                                <span className="bspace">N/A</span>
-                                            </label>
-                                        </form>
-                                    </td>
-                                </tr>
-                                ))}
-                            </tbody>
-                            ) : 
-                            (<tbody>
-                                <tr>
-                                    <td>You do not have any student behaviors to rate.</td>
-                                </tr>
-                            </tbody>)
-                            }                      */}
-                        </table>
-                        <button className="waves-effect waves-light btn-small" id="linkUsers" onClick={this.linkUsers}>Link Users</button>
-                    </div> 
+            {(this.state.chosenTeacherIndex !== '') ? (
+                <div className="row">
+                    <div className="col s12">
+                        <div className="card">
+                            <table id="table-custom-elements" className="row-border" cellSpacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th colSpan='2'>Teacher: {this.state.chosenTeacherName}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Currently Linked Students</th>
+                                        <th>Click a Student Name to Add to this Teacher's List</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td className='list'>
+                                            <ul>
+                                            {this.state.alreadyLinked.map(student =>
+                                                <li key={student._id}>{student.firstName} {student.lastName}</li>
+                                            )}
+                                            </ul>
+                                        </td>
+                                        <td className='list'>
+                                            <ul>
+                                            {this.state.unlinked.map(student => 
+                                                <li key={student._id}><a href="#!" onClick={this.handleChooseStudent} name={student._id}>{student.firstName} {student.lastName}</a></li>
+                                            )}
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </div>
                 </div>
-            </div>
-        ) : (
-            <div>
-                This div is currently empty.
-            </div>
-        )}
-        </div>);
+            ) : (
+                <div className="row">
+                    <div className="col s12">
+                        <div className="card">
+                            <table id="table-custom-elements" className="row-border" cellSpacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Choose a Teacher: </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.allTeachers.map((teacher , i) => (
+                                    <tr key={i}>
+                                        <td><a href="#!" onClick={this.handleChooseTeacher} name={teacher._id} data-key={i}>{teacher.firstName} {teacher.lastName}</a></td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            )}
+                </div>
+        );
     };
 };
 

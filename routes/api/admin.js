@@ -34,6 +34,7 @@ router.route('/getallteachers')
     .get(adminController.getAllTeachers);
 
 //Matches with 'api/admin/getallstudents'
-router.route(adminController.getAllStudents);
+router.route('/getallstudents')
+    .get(adminController.getAllStudents);
 
 module.exports = router;

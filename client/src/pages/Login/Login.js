@@ -53,7 +53,6 @@ class Login extends Component {
             password: this.state.password,
             ...this.props
         };
-        console.log(this.props);
 
         return (
             <div className="main">
