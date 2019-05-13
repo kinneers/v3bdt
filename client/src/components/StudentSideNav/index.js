@@ -5,7 +5,7 @@ function StudentSideNav(props) {
     return(
         <div className='burger'>
             <ul id='slide-out' className='sidenav sidenav-fixed'>
-                <li className='top'>Welcome, {props.behaviorInfo.firstName} {props.behaviorInfo.lastName}!</li>
+                <li className='top'>Welcome, {props.currentUserInfo.firstName} {props.currentUserInfo.lastName}!</li>
                 <ul>
                     <li><a href='!#' onClick={props.handleSideNavClick}>View My Progress</a></li>
                     <li className="white"><div className="divider"></div></li>

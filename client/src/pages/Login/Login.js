@@ -15,10 +15,11 @@ class Login extends Component {
     setValue = (type, value) => {
         this.setState({[type]: value})
     };
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.onLogin(this.state.email, this.state.password)
-            .then((data) => {
+            .then((data) => 
                 API.associateUser(this.state.email, data.accessToken)
                 .then(({data: userData}) => {
                     const tokens = {
@@ -41,9 +42,10 @@ class Login extends Component {
                     if (user.authLevel === 5) {
                         this.props.history.push("/admin");
                     };
-                }); 
-            });
+                })
+            );
     };
+
 
     render() {
         const passedProps = {

@@ -14,7 +14,6 @@ class LinkUsers extends Component {
             chosenStudentId: '',
             allTeachers: [],
             allStudents: [],
-            teacherCurrentStudents: [],
             unlinked: [],
             alreadyLinked: []
         };
@@ -35,32 +34,28 @@ class LinkUsers extends Component {
 
     handleChooseTeacher = event => {
         event.preventDefault();
+        //Get the index of the currently selected teacher in the allTeachers array
         let teacherIndex = event.target.getAttribute('data-key');
-        this.setState({ chosenTeacherId: event.target.name, chosenTeacherName: event.target.text, chosenTeacherIndex: teacherIndex });
-        console.log(teacherIndex);
-        //Get the student array for the index of this teacher
-
-        //This is not updating as I'd expect... need to debug
-        console.log('Chosen teacher index: ', this.state.chosenTeacherIndex)
-        console.log(this.state.allTeachers[teacherIndex].students);
+        //Set the state for the currently selected teacher
+        this.setState({ chosenTeacherId: event.target.name, chosenTeacherName: event.target.text, chosenTeacherIndex: event.target.getAttribute('data-key') });
+        console.log(this.state);
+        //Copy the allStudents array and the array of students already linked to this teacher
         const allStudentsArray = [...this.state.allStudents];
         const thisTeachersStudents = [...this.state.allTeachers[teacherIndex].students];
-        console.log('All: ', allStudentsArray);
-        console.log('This teacher: ', thisTeachersStudents);
+        //Initialize arrays for unlinked and already linked students
         let unlinkedStudents = [];
         let alreadyLinkedStudents = [];
-
+        //Loop through the array of all students
         for (let i = 0; i < allStudentsArray.length; i++) {
+            //If the current student is not in this teacher's array, push to unlinked students array
             if (!thisTeachersStudents.includes(allStudentsArray[i]._id)) {
                 unlinkedStudents.push(allStudentsArray[i]);
             } else {
-                alreadyLinkedStudents.push(allStudentsArray[i]);
+                //Otherwise push to already linked students array
+                alreadyLinkedStudents.push(allStudentsArray[i]);  
             };
         };
-
-        console.log(unlinkedStudents);
-        console.log(alreadyLinkedStudents);
-
+        //Set the state for unlinked and linked students
         this.setState({ unlinked: unlinkedStudents, alreadyLinked: alreadyLinkedStudents});
     };
 
@@ -71,41 +66,37 @@ class LinkUsers extends Component {
     };
 
     linkUsers = (id) => {
+        //Create an object containing the teacher and student ids to be linked
+        const idsToLink = { chosenTeacher: this.state.chosenTeacherId, chosenStudent: id}
+        //Set accessToken
+        const accessToken = this.props.user.accessToken.jwtToken;
 
-        console.log('TeacherID: ', this.state.chosenTeacherId);
-        console.log('This teacher index in state is: ', this.state.chosenTeacherIndex)
-        console.log('StudentID: ', id);
-    }
+        API.linkStudentToTeacher(idsToLink, accessToken)
+            .then(res => console.log('Student Linked to teacher.  Data: ', res.data))
+            .catch(err => console.log(err));
 
-    // // Handles updating component state when the user types into the input field
-    // handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     this.setState({
-    //         [name]: value
-    //     });
-    // };
+        API.linkTeacherToStudent(idsToLink, accessToken)
+            .then(res => console.log('Teacher linked to student.  Data: ', res.data))
+            .catch(err => console.log(err));
+
+        //Push the newly linked student to currently linked students
+        //(For now, that student will stay in the unlinked list... will be removed later, once MVP is complete)
+        let currentLinked = this.state.alreadyLinked;
+        currentLinked.push(id);
+        this.setState({ alreadyLinked: currentLinked });
+
+        this.setState({
+            chosenTeacherId: '',
+            chosenTeacherName: '',
+            chosenTeacherIndex: '',
+            chosenStudentId: '',
+            unlinked: [],
+            alreadyLinked: []
+        })
+    };
+
 
     // createUser = event => {
-    //     event.preventDefault();
-    //     console.log(`You entered first name: ${this.state.newUserFirstName}, last name: ${this.state.newUserLastName} password: ${this.state.newUserPassword}, pw check: ${this.state.newUserCheckPw}, email: ${this.state.newUserEmail}, auth level: ${this.state.newUserAuthLevel}... now you need to validate all this data, send first name, last name, auth level, email to mongoDB, and also create as a teacher, student, or admin in respective collection based on auth level... and you need to send this user through 2 factor auth with Cognito somehow.`);
-        
-    //     //After everything is validated, send it to mongo
-
-    //     const newUserObject = {
-    //         userName: this.state.newUserEmail,
-    //         authLevel: this.state.newUserAuthLevel
-    //     };
-    //     console.log('NEW USER OBJECT: ', newUserObject);
-    //     const addToCollectionObject = {
-    //         userName: this.state.newUserEmail,
-    //         authLevel: this.state.newUserAuthLevel,
-    //         firstName: this.state.newUserFirstName,
-    //         lastName: this.state.newUserLastName
-    //     };
-    //     console.log('ADD TO COLLECTION OBJECT: ', addToCollectionObject)
-    //     const accessToken = this.props.user.accessToken.jwtToken;
-    //     console.log('ACCESS TOKEN: ', accessToken);
-    //     //Send the data to the user collection
     //     API.addNewUser(newUserObject, accessToken)
     //         .then(res => console.log('New User sent to user collection. Data: ', res.data))
     //         .catch(err => console.log(err));

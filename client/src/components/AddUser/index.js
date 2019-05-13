@@ -13,7 +13,7 @@ class AddUser extends Component {
             newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
             newUserCheckPw: '',
             newUserEmail: '',
-            newUserAuthLevel: 1
+            newUserAuthLevel: '1'
         };
     };
 
@@ -55,7 +55,7 @@ class AddUser extends Component {
             .catch(err => console.log(err));
 
         //Send the data to the student, teacher, or admin collection based upon authLevel
-        if (this.state.newUserAuthLevel === 5) {
+        if (this.state.newUserAuthLevel === '5') {
             console.log('Send the data to the admin collection');
             API.addNewAdmin(addToCollectionObject, accessToken)
                 .then(res => {
@@ -68,7 +68,7 @@ class AddUser extends Component {
                         newUserAuthLevel: 1
                     });
                 });
-        } else if (this.state.newUserAuthLevel === 3) {
+        } else if (this.state.newUserAuthLevel === '3') {
             console.log('Send the data to the teacher collection');
             API.addNewTeacher(addToCollectionObject, accessToken)
                 .then(res => {
@@ -81,12 +81,13 @@ class AddUser extends Component {
                         newUserAuthLevel: 1
                     });
                 });
-        } else if (this.state.newUserAuthLevel === 1) {
+        } else if (this.state.newUserAuthLevel === '1') {
             console.log('Send the data to the student collection');
             API.addNewStudent(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Student added!');
-                    this.setState({ newUserFirstName: '',
+                    this.setState({ 
+                        newUserFirstName: '',
                         newUserLastName: '',
                         newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
                         newUserCheckPw: '',
@@ -97,6 +98,15 @@ class AddUser extends Component {
         } else {
             console.log('Error: Auth level not defined at this time.');
         };
+
+        this.setState({
+            newUserFirstName: '',
+            newUserLastName: '',
+            newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
+            newUserCheckPw: '',
+            newUserEmail: '',
+            newUserAuthLevel: 0
+        })
     };
     
     render() {

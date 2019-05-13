@@ -48,9 +48,9 @@ function Login(req, res) {
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-            console.log('access token + ' + result.getAccessToken().getJwtToken());
-            console.log('id token + ' + result.getIdToken().getJwtToken());
-            console.log('refresh token + ' + result.getRefreshToken().getToken());
+            //console.log('access token + ' + result.getAccessToken().getJwtToken());
+            //console.log('id token + ' + result.getIdToken().getJwtToken());
+            //console.log('refresh token + ' + result.getRefreshToken().getToken());
             res.status(200).json(result);
         },
         onFailure: function (err) {
@@ -106,7 +106,7 @@ function renew() {
                 "id_token": session.idToken.jwtToken,
                 "refresh_token": session.refreshToken.token,
             }
-            console.log(retObj);
+            //console.log(retObj);
         }
     })
 }

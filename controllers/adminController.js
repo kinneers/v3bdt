@@ -63,8 +63,33 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     
-    //Link student to teacher/teacher to students
-
+    //Links student to teacher
+    linkStudentToTeacher: function(req, res) {
+        let sentIds = req.body;
+        console.log(req.body);
+        db.Teacher
+            .findOneAndUpdate(
+                { '_id': sentIds.chosenTeacher },
+                { $push: { 'students': sentIds.chosenStudent } },
+                { upsert: true }
+            )
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    
+    //Links teacher to student
+    linkTeacherToStudent: function(req, res) {
+        let sentIds = req.body;
+        console.log(req.body);
+        db.Student
+            .findByIdAndUpdate(
+                { _id: sentIds.chosenStudent },
+                { $push: { teachers: sentIds.chosenStudent } },
+                { upsert: true }
+            )
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
 
     //Create behavior for a student (will need to specify which student)
     createBehavior: function(req, res) {
