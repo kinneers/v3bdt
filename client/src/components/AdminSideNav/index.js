@@ -2,7 +2,6 @@ import React from 'react';
 import './style.css';
 
 function AdminSideNav(props) {
-    console.log(props);
     return(
         <div className='burger'>
             <ul id='slide-out' className='sidenav sidenav-fixed'>

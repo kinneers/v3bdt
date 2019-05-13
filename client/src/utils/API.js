@@ -89,6 +89,18 @@ export default {
         });
     },
 
+    //Gets all behaviors' basic info (behaviorID, behavior, name, data, etc.) ref'd to a student
+    getStudentBehaviors: function(id, accesstoken) {
+        return axios({
+            url: "/api/student/behaviors/" + id,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'get'
+        })
+    },
+
     // Gets all behaviors (for admin use)
     getAllBehaviors: function(accesstoken) {
         return axios({
@@ -212,28 +224,30 @@ export default {
             },
             method: 'get'
         });
+    },
+
+    linkStudentToTeacher: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: 'api/admin/linkstudenttoteacher',
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'put'
+        });
+    },
+
+    linkTeacherToStudent: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: 'api/admin/linkteachertostudent',
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'put'
+        });
     }
-
-    //Gets a student chart
-//     //Matches with '/api/student/behaviors/:id'
-// router.route('/behaviors/:id')
-// .get(studentController.findAllBehaviorsRefStudent);
-
-// //Matches with '/api/student/student/:id'
-// router.route('/student/:id')
-//   .get(studentController.findStudentById);
-
-// //Matches with '/api/student/behaviorchart/:id'
-// router.route('/behaviorchart/:id')
-//   .get(studentController.findBehaviorById);
-
-// //Matches with '/api/student/chartdata/:id'
-// router.route('/chartdata/:id')
-//   .get(studentController.getChartData);
-
-// //Matches with '/api/student/a/:email'
-// router.route("/a/:email")
-// .get(studentController.findByEmail);
-
     
 };

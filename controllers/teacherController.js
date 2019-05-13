@@ -38,11 +38,9 @@ module.exports = {
     //         .catch(err => res.status(422).json(err));
     // },
 
-    //Saves the ratings to the database... not sure why, but the inc is doubling everything (will just factor that into the math until a fix is found)
+    //Saves the ratings to the database
     saveRatings: function(req, res) {
         let newData = req.body;
-        console.log(newData);
-        console.log(req.body);
         db.BehaviorData
             .findOneAndUpdate(
                 { behavior: newData.behavior, behaviorDate: newData.behaviorDate },

@@ -26,7 +26,7 @@ class Student extends Component {
     componentDidMount() {
         // Auto initialize all the things!
         M.AutoInit();
-        
+
         let email = this.props.user.userName;
         let accessToken = '';
         //Gathers access token depending upon how it is sent in (this varies depending upon initial load or refresh)
@@ -40,17 +40,17 @@ class Student extends Component {
         
         //Gathers this user's data and makes call to load behaviors associated with this user
         API.associateStudent(email, accessToken)
-            .then(res => {this.setState({currentUserInfo: res.data}); this.loadBehaviors()})
+            .then(res => {this.setState({ currentUserInfo: res.data }); this.loadBehaviors()})
             .catch(err=> console.log(err));
     };
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
     loadBehaviors = () => {
         console.log("The call to load behaviors was made");
-        API.getStudentBehaviors(this.state.accessToken)
+        API.getStudentBehaviors(this.state.currentUserInfo._id, this.state.accessToken)
             .then(res => 
-                {                    
-                    this.setState({ behaviorInfo: {behaviors: res.data} });
+                {   console.log(res.data)             
+                    this.setState({ behaviorInfo: res.data.behaviors });
                     M.AutoInit();
                 })
             .catch(err => console.log(err));
@@ -142,7 +142,7 @@ class Student extends Component {
                         chartData={this.state.chartData}
                         // ready={this.state.ready}
                     />
-                </div>
+                </div> 
             </div>
         );
     };

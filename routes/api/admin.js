@@ -37,4 +37,12 @@ router.route('/getallteachers')
 router.route('/getallstudents')
     .get(adminController.getAllStudents);
 
+//Matches with 'api/admin/linkstudenttoteacher'
+router.route('/linkstudenttoteacher')
+    .put(adminController.linkStudentToTeacher);
+
+//Matches with 'api/admin/linkteachertostudent'
+router.route('/linkteachertostudent')
+    .put(adminController.linkTeacherToStudent);
+
 module.exports = router;

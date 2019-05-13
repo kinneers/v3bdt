@@ -1,5 +1,5 @@
 import React from 'react';
-import ChooseChart from './../ChooseChart';
+import StudentChooseChart from './../StudentChooseChart';
 import './style.css';
 
 function StudentMainContainer(props) {
@@ -7,7 +7,7 @@ function StudentMainContainer(props) {
     switch(props.chooseComponent) {
         case 'View My Progress':
             return (<div className="fixmain">
-                        <ChooseChart 
+                        <StudentChooseChart 
                             user={props.user}
                             behaviorInfo={props.behaviorInfo}
                             handleChooseStudent={props.handleChooseStudent}

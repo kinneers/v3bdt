@@ -12,7 +12,7 @@ const Routes = props => {
         props.isAuthenticated || props.user ? (
             <React.Fragment>
                 <Route exact path="/teacher" render={() => <Teacher {...props} />} />
-                <Route exact path="/student" component={Student} />
+                <Route exact path="/student" render={() => <Student {...props} />} />
                 <Route exact path="/admin" render={() => <Admin {...props} />} />
             </React.Fragment>
         ) : (<Route render={() => <Login {...props} />} />)
