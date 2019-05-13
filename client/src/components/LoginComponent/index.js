@@ -8,7 +8,7 @@ function LoginComponent(props) {
                 <div className="col s8 offset-s2">
                     <div className="card">
                     <div className="card-image">
-                    <img className="background" src="images/geometric-cave2.jpg" alt="background design" />
+                    <img className="background" src="images/bdtmainlogo.png" alt="background design" />
                     </div>
                     <div className="card-stacked">
                         <div className="card-content">
