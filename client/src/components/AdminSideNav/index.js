@@ -9,7 +9,7 @@ function AdminSideNav(props) {
                 <ul>
                     <li><a href='!#' onClick={props.handleSideNavClick}>Create Users</a></li>
                     <li><a href='!#' onClick={props.handleSideNavClick}>Link Users</a></li>
-                    <li><a href='!#' onClick={props.handleSideNavClick}>Enter Behavior Goals</a></li>
+                    <li><a href='!#' onClick={props.handleSideNavClick}>Create Goals</a></li>
                     <li><a href='!#' onClick={props.handleSideNavClick}>View Student Data</a></li>
                     <li className="white"><div className="divider"></div></li>
                     <li><a href='/logout'>Log Out</a></li>
