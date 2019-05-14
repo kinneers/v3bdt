@@ -45,9 +45,6 @@ class CreateGoal extends Component {
         const goal = this.state.goal;
         console.log(goal);
         console.log(this.state);
-        API.getTeachersRefStudent(this.state.chosenStudentId, this.state.accessToken)
-            .then(res => this.setState({ allStudentsTeachers: res.data }))
-            .catch(err => console.log(err));
         console.log(this.state.allStudentsTeachers)
     };
     
