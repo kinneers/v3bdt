@@ -12,6 +12,7 @@ class LinkUsers extends Component {
             chosenTeacherName: '',
             chosenTeacherIndex: '',
             chosenStudentId: '',
+            accessToken: '',
             allTeachers: [],
             allStudents: [],
             unlinked: [],
@@ -23,15 +24,21 @@ class LinkUsers extends Component {
     componentDidMount() {
         M.AutoInit();
         const accessToken = this.props.user.accessToken.jwtToken;
+        this.setState({ accessToken: accessToken });
+        this.updateTeachersAndStudents(accessToken);
+    };
+
+    updateTeachersAndStudents= (accessToken) => {
         //Get all teachers and save in state
         API.getAllTeachers(accessToken)
             .then(res => this.setState({ allTeachers: res.data }))
             .catch(err => console.log(err));
+
         //Get all students and save in state
         API.getAllStudents(accessToken)
             .then(res => this.setState({ allStudents: res.data }))
             .catch(err => console.log(err));
-    };
+    }
 
     handleChooseTeacher = event => {
         event.preventDefault();
@@ -69,6 +76,7 @@ class LinkUsers extends Component {
     linkUsers = (id) => {
         //Create an object containing the teacher and student ids to be linked
         const idsToLink = { chosenTeacher: this.state.chosenTeacherId, chosenStudent: id}
+        console.log(idsToLink);
         //Set accessToken
         const accessToken = this.props.user.accessToken.jwtToken;
 
@@ -93,7 +101,9 @@ class LinkUsers extends Component {
             chosenStudentId: '',
             unlinked: [],
             alreadyLinked: []
-        })
+        });
+
+        this.updateTeachersAndStudents(accessToken);
     };
 
     //Called after 'link users'- sets mount to true in state in order to conditionally render component

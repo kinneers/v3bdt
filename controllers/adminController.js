@@ -84,7 +84,7 @@ module.exports = {
         db.Student
             .findByIdAndUpdate(
                 { _id: sentIds.chosenStudent },
-                { $push: { teachers: sentIds.chosenStudent } },
+                { $push: { teachers: sentIds.chosenTeacher } },
                 { upsert: true }
             )
             .then(dbModel => res.json(dbModel))
