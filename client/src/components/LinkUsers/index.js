@@ -15,7 +15,8 @@ class LinkUsers extends Component {
             allTeachers: [],
             allStudents: [],
             unlinked: [],
-            alreadyLinked: []
+            alreadyLinked: [],
+            mount: true,
         };
     };
 
@@ -95,56 +96,12 @@ class LinkUsers extends Component {
         })
     };
 
-
-    // createUser = event => {
-    //     API.addNewUser(newUserObject, accessToken)
-    //         .then(res => console.log('New User sent to user collection. Data: ', res.data))
-    //         .catch(err => console.log(err));
-
-    //     //Send the data to the student, teacher, or admin collection based upon authLevel
-    //     if (this.state.newUserAuthLevel === 5) {
-    //         console.log('Send the data to the admin collection');
-    //         API.addNewAdmin(addToCollectionObject, accessToken)
-    //             .then(res => {
-    //                 console.log('Admin added!');
-    //                 this.setState({ newUserFirstName: '',
-    //                     newUserLastName: '',
-    //                     newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-    //                     newUserCheckPw: '',
-    //                     newUserEmail: '',
-    //                     newUserAuthLevel: 1
-    //                 });
-    //             });
-    //     } else if (this.state.newUserAuthLevel === 3) {
-    //         console.log('Send the data to the teacher collection');
-    //         API.addNewTeacher(addToCollectionObject, accessToken)
-    //             .then(res => {
-    //                 console.log('Teacher added!');
-    //                 this.setState({ newUserFirstName: '',
-    //                     newUserLastName: '',
-    //                     newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-    //                     newUserCheckPw: '',
-    //                     newUserEmail: '',
-    //                     newUserAuthLevel: 1
-    //                 });
-    //             });
-    //     } else if (this.state.newUserAuthLevel === 1) {
-    //         console.log('Send the data to the student collection');
-    //         API.addNewStudent(addToCollectionObject, accessToken)
-    //             .then(res => {
-    //                 console.log('Student added!');
-    //                 this.setState({ newUserFirstName: '',
-    //                     newUserLastName: '',
-    //                     newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-    //                     newUserCheckPw: '',
-    //                     newUserEmail: '',
-    //                     newUserAuthLevel: 1
-    //                 });
-    //             });
-    //     } else {
-    //         console.log('Error: Auth level not defined at this time.');
-    //     };
-    // };
+    //Called after 'link users'- sets mount to true in state in order to conditionally render component
+    remount = (event) => {
+        event.preventDefault();
+        this.setState({ mount: true });
+    };
+    
     
     render() {
         return (
@@ -207,7 +164,7 @@ class LinkUsers extends Component {
                     </div>
                 </div>
             )}
-                </div>
+            </div>
         );
     };
 };

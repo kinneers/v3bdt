@@ -1,6 +1,7 @@
 import React from 'react';
 import LinkUsers from '../LinkUsers';
 import AddUser from '../AddUser';
+import CreateGoal from '../CreateGoal';
 import ChooseChart from '../ChooseChart';
 import './style.css';
 
@@ -19,9 +20,11 @@ function AdminMainContainer(props) {
                         user={props.user}
                     />
                 </div>);
-        case 'Enter Behavior Goals':
+        case 'Create Goals':
             return (<div className="fixmain">
-                    <p>This is currently empty.</p>
+                    <CreateGoal
+                        user={props.user}
+                    />
                 </div>);
         case 'View Student Data':
         return (<div className="fixmain">
@@ -38,7 +41,6 @@ function AdminMainContainer(props) {
                         // ready={props.ready}
                     />
                 </div>); 
-
         default:
             return (
                 <div className="fixmain">

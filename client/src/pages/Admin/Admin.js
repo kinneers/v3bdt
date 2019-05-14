@@ -18,7 +18,9 @@ class Admin extends Component {
             chosenStudent: '',
             chosenBx: '',
             chartData: {},
-            accessToken: ''
+            accessToken: '',
+            allTeachers: [],
+            allStudents: []
         };
     };
     
@@ -41,6 +43,16 @@ class Admin extends Component {
         API.associateAdmin(email, accessToken)
             .then(res => {this.setState({currentUserInfo: res.data}); this.loadBehaviors()})
             .catch(err=> console.log(err));
+
+        //Get all teachers and save in state
+        API.getAllTeachers(accessToken)
+            .then(res => this.setState({ allTeachers: res.data }))
+            .catch(err => console.log(err));
+
+        //Get all students and save in state
+        API.getAllStudents(accessToken)
+            .then(res => this.setState({ allStudents: res.data }))
+            .catch(err => console.log(err));
     };
 
     // Loads all behaviors and sets them to this.state.behaviorInfo
@@ -139,6 +151,8 @@ class Admin extends Component {
                         populateChart={this.populateChart}
                         chartData={this.state.chartData}
                         user={this.props.user}
+                        allTeachers={this.state.allTeachers}
+                        allStudents={this.state.allStudents}
                     />
                 </div>
             </div>
