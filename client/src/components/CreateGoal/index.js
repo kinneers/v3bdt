@@ -10,7 +10,9 @@ class CreateGoal extends Component {
             allStudents: [],
             mountForm: false,
             chosenStudentId: '',
-            goal: ''
+            goal: '',
+            allStudentsTeachers: [],
+            studentIndex: ''
         };
     };
 
@@ -21,13 +23,14 @@ class CreateGoal extends Component {
         API.getAllStudents(accessToken)
             .then(res => this.setState({ allStudents: res.data }))
             .catch(err => console.log(err));
-    }
+    };
 
     //Renders input form when a student has been chosen
     handleChooseStudent= (event) => {
         event.preventDefault();
-        this.setState({ chosenStudentId: event.target.name, mountForm: true })
-    }
+        let studentIndexNum = event.target.getAttribute('data-key');
+        this.setState({ chosenStudentId: event.target.name, studentIndex: studentIndexNum, mountForm: true })
+    };
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
@@ -35,6 +38,17 @@ class CreateGoal extends Component {
         this.setState({
             [name]: value
         });
+    };
+
+    createGoal = event => {
+        event.preventDefault();
+        const goal = this.state.goal;
+        console.log(goal);
+        console.log(this.state);
+        API.getTeachersRefStudent(this.state.chosenStudentId, this.state.accessToken)
+            .then(res => this.setState({ allStudentsTeachers: res.data }))
+            .catch(err => console.log(err));
+        console.log(this.state.allStudentsTeachers)
     };
     
     render() {
@@ -70,14 +84,9 @@ class CreateGoal extends Component {
                             </div>
                         </div>
                     </form>
-                    <button className="waves-effect waves-light btn-small" id="createUser" onClick={this.createUser}>Save Goal</button>
+                    <button className="waves-effect waves-light btn-small" id="createGoal" onClick={this.createGoal}>Save Goal</button>
                 </div>
             </div>)
-
-
-
-
-            
         );
     };
 };

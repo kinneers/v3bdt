@@ -112,6 +112,10 @@ class LinkUsers extends Component {
         this.setState({ mount: true });
     };
     
+    goBackToTeacherList = (event) => {
+        event.preventDefault();
+        this.setState({ chosenTeacherIndex: '' });
+    }
     
     render() {
         return (
@@ -123,7 +127,8 @@ class LinkUsers extends Component {
                             <table id="table-custom-elements" className="row-border" cellSpacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th colSpan='2'>Teacher: {this.state.chosenTeacherName}</th>
+                                        <th>Teacher: {this.state.chosenTeacherName}</th>
+                                        <th><button className="waves-effect waves-light btn-small" id="createGoal" onClick={this.goBackToTeacherList}>Back to Teacher List</button></th>
                                     </tr>
                                     <tr>
                                         <th>Currently Linked Students</th>
