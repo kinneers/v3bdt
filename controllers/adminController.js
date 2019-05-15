@@ -91,11 +91,35 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    //Create behavior for a student (will need to specify which student)
-    createBehavior: function(req, res) {
+    //Creates a new behavioral goal
+    createGoal: function(req, res) {
         db.Behavior
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+
+    //Links new goal to student
+    sendBxToStudent: function(req, res) {
+        db.Student
+            .findByIdAndUpdate(
+                { "_id": req.params.id },
+                { $push: { behaviors: req.body.newBxId } },
+                { upsert: true }
+            )
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    //Links new goal to teacher
+    sendBxToTeacher: function(req, res) {
+        db.Teacher
+            .findByIdAndUpdate(
+                { "_id": req.params.id },
+                { $push: { behaviors: req.body.newBxId } },
+                { upsert: true }
+            )
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    }
 };
