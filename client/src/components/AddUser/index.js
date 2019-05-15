@@ -13,7 +13,8 @@ class AddUser extends Component {
             newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
             newUserCheckPw: '',
             newUserEmail: '',
-            newUserAuthLevel: '1'
+            newUserAuthLevel: '1',
+            render: true
         };
     };
 
@@ -105,12 +106,19 @@ class AddUser extends Component {
             newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
             newUserCheckPw: '',
             newUserEmail: '',
-            newUserAuthLevel: 0
-        })
+            newUserAuthLevel: 0,
+            render: false
+        });
+    };
+
+    remount = (event) => {
+        event.preventDefault();
+        this.setState({ render: true });
     };
     
     render() {
         return (
+            (this.state.render) ? (
             <div className="container">
                 <div className="row">
                     <form className="col s12">
@@ -154,7 +162,19 @@ class AddUser extends Component {
                     </form>
                     <button className="waves-effect waves-light btn-small" id="createUser" onClick={this.createUser}>Create User</button>
                 </div>
-            </div>
+            </div>) : (
+            <div className="container">
+                <div className="row chartCard">
+                    <div className="col s12 center-align">
+                        <div className="card blue-grey darken-1">
+                            <div className="card-content white-text">
+                                <span className="card-title">New User Added!</span>
+                                <button className="waves-effect waves-light btn-small" id="message" onClick={this.remount}>Click to Add Another User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>)
         );
     };
 };
