@@ -45,4 +45,16 @@ router.route('/linkstudenttoteacher')
 router.route('/linkteachertostudent')
     .put(adminController.linkTeacherToStudent);
 
+//Matches with 'api/admin/creategoal'
+router.route('/creategoal')
+    .post(adminController.createGoal);
+
+//Matches with 'api/admin/sendbxtostudent/:id
+router.route('/sendbxtostudent/:id')
+    .put(adminController.sendBxToStudent);
+
+//Matches with 'api/admin/sendbxtoteacher/:id
+router.route('/sendbxtoteacher/:id')
+    .put(adminController.sendBxToTeacher);
+
 module.exports = router;

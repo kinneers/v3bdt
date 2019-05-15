@@ -248,7 +248,41 @@ export default {
             },
             method: 'put'
         });
-    }
+    },
 
-    
+    createGoal: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: 'api/admin/creategoal',
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'post'
+        });
+    },
+
+    sendBxToStudent: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: 'api/admin/sendbxtostudent/' + data.student,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'put'
+        });
+    },
+
+    sendBxToTeacher: function(data, accesstoken) {
+        return axios({
+            data: data,
+            url: 'api/admin/sendbxtoteacher/' + data.teacher,
+            headers: {
+                'Content-Type': 'application/json',
+                accesstoken
+            },
+            method: 'put'
+        });
+    }
 };
