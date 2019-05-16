@@ -13,7 +13,8 @@ class AddUser extends Component {
             newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
             newUserCheckPw: '',
             newUserEmail: '',
-            newUserAuthLevel: '1'
+            newUserAuthLevel: '1',
+            render: true
         };
     };
 
@@ -28,6 +29,10 @@ class AddUser extends Component {
             [name]: value
         });
     };
+
+    setAuthLevel = event => {
+        this.setState({ newUserAuthLevel: event.target.value});
+    }
 
     createUser = event => {
         event.preventDefault();
@@ -60,40 +65,18 @@ class AddUser extends Component {
             API.addNewAdmin(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Admin added!');
-                    this.setState({ newUserFirstName: '',
-                        newUserLastName: '',
-                        newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-                        newUserCheckPw: '',
-                        newUserEmail: '',
-                        newUserAuthLevel: 1
-                    });
                 });
         } else if (this.state.newUserAuthLevel === '3') {
             console.log('Send the data to the teacher collection');
             API.addNewTeacher(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Teacher added!');
-                    this.setState({ newUserFirstName: '',
-                        newUserLastName: '',
-                        newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-                        newUserCheckPw: '',
-                        newUserEmail: '',
-                        newUserAuthLevel: 1
-                    });
                 });
         } else if (this.state.newUserAuthLevel === '1') {
             console.log('Send the data to the student collection');
             API.addNewStudent(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Student added!');
-                    this.setState({ 
-                        newUserFirstName: '',
-                        newUserLastName: '',
-                        newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-                        newUserCheckPw: '',
-                        newUserEmail: '',
-                        newUserAuthLevel: 1
-                    });
                 });
         } else {
             console.log('Error: Auth level not defined at this time.');
@@ -105,12 +88,20 @@ class AddUser extends Component {
             newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
             newUserCheckPw: '',
             newUserEmail: '',
-            newUserAuthLevel: 0
-        })
+            newUserAuthLevel: '1',
+            render: false
+        });
+    };
+
+    remount = (event) => {
+        event.preventDefault();
+        M.AutoInit();
+        this.setState({ render: true });
     };
     
     render() {
         return (
+            (this.state.render) ? (
             <div className="container">
                 <div className="row">
                     <form className="col s12">
@@ -125,14 +116,19 @@ class AddUser extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s12">
-                                <select onChange={this.handleInputChange} name="newUserAuthLevel">
-                                    <option value="" disabled>Choose your option</option>
-                                    <option value="1" defaultValue>Student</option>
-                                    <option value="3">Teacher</option>
-                                    <option value="5">Administrator</option>
-                                </select>
-                                    <label>This user is a(n): </label>
+                            <div onChange={this.handleInputChange}>
+                                <label>
+                                    <input className="with-gap" name="newUserAuthLevel" type="radio" value="1" />
+                                    <span className="bspace">Student</span>
+                                </label>
+                                <label>
+                                    <input className="with-gap" name="newUserAuthLevel" type="radio" value="3" />
+                                    <span className="bspace">Teacher</span>
+                                </label>
+                                <label>
+                                    <input className="with-gap" name="newUserAuthLevel" type="radio" value="5" />
+                                    <span className="bspace">Admin</span>
+                                </label>
                             </div>
                         </div>
                         <div className="row">
@@ -154,7 +150,19 @@ class AddUser extends Component {
                     </form>
                     <button className="waves-effect waves-light btn-small" id="createUser" onClick={this.createUser}>Create User</button>
                 </div>
-            </div>
+            </div>) : (
+            <div className="container">
+                <div className="row chartCard">
+                    <div className="col s12 center-align">
+                        <div className="card blue-grey darken-1">
+                            <div className="card-content white-text">
+                                <span className="card-title">New User Added!</span>
+                                <button className="waves-effect waves-light btn-small" id="message" onClick={this.remount}>Click to Add Another User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>)
         );
     };
 };

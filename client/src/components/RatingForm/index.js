@@ -116,10 +116,9 @@ class RatingForm extends Component {
                                             <td>{behaviors.behaviorName}</td>
                                             <td>
                                                 <form id={behaviors._id} name='rating' onChange={this.handleInputChange}>
-                                                     <label>
+                                                    <label>
                                                         <input id='Met'  value={1} name={behaviors._id} type="radio" />
                                                         <span className="bspace"  >Met</span>
-                                                        
                                                     </label>    
                                                     <label>
                                                         <input id="Not-Met"  value={0} name={behaviors._id} type="radio" />
