@@ -116,20 +116,20 @@ class AddUser extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <form onChange={this.handleInputChange}>
+                            <div onChange={this.handleInputChange}>
                                 <label>
-                                    <input class="with-gap" name="newUserAuthLevel" type="radio" value="1" />
+                                    <input className="with-gap" name="newUserAuthLevel" type="radio" value="1" />
                                     <span className="bspace">Student</span>
                                 </label>
                                 <label>
-                                    <input class="with-gap" name="newUserAuthLevel" type="radio" value="3" />
+                                    <input className="with-gap" name="newUserAuthLevel" type="radio" value="3" />
                                     <span className="bspace">Teacher</span>
                                 </label>
                                 <label>
-                                    <input class="with-gap" name="newUserAuthLevel" type="radio" value="5" />
+                                    <input className="with-gap" name="newUserAuthLevel" type="radio" value="5" />
                                     <span className="bspace">Admin</span>
                                 </label>
-                            </form>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
