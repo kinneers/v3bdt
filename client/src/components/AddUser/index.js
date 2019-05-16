@@ -30,6 +30,10 @@ class AddUser extends Component {
         });
     };
 
+    setAuthLevel = event => {
+        this.setState({ newUserAuthLevel: event.target.value});
+    }
+
     createUser = event => {
         event.preventDefault();
         console.log(`You entered first name: ${this.state.newUserFirstName}, last name: ${this.state.newUserLastName} password: ${this.state.newUserPassword}, pw check: ${this.state.newUserCheckPw}, email: ${this.state.newUserEmail}, auth level: ${this.state.newUserAuthLevel}... now you need to validate all this data, send first name, last name, auth level, email to mongoDB, and also create as a teacher, student, or admin in respective collection based on auth level... and you need to send this user through 2 factor auth with Cognito somehow.`);
@@ -61,40 +65,18 @@ class AddUser extends Component {
             API.addNewAdmin(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Admin added!');
-                    this.setState({ newUserFirstName: '',
-                        newUserLastName: '',
-                        newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-                        newUserCheckPw: '',
-                        newUserEmail: '',
-                        newUserAuthLevel: 1
-                    });
                 });
         } else if (this.state.newUserAuthLevel === '3') {
             console.log('Send the data to the teacher collection');
             API.addNewTeacher(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Teacher added!');
-                    this.setState({ newUserFirstName: '',
-                        newUserLastName: '',
-                        newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-                        newUserCheckPw: '',
-                        newUserEmail: '',
-                        newUserAuthLevel: 1
-                    });
                 });
         } else if (this.state.newUserAuthLevel === '1') {
             console.log('Send the data to the student collection');
             API.addNewStudent(addToCollectionObject, accessToken)
                 .then(res => {
                     console.log('Student added!');
-                    this.setState({ 
-                        newUserFirstName: '',
-                        newUserLastName: '',
-                        newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
-                        newUserCheckPw: '',
-                        newUserEmail: '',
-                        newUserAuthLevel: 1
-                    });
                 });
         } else {
             console.log('Error: Auth level not defined at this time.');
@@ -106,13 +88,14 @@ class AddUser extends Component {
             newUserPassword: '', //Don't save here if we don't absolutely have to - should go to Cognito - will not go to our DB
             newUserCheckPw: '',
             newUserEmail: '',
-            newUserAuthLevel: 0,
+            newUserAuthLevel: '1',
             render: false
         });
     };
 
     remount = (event) => {
         event.preventDefault();
+        M.AutoInit();
         this.setState({ render: true });
     };
     
@@ -133,15 +116,20 @@ class AddUser extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s12">
-                                <select onChange={this.handleInputChange} name="newUserAuthLevel">
-                                    <option value="" disabled>Choose your option</option>
-                                    <option value="1" defaultValue>Student</option>
-                                    <option value="3">Teacher</option>
-                                    <option value="5">Administrator</option>
-                                </select>
-                                    <label>This user is a(n): </label>
-                            </div>
+                            <form onChange={this.handleInputChange}>
+                                <label>
+                                    <input class="with-gap" name="newUserAuthLevel" type="radio" value="1" />
+                                    <span>Student  </span>
+                                </label>
+                                <label>
+                                    <input class="with-gap" name="newUserAuthLevel" type="radio" value="3" />
+                                    <span>Teacher  </span>
+                                </label>
+                                <label>
+                                    <input class="with-gap" name="newUserAuthLevel" type="radio" value="5" />
+                                    <span>Admin  </span>
+                                </label>
+                            </form>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
