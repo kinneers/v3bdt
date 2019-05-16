@@ -119,15 +119,15 @@ class AddUser extends Component {
                             <form onChange={this.handleInputChange}>
                                 <label>
                                     <input class="with-gap" name="newUserAuthLevel" type="radio" value="1" />
-                                    <span>Student  </span>
+                                    <span className="bspace">Student</span>
                                 </label>
                                 <label>
                                     <input class="with-gap" name="newUserAuthLevel" type="radio" value="3" />
-                                    <span>Teacher  </span>
+                                    <span className="bspace">Teacher</span>
                                 </label>
                                 <label>
                                     <input class="with-gap" name="newUserAuthLevel" type="radio" value="5" />
-                                    <span>Admin  </span>
+                                    <span className="bspace">Admin</span>
                                 </label>
                             </form>
                         </div>
