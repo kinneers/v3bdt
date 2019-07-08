@@ -1,7 +1,7 @@
 # Behavioral Data Tracker v.3 (MERN App Phase)
 A Behavioral Tracking Application for whole-interval recording, designed for ease of use and to reduce redundant data entry in many classroom behavioral tracking systems. This application collects data and updates charts in real time to display behavioral trends to help professionals evaluate the effectiveness of behavioral interventions.  Although the app was specifically designed for use with students with severe emotional/behavioral disabilities requiring frequent behavioral monitoring, it can be used by teachers serving any population of students.  Please note that this is a prototype for further development incorporating fictitious data and utilizes minimal security measures to protect student data.  Please do NOT use this version to store any real student data.  The developers are not responsible for the misuse of this application.
 
-## Developed by: Sarah Kinneer, Billy Sterling, and Jodi Woodard
+## Developed by: Sarah Kinneer, Billy Sterling, Jodi Woodard, and Lisa Stasio
 ## May 2019
 
 ### Login Page
